@@ -1,52 +1,57 @@
-const Discord = require('discord.js');
-const client = new Discord.Client({disableEveryone: true});
-const botconfig = require ("./botconfig.json");
-const fetch = require('node-fetch');
+const {Client, Collection} = require('discord.js');
+const {token} = require ("./botconfig.json");
+const client = new Client();
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity("ur help", {type: "LISTENING"})
-});
+// fs.readdir("./commands/", (err, files) => {
 
-client.on("message", async msg => {
-  if (msg.content === 'ping') {
-    msg.reply('pong');
-  }
-  let prefix = botconfig.prefix;
-  // let messageArray = msg.content.split(" ");
-  // let cmd = messageArray[0];
-  // let args = messageArray.slice(1);
+//   if (err) console.log(err)
+//   let jsfile = files.filter(f => f.split(".").pop() === "js")
+//   if(jsfile.length <= 0) {
+//     return console.log("Commands: Could not find.");
+//   }
+//   jsfile.forEach((f, i) => {
+//     let pull = require(`./commands/${f}`);
+//     client.commands.set(pull.config.name, pull);
+//     pull.config.aliases.forEach(alias => {
+//       client.aliases.set(alias, pull.config.name)
+//     });
+//   });
+// });
 
-  if(msg.content === `${prefix}test`){
-    let sembed = new Discord.RichEmbed()
-    .setColor("#ff00d9")
-    .setTitle("UserInfo")
-    .setDescription("dssds")
-    .setAuthor(`${msg.guild.name}`)
-    .addField("**guild name:**", `${msg.guild.name}`, true)
-    .addField("guild ownser:", `${msg.guild.owner}`, true)
-    .addField("memeber count", `${msg.guild.memberCount}`, true)
-    .setFooter("Shanerbot", client.user.displayAvatarURL);
-    msg.channel.send({embed: sembed});
-
-  }
-  if(msg.content === `${prefix}hahameme`){
-
-    fetch('https://apis.duncte123.me/meme')
-    .then(res => res.json()).then(body => {
-      if (!body) return msg.channel.send("``haha no meme for u, idot.``")
-      let mEmbed = new Discord.RichEmbed()
-      .setTitle(body.data['title'])
-      .setColor("#ff00d9")
-      .setFooter("ShanerBot", client.user.displayAvatarURL)
-      .setImage(body.data['image'])
-        msg.channel.send({embed: mEmbed})
-    })
-  }
+["commands", "aliases"].forEach(x => client[x] = new Collection());
+["console", "command", "event"].forEach(x => require(`./handlers/${x}`)(client));
 
 
+// client.on("message", async msg => {
+//   if (msg.content === 'ping') {
+//     msg.reply('pong');
+//   }
+//   let prefix = botconfig.prefix;
+//   let messageArray = msg.content.split(" ");
+//   let cmd = messageArray[0];
+//   let args = messageArray.slice(1);
+
+//   let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)))
+//   if(commandfile) commandfile.run(client, msg, args)
 
 
-});
+  // if(msg.content === `${prefix}test`){
+  //   let sembed = new Discord.RichEmbed()
+  //   .setColor("#ff00d9")
+  //   .setTitle("UserInfo")
+  //   .setDescription("dssds")
+  //   .setAuthor(`${msg.guild.name}`)
+  //   .addField("**guild name:**", `${msg.guild.name}`, true)
+  //   .addField("guild ownser:", `${msg.guild.owner}`, true)
+  //   .addField("memeber count", `${msg.guild.memberCount}`, true)
+  //   .setFooter("Shanerbot", client.user.displayAvatarURL);
+  //   msg.channel.send({embed: sembed});
 
-client.login(botconfig.token);
+  // }
+
+
+
+
+// });
+
+client.login(token);
