@@ -1,5 +1,6 @@
 const {ErelaClient, Utils} = require("erela.js")
 const {nodes} = require("../../botconfig.json")
+const {prefix} = require ("../../botconfig.json");
 
 module.exports = async client => {
     console.log(`Logged in as ${client.user.username}!`);
@@ -19,17 +20,7 @@ module.exports = async client => {
         .set("low", 0.10)
         .set("medium", 0.15)
         .set("high", 0.25);
-        
-    let mstatus = [
-        "pls invite me man",
-        "haha hello",
-        "ur help",
-        "kiss me",
-        "TikTok"
-    ]
 
-    setInterval(function() {
-        let status = mstatus[Math.floor(Math.random() * mstatus.length)];
-        client.user.setActivity(status, {type: "WATCHING"});
-    }, 10000)
+    let activities = ["😎", `invite me?`, "haha hello", "kiss me", "🙃"], i = 0;
+    setInterval(() => client.user.setActivity(`${prefix} help | ${activities[i++ % activities.length]}`, { type: "WATCHING" }), 15000)
 }

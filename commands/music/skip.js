@@ -19,7 +19,7 @@ module.exports = {
 
         player.stop();
         const sEmbed = new RichEmbed()
-        .setAuthor(`${message.author.name}: Skipping song`, message.author.displayAvatarURL)
+        .setAuthor(`${message.author.username}: Skipping song`, message.author.displayAvatarURL)
         .setColor("#B44874")
         .setTitle("**"+title+"**")
         .setURL(uri)

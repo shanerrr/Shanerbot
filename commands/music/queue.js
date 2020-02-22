@@ -8,7 +8,7 @@ module.exports = {
         usage: "ur queue",
         category: "music",
         accessableby: "Members",
-        aliases: ["queue", "q", "np"]
+        aliases: ["q", "np"]
     },
     run: async (client, message, args) => {
 

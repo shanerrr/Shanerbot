@@ -5,16 +5,24 @@ module.exports = {
         usage: "ur join",
         category: "music",
         accessableby: "Members",
-        aliases: ["join"]
+        aliases: []
     },
     run: async (client, message, args) => {
+
         const { voiceChannel } = message.member;
-        const player = client.music.players.get(message.guild.id);
+        if (!voiceChannel) return message.channel.send("`ur know i cant join if ur're not in channel, right?`");
 
-        if(!player) return message.channel.send("No song/s currently playing in this guild.");
-        if(!voiceChannel || voiceChannel.id !== player.voiceChannel.id) return message.channel.send("You need to be in a voice channel to use the leave command.");
+        const permissions = voiceChannel.permissionsFor(client.user);
+        if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
+        if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in here man.`");
 
-        client.music.players.destroy(message.guild.id);
-        return message.channel.send("😔 ``"+`ok i left: **${voiceChannel.name}**`+"``");
+        const { voiceChannel } = message.member;
+        const player = client.music.players.spawn({
+            guild: message.guild,
+            textChannel: message.channel,
+            voiceChannel
+        });
+        
+
     }
 }

@@ -5,7 +5,7 @@ module.exports = {
         usage: "ur leave",
         category: "music",
         accessableby: "Members",
-        aliases: ["leave"]
+        aliases: ["l"]
     },
     run: async (client, message, args) => {
         const player = client.music.players.get(message.guild.id);

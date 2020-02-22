@@ -8,7 +8,7 @@ module.exports = {
       usage: "ur hahameme",
       category: "stuff",
       accessableby: "Members",
-      aliases: ["hahameme"]
+      aliases: ["meme"]
   },
   run: async (client, message, args) => {
     fetch('https://apis.duncte123.me/meme')

@@ -8,7 +8,7 @@ module.exports = {
       usage: "ur play",
       category: "music",
       accessableby: "Members",
-      aliases: ["p", "play", "search"]
+      aliases: ["p", "search"]
   },
   run: async (client, message, args) => {
 
@@ -17,7 +17,7 @@ module.exports = {
 
         const permissions = voiceChannel.permissionsFor(client.user);
         if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
-        if (!permissions.has("SPEAK")) return message.channel.send("I cannot connect to your voice channel, make sure I have permission to!");
+        if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in here man.`");
         if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
 
         const player = client.music.players.spawn({
@@ -37,9 +37,9 @@ module.exports = {
                     .setColor("#B44874")
                     .setTitle("**"+res.tracks[0].title+"**")
                     .addField("Duration:", `${Utils.formatTime(res.tracks[0].duration, true)}`, true)
-                    .addField("Position in queue:", `${player.queue.length-1}`, true)
                     .addField("Uploader:", `${res.tracks[0].author}`, true)
                     .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL)
+                    if (player.queue.length > 1) aEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
                 message.channel.send({embed:aEmbed});
                 //message.channel.send(`Enqueuing \`${res.tracks[0].title}\` \`${Utils.formatTime(res.tracks[0].duration, true)}\``);
                 if (!player.playing) player.play()
@@ -71,9 +71,9 @@ module.exports = {
                         .setColor("#B44874")
                         .setTitle("**"+track.title+"**")
                         .addField("Duration:", `${Utils.formatTime(track.duration, true)}`, true)
-                        .addField("Position in queue:", `${player.queue.length-1}`, true)
                         .addField("Uploader:", `${track.author}`, true)
                         .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL)
+                        if (player.queue.length > 1) asEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
                     message.channel.send({embed:asEmbed});
                     //message.channel.send(`Enqueuing \`${track.title}\` \`${Utils.formatTime(track.duration, true)}\``);
                     if(!player.playing) player.play();
@@ -82,7 +82,7 @@ module.exports = {
                 collector.on("end", (_, reason) => {
                     if(["time", "cancelled", "leave"].includes(reason)) {
                         query.delete();
-                        return message.channel.send("❌"+"`man, you didn't choose a song in time.`")
+                        return message.channel.send("❌ "+"`cancelled.`")
                     } 
                 });
                 break;
