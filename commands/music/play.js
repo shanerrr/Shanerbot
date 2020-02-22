@@ -17,8 +17,13 @@ module.exports = {
 
         const permissions = voiceChannel.permissionsFor(client.user);
         if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
-        if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in here man.`");
+        if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in there man.`");
         if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
+        if (voiceChannel.userLimit != 0 && voiceChannel.members.size >= voiceChannel.userLimit)
+            if (permissions.has("CONNECT") && (permissions.has("MOVE_MEMBERS") || permissions.has("ADMINISTRATOR"))) {
+            }else{
+                return message.channel.send("😭" + " ``there is not enough room for me man, ttyl.``");
+            } 
 
         const player = client.music.players.spawn({
           guild: message.guild,
@@ -82,7 +87,7 @@ module.exports = {
                 collector.on("end", (_, reason) => {
                     if(["time", "cancelled", "leave"].includes(reason)) {
                         query.delete();
-                        return message.channel.send("❌ "+"`cancelled.`")
+                        return message.channel.send("❌ "+"`ok cancelled.`")
                     } 
                 });
                 break;
