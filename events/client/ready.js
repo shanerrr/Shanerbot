@@ -12,7 +12,7 @@ module.exports = async client => {
         //     player.textChannel.send("Queue has ended.")
         //     return client.music.players.destroy(player.guild.id) //bot leaves cahnnel
         // }
-        .on("trackStart", ({textChannel}, {title, duration}) => textChannel.send(`Now playing: **${title}** \`${Utils.formatTime(duration, true)}\``).then(m => m.delete(15000)));
+        // .on("trackStart", ({textChannel}, {title, duration}) => textChannel.send(`Now playing: **${title}** \`${Utils.formatTime(duration, true)}\``).then(m => m.delete(15000)));
 
     client.levels = new Map()
         .set("none", 0.0)
@@ -24,7 +24,8 @@ module.exports = async client => {
         "pls invite me man",
         "haha hello",
         "ur help",
-        "kiss me"
+        "kiss me",
+        "TikTok"
     ]
 
     setInterval(function() {
