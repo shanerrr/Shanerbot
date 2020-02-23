@@ -8,18 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shanerrr/ShanerBorV2.git"
+    "url": "git+https://github.com/shanerrr/ShanerBotV2.git"
   },
-  "author": "Shane",
+  "author": "shanerrr",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shanerrr/ShanerBorV2/issues"
+    "url": "https://github.com/shanerrr/ShanerBotV2/issues"
   },
-  "homepage": "https://github.com/shanerrr/ShanerBorV2#readme",
+  "homepage": "https://github.com/shanerrr/ShanerBotV2#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
     "erela.js": "^1.0.8",
     "fs": "0.0.1-security",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "pretty-ms": "^6.0.0"
   }
 }

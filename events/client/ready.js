@@ -21,6 +21,6 @@ module.exports = async client => {
         .set("medium", 0.15)
         .set("high", 0.25);
 
-    let activities = ["😎", `invite me?`, "haha hello", "kiss me", "🙃"], i = 0;
-    setInterval(() => client.user.setActivity(`${prefix} help | ${activities[i++ % activities.length]}`, { type: "WATCHING" }), 15000)
+    let activities = ["😎", `invite me?`, "haha hello", "kiss me", "TikTok"], i = 0;
+    setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix} help`, { type: "WATCHING" }), 15000)
 }

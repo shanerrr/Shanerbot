@@ -1,5 +1,5 @@
 const {RichEmbed} = require("discord.js")
-const { Utils } = require("erela.js")
+const prettyMilliseconds = require('pretty-ms');
 
 module.exports = { 
   config: {
@@ -41,7 +41,7 @@ module.exports = {
                     .setThumbnail(res.tracks[0].thumbnail)
                     .setColor("#B44874")
                     .setTitle("**"+res.tracks[0].title+"**")
-                    .addField("Duration:", `${Utils.formatTime(res.tracks[0].duration, true)}`, true)
+                    .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
                     .addField("Uploader:", `${res.tracks[0].author}`, true)
                     .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL)
                     if (player.queue.length > 1) aEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
@@ -56,7 +56,7 @@ module.exports = {
                 const embed = new RichEmbed()
                     .setAuthor(`${message.author.name}: Enqueuing`, message.author.displayAvatarURL)
                     .setColor("#B44874")
-                    .setDescription(tracks.map(video => `**${index++} -** ${video.title} **[${Utils.formatTime(video.duration, true)}]**`))
+                    .setDescription(tracks.map(video => `**${index++} -** ${video.title} **[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]**`))
                     .setFooter("Your response time closes within the next 30 seconds. Type 'cancel' to cancel the selection", client.user.displayAvatarURL);
                 query = await message.channel.send(embed);
 
@@ -75,7 +75,7 @@ module.exports = {
                         .setThumbnail(track.thumbnail)
                         .setColor("#B44874")
                         .setTitle("**"+track.title+"**")
-                        .addField("Duration:", `${Utils.formatTime(track.duration, true)}`, true)
+                        .addField("Duration:", `${prettyMilliseconds(track.duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
                         .addField("Uploader:", `${track.author}`, true)
                         .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL)
                         if (player.queue.length > 1) asEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
@@ -94,7 +94,7 @@ module.exports = {
 
             case "PLAYLIST_LOADED":
                 res.playlist.tracks.forEach(track => player.queue.add(track));
-                const duration = Utils.formatTime(res.playlist.tracks.reduce((acc, cur) => ({duration: acc.duration + cur.duration})).duration, true);
+                const duration = prettyMilliseconds(res.playlist.tracks.reduce((acc, cur) => ({duration: acc.duration + cur.duration})).duration, {colonNotation: true, secondsDecimalDigits: 0});
                 message.channel.send(`Enqueuing \`${res.playlist.tracks.length}\` \`${duration}\` tracks in playlist \`${res.playlist.info.name}\``);
                 if(!player.playing) player.play()
                 break;

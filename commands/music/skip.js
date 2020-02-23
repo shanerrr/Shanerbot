@@ -13,7 +13,7 @@ module.exports = {
         const player = client.music.players.get(message.guild.id);
         if (!player) return message.channel.send("`bruh, r u dumb? Not even gonna say anything.`");
         
-        const {title, requester, uri, thumbnail} = player.queue[0];
+        const {title, requester, uri} = player.queue[0];
         const {voiceChannel} = message.member;
         if(!voiceChannel || voiceChannel.id != player.voiceChannel.id) return message.channel.send("`im not skipping unless your in the same channel and kiss me.`");
 

@@ -19,14 +19,18 @@ module.exports = {
             if (permissions.has("CONNECT") && (permissions.has("MOVE_MEMBERS") || permissions.has("ADMINISTRATOR"))) {
             }else{
                 return message.channel.send("😭" + " ``there is not enough room for me man, ttyl.``");
-            } 
-
-        const player = client.music.players.spawn({
-            guild: message.guild,
-            textChannel: message.channel,
-            voiceChannel
-        });
+            }
         
-
+        const player = client.music.players.get(message.guild.id);
+        if (!player){ 
+            const player = client.music.players.spawn({
+                guild: message.guild,
+                textChannel: message.channel,
+                voiceChannel
+            });
+        }else {
+            // player.switchChannel(voiceChannel, `${player.voiceChannel.id == voiceChannel.id ? false:true}`); 
+            player.voiceChannel = voiceChannel;
+        }
     }
 }
