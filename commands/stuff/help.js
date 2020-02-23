@@ -5,7 +5,7 @@ const {prefix} = require("../../botconfig.json")
 module.exports = { 
   config: {
       name: "help",
-      description: "man, ill give help with commands",
+      description: "man, ill give help with commands.",
       usage: "ur help <command>",
       category: "stuff",
       accessableby: "Members",
@@ -40,10 +40,10 @@ module.exports = {
           if(!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${prefix}help\` for the list of the commands.`))
           command = command.config
 
-          embed.setDescription(stripIndents`The bot's prefix is: \`${prefix}\`\n
+          embed.setDescription(`The bot's prefix is: \`${prefix}\`\n
           **Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
           **Description:** ${command.description || "No Description provided."}
-          **Usage:** ${command.usage ? `\`${prefix}${command.name} ${command.usage}\`` : "No Usage"}
+          **Usage:** ${command.usage}
           **Accessible by:** ${command.accessableby || "Members"}
           **Aliases:** ${command.aliases ? command.aliases.join(", ") : "None."}`)
 

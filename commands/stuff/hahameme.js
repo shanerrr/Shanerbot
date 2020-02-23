@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 module.exports = { 
   config: {
       name: "hahameme",
-      description: "man, its a meme from a website ok",
+      description: "man, its a meme from a website ok.",
       usage: "ur hahameme",
       category: "stuff",
       accessableby: "Members",

@@ -4,7 +4,7 @@ const {RichEmbed} = require("discord.js")
 module.exports = { 
     config: {
         name: "queue",
-        description: "ok i show you songs",
+        description: "ok i show you songs u queued.",
         usage: "ur queue",
         category: "music",
         accessableby: "Members",

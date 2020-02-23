@@ -1,7 +1,7 @@
 module.exports = { 
     config: {
         name: "join",
-        description: "ok i join, hi",
+        description: "ok i join, hi.",
         usage: "ur join",
         category: "music",
         accessableby: "Members",

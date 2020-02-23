@@ -1,7 +1,7 @@
 module.exports = { 
     config: {
         name: "leave",
-        description: "ok i leave bye",
+        description: "ok i leave bye.",
         usage: "ur leave",
         category: "music",
         accessableby: "Members",
