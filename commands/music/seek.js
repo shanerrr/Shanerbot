@@ -20,10 +20,9 @@ module.exports = {
         } catch (error) {
             return message.channel.send("`ok I seeked to idiocy, idot.`");   
         }
-        return message.channel.send("`ok, seeked to position "+`${args[0]}`+".`");
+        return message.channel.send("`ok, seeked to position "+`${prettyMilliseconds(toMil, {colonNotation: true, secondsDecimalDigits: 0})}`+".`");
     }
 }
-
 function hmsToSecondsOnly(str) {
     var p = str.split(':'),
         s = 0, m = 1;
@@ -32,5 +31,6 @@ function hmsToSecondsOnly(str) {
         s += m * parseInt(p.pop(), 10);
         m *= 60;
     }
+
     return s*1000;
 }

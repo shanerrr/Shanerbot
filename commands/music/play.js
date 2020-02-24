@@ -13,23 +13,27 @@ module.exports = {
   run: async (client, message, args) => {
 
     const { voiceChannel } = message.member;
+    if (!client.music.players.get(message.guild.id)) {
         if (!voiceChannel) return message.channel.send("`ur know i cant join if ur're not in channel, right?`");
 
         const permissions = voiceChannel.permissionsFor(client.user);
         if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
         if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in there man.`");
         if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
-        if (voiceChannel.userLimit != 0 && voiceChannel.members.size >= voiceChannel.userLimit)
+        
+        if (voiceChannel.full)
             if (permissions.has("CONNECT") && (permissions.has("MOVE_MEMBERS") || permissions.has("ADMINISTRATOR"))) {
+
             }else{
                 return message.channel.send("😭" + " ``there is not enough room for me man, ttyl.``");
             } 
-
+    }
         const player = client.music.players.spawn({
           guild: message.guild,
           textChannel: message.channel,
           voiceChannel
       });
+    
 
       client.music.search(args.join(" "), message.author).then(async res => {
         switch (res.loadType) {
@@ -44,7 +48,9 @@ module.exports = {
                     .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
                     .addField("Uploader:", `${res.tracks[0].author}`, true)
                     .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL)
-                    if (player.queue.length > 1) aEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
+                    if (player.queue.length > 1) {
+                        aEmbed.addField("Position in queue:", `${player.queue.length-1}: (${prettyMilliseconds(player.queue.duration-player.position-res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                    }
                 message.channel.send({embed:aEmbed});
                 //message.channel.send(`Enqueuing \`${res.tracks[0].title}\` \`${Utils.formatTime(res.tracks[0].duration, true)}\``);
                 if (!player.playing) player.play()
@@ -54,9 +60,9 @@ module.exports = {
                 let index = 1;
                 const tracks = res.tracks.slice(0, 10);
                 const embed = new RichEmbed()
-                    .setAuthor(`${message.author.name}: Enqueuing`, message.author.displayAvatarURL)
+                    .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL)
                     .setColor("#B44874")
-                    .setDescription(tracks.map(video => `**${index++} -** ${video.title} **[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]**`))
+                    .setDescription(tracks.map(video => `**${index++} -** ${video.title} **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
                     .setFooter("Your response time closes within the next 30 seconds. Type 'cancel' to cancel the selection", client.user.displayAvatarURL);
                 query = await message.channel.send(embed);
 
@@ -78,7 +84,9 @@ module.exports = {
                         .addField("Duration:", `${prettyMilliseconds(track.duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
                         .addField("Uploader:", `${track.author}`, true)
                         .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL)
-                        if (player.queue.length > 1) asEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
+                        if (player.queue.length > 1) {
+                            asEmbed.addField("Position in queue:", `${player.queue.length-1}: (${prettyMilliseconds(player.queue.duration-player.position-track.duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                        }
                     message.channel.send({embed:asEmbed});
                     //message.channel.send(`Enqueuing \`${track.title}\` \`${Utils.formatTime(track.duration, true)}\``);
                     if(!player.playing) player.play();

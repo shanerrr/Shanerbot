@@ -14,6 +14,8 @@ module.exports = async client => {
         //     return client.music.players.destroy(player.guild.id) //bot leaves cahnnel
         // }
         // .on("trackStart", ({textChannel}, {title, duration}) => textChannel.send(`Now playing: **${title}** \`${Utils.formatTime(duration, true)}\``).then(m => m.delete(15000)));
+        .on("trackStuck", ({textChannel}) => textChannel.send("`something bad happened omg, help me.`"))
+        .on("nodeError", ({textChannel}) => textChannel.send("`omg im broken.`"));
 
     client.levels = new Map()
         .set("none", 0.0)
@@ -21,6 +23,6 @@ module.exports = async client => {
         .set("medium", 0.15)
         .set("high", 0.25);
 
-    let activities = ["😎", `invite me?`, "haha hello", "kiss me", "TikTok"], i = 0;
-    setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix} help`, { type: "WATCHING" }), 15000)
+    let activities = ["im sad", `talk to me?`, "haha hello", "kiss me", "TikTok"], i = 0;
+    setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }
