@@ -4,18 +4,20 @@ const {prefix} = require ("../../botconfig.json");
 
 module.exports = async client => {
     console.log(`Logged in as ${client.user.username}!`);
-    //client.user.setActivity("ur help", {type: "WATCHING"});
 
     client.music = new ErelaClient(client, nodes)
         .on("nodeError", console.log)
         .on("nodeConnect", () => console.log("Created a new Node."))
-        // .on("queueEnd", player => {
-        //     player.textChannel.send("Queue has ended.")
-        //     return client.music.players.destroy(player.guild.id) //bot leaves cahnnel
-        // }
-        // .on("trackStart", ({textChannel}, {title, duration}) => textChannel.send(`Now playing: **${title}** \`${Utils.formatTime(duration, true)}\``).then(m => m.delete(15000)));
         .on("trackStuck", ({textChannel}) => textChannel.send("`something bad happened omg, help me.`"))
-        .on("nodeError", ({textChannel}) => textChannel.send("`omg im broken.`"));
+        .on("nodeError", ({textChannel}) => textChannel.send("`omg im broken.`"))
+        .on("playerCreate", player  => {
+            player.setVolume(25);
+            setInterval(function() {
+                if (player.voiceChannel.members.size-1 == 0 || !player.playing){
+                    client.music.players.destroy(player.guild.id);
+                }
+            },600000)        
+        });
 
     client.levels = new Map()
         .set("none", 0.0)
@@ -23,6 +25,6 @@ module.exports = async client => {
         .set("medium", 0.15)
         .set("high", 0.25);
 
-    let activities = ["im sad", `talk to me?`, "haha hello", "kiss me", "TikTok"], i = 0;
+    let activities = ["im sad", `talk to me?`, "haha hello", "TikTok"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }
