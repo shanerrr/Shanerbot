@@ -12,32 +12,36 @@ module.exports = {
   },
   run: async (client, message, args) => {
 
+    if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
     const { voiceChannel } = message.member;
+    if (!voiceChannel) return message.channel.send("`ur know i cant join if ur're not in channel, right?`");
+
     if (!client.music.players.get(message.guild.id)) {
-        if (!voiceChannel) return message.channel.send("`ur know i cant join if ur're not in channel, right?`");
 
         const permissions = voiceChannel.permissionsFor(client.user);
         if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
         if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in there man.`");
-        if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
-        
-        if (voiceChannel.full)
+        if (voiceChannel.full){
             if (permissions.has("CONNECT") && (permissions.has("MOVE_MEMBERS") || permissions.has("ADMINISTRATOR"))) {
-
             }else{
                 return message.channel.send("😭" + " ``there is not enough room for me man, ttyl.``");
-            } 
+            }
+        }
+        client.music.players.spawn({
+            guild: message.guild,
+            textChannel: message.channel,
+            voiceChannel
+        });
     }
-        const player = client.music.players.spawn({
-          guild: message.guild,
-          textChannel: message.channel,
-          voiceChannel
-      });
-    
+    else {
+        if (client.music.players.get(message.guild.id) && (client.music.players.get(message.guild.id).voiceChannel.id != voiceChannel.id)) return message.channel.send("`sorry man, seriosuly, but im already taken by a different voice channel.`");
+    }
+    const player = client.music.players.get(message.guild.id);
 
       client.music.search(args.join(" "), message.author).then(async res => {
         switch (res.loadType) {
             case "TRACK_LOADED":
+                if (res.tracks[0].duration>10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
                 player.queue.add(res.tracks[0]);
                 const aEmbed = new RichEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL)
@@ -62,17 +66,23 @@ module.exports = {
                 const embed = new RichEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL)
                     .setColor("#B44874")
-                    .setDescription(tracks.map(video => `**${index++} -** ${video.title} **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
+                    .setDescription(tracks.map(video => `**[${index++}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
                     .setFooter("Your response time closes within the next 30 seconds. Type 'cancel' to cancel the selection", client.user.displayAvatarURL);
                 query = await message.channel.send(embed);
 
                 const collector = message.channel.createMessageCollector(m => {
-                    return m.author.id === message.author.id && new RegExp(`^([1-9]|10|cancel)$`, "i").test(m.content)
+                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|10|cancel|ur leave)$`, "i").test(m.content) || m.content.includes("ur search") || m.content.includes("ur play"))
                 }, { time: 30000, max: 1});
 
                 collector.on("collect", m => {
                     if (/cancel/i.test(m.content)) return collector.stop("cancelled")
+                    if (/ur leave/i.test(m.content)) return collector.stop("leave")
+                    if (m.content.includes("ur search")||m.content.includes("ur play")) return collector.stop("twoSearch")
                     const track = tracks[Number(m.content) - 1];
+                    if (track.duration>10800000) {
+                        query.delete();
+                        return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`")
+                    }
                     player.queue.add(track)
                     query.delete();
                     const asEmbed = new RichEmbed()
@@ -93,10 +103,13 @@ module.exports = {
                 });
 
                 collector.on("end", (_, reason) => {
-                    if(["time", "cancelled", "leave"].includes(reason)) {
+                    if(["time", "cancelled"].includes(reason)) {
                         query.delete();
                         return message.channel.send("❌ "+"`ok cancelled.`")
-                    } 
+                    }
+                    if(["leave", "twoSearch"].includes(reason)) {
+                        return query.delete();
+                    }
                 });
                 break;
 
@@ -107,6 +120,6 @@ module.exports = {
                 if(!player.playing) player.play()
                 break;
         }
-    }).catch(err => message.channel.send(err.message))
-}
+    }).catch(err => message.channel.send("`dude, try again. Weird issue: "+`${err}`+"`"));
+  }
 }
