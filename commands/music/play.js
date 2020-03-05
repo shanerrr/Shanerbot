@@ -11,10 +11,10 @@ module.exports = {
       aliases: ["p", "search"]
   },
   run: async (client, message, args) => {
-
-    if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
+      
     const { voiceChannel } = message.member;
-    if (!voiceChannel) return message.channel.send("`ur know i cant join if ur're not in channel, right?`");
+    if (!voiceChannel) return message.channel.send("`ur know i cant join if youre not in channel, right?`");
+    if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
 
     if (!client.music.players.get(message.guild.id)) {
 
@@ -34,7 +34,7 @@ module.exports = {
         });
     }
     else {
-        if (client.music.players.get(message.guild.id) && (client.music.players.get(message.guild.id).voiceChannel.id != voiceChannel.id)) return message.channel.send("`sorry man, seriosuly, but im already taken by a different voice channel.`");
+        if (client.music.players.get(message.guild.id) && (client.music.players.get(message.guild.id).voiceChannel.id != voiceChannel.id)) return message.channel.send("😍"+" `sorry man, seriosuly, but im already taken by a different voice channel.`");
     }
     const player = client.music.players.get(message.guild.id);
 
@@ -78,6 +78,7 @@ module.exports = {
                     if (/cancel/i.test(m.content)) return collector.stop("cancelled")
                     if (/ur leave/i.test(m.content)) return collector.stop("leave")
                     if (m.content.includes("ur search")||m.content.includes("ur play")) return collector.stop("twoSearch")
+
                     const track = tracks[Number(m.content) - 1];
                     if (track.duration>10800000) {
                         query.delete();
@@ -120,6 +121,6 @@ module.exports = {
                 if(!player.playing) player.play()
                 break;
         }
-    }).catch(err => message.channel.send("`dude, try again. Weird issue: "+`${err}`+"`"));
+    }).catch(err => message.channel.send("`dude, try again maybe. Weird issue: "+`${err}`+"`"));
   }
 }

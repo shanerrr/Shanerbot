@@ -17,7 +17,7 @@ module.exports = {
       let mEmbed = new RichEmbed()
       .setTitle(body.data['title'])
       .setColor("#FF8B00")
-      .setFooter("ShanerBot", client.user.displayAvatarURL)
+      .setFooter(`ShanerBot: Meme (${message.guild.name})`, client.user.displayAvatarURL)
       .setImage(body.data['image'])
         message.channel.send({embed: mEmbed})
     })
