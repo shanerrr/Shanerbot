@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 const prettyMilliseconds = require('pretty-ms');
 
 module.exports = { 
@@ -12,16 +12,16 @@ module.exports = {
   },
   run: async (client, message, args) => {
       
-    const { voiceChannel } = message.member;
-    if (!voiceChannel) return message.channel.send("`ur know i cant join if youre not in channel, right?`");
+    const { channel } = message.member.voice;
+    if (!channel) return message.channel.send("`ur know i cant join if youre not in channel, right?`");
     if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
 
     if (!client.music.players.get(message.guild.id)) {
 
-        const permissions = voiceChannel.permissionsFor(client.user);
+        const permissions = channel.permissionsFor(client.user);
         if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
         if (!permissions.has("SPEAK")) return message.channel.send("🤐 "+ "`dude, i can't talk in there man.`");
-        if (voiceChannel.full){
+        if (channel.full){
             if (permissions.has("CONNECT") && (permissions.has("MOVE_MEMBERS") || permissions.has("ADMINISTRATOR"))) {
             }else{
                 return message.channel.send("😭" + " ``there is not enough room for me man, ttyl.``");
@@ -30,11 +30,11 @@ module.exports = {
         client.music.players.spawn({
             guild: message.guild,
             textChannel: message.channel,
-            voiceChannel
+            voiceChannel: channel
         });
     }
     else {
-        if (client.music.players.get(message.guild.id) && (client.music.players.get(message.guild.id).voiceChannel.id != voiceChannel.id)) return message.channel.send("😍"+" `sorry man, seriosuly, but im already taken by a different voice channel.`");
+        if (client.music.players.get(message.guild.id) && (client.music.players.get(message.guild.id).voiceChannel.id != channel.id)) return message.channel.send("😍"+" `sorry man, seriosuly, but im already taken by a different voice channel.`");
     }
     const player = client.music.players.get(message.guild.id);
 
@@ -42,8 +42,9 @@ module.exports = {
         switch (res.loadType) {
             case "TRACK_LOADED":
                 if (res.tracks[0].duration>10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
+                console.log(res.tracks);
                 player.queue.add(res.tracks[0]);
-                const aEmbed = new RichEmbed()
+                const aEmbed = new MessageEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL)
                     .setURL(res.tracks[0].uri)
                     .setThumbnail(res.tracks[0].thumbnail)
@@ -63,7 +64,7 @@ module.exports = {
             case "SEARCH_RESULT":
                 let index = 1;
                 const tracks = res.tracks.slice(0, 10);
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL)
                     .setColor("#B44874")
                     .setDescription(tracks.map(video => `**[${index++}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
@@ -86,7 +87,7 @@ module.exports = {
                     }
                     player.queue.add(track)
                     query.delete();
-                    const asEmbed = new RichEmbed()
+                    const asEmbed = new MessageEmbed()
                         .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL)
                         .setURL(track.uri)
                         .setThumbnail(track.thumbnail)

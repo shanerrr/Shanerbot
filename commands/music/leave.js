@@ -12,10 +12,10 @@ module.exports = {
 
         if(!player) return message.channel.send("`man ur know im not connected to a channel, idot.`");
 
-        const { voiceChannel } = message.member;
-        //if(!voiceChannel || voiceChannel.id !== player.voiceChannel.id) return message.channel.send("`man ur know im not connected to a channel, idot.`");
+        // const {channel} = message.member.voice; 
+        // if(!channel || channel.id !== player.voiceChannel.id) return message.channel.send("`haha, can't kick me when im not in the same voice channel as you.`");
 
         client.music.players.destroy(message.guild.id);
-        return message.channel.send("``"+`ok i left: ${voiceChannel.name}`+"`` 😔");
+        return message.react("😔")
     }
 }
