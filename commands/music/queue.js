@@ -1,5 +1,5 @@
 const prettyMilliseconds = require('pretty-ms');
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 
 module.exports = { 
     config: {
@@ -16,7 +16,7 @@ module.exports = {
         if(!player || !player.queue[0]) return message.channel.send("`bruh nothing in queue.`");
         const {title, requester, uri, thumbnail, duration} = player.queue[0];
 
-        let qEmbed = new RichEmbed()
+        let qEmbed = new MessageEmbed()
         .setTitle("**"+title+"**")
         .setURL(uri)
         .setColor("#B44874")

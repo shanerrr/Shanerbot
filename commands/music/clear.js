@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 const prettyMilliseconds = require('pretty-ms');
 
 module.exports = { 
@@ -15,7 +15,7 @@ module.exports = {
         const player = client.music.players.get(message.guild.id);
         if (!player) return message.channel.send("`bruh, r u dumb? Not even gonna say anything.`");
 
-        const sEmbed = new RichEmbed()
+        const sEmbed = new MessageEmbed()
         .setAuthor(`${message.author.username}: Cleared Queue`, message.author.displayAvatarURL)
         .setColor("#B44874")
         .setTitle(`**${message.guild.name}'s Queue**`)

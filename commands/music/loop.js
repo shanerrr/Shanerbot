@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 const prettyMilliseconds = require('pretty-ms');
 
 module.exports = { 
@@ -23,7 +23,7 @@ module.exports = {
         const {title, requester, uri, duration} = player.queue[0];
         player.setTrackRepeat(!player.trackRepeat);
         if (player.trackRepeat) {
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
             .setAuthor(`${message.author.username}: Repeating a song`, message.author.displayAvatarURL)
             .setTitle("**"+title+"**")
             .setURL(uri)

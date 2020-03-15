@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 module.exports = { 
     config: {
         name: "skip",
@@ -18,7 +18,7 @@ module.exports = {
         if(!voiceChannel || voiceChannel.id != player.voiceChannel.id) return message.channel.send("`im not skipping unless your in the same channel and kiss me.`");
 
         player.stop();
-        const sEmbed = new RichEmbed()
+        const sEmbed = new MessageEmbed()
         .setAuthor(`${message.author.username}: Skipping song`, message.author.displayAvatarURL)
         .setColor("#B44874")
         .setTitle("**"+title+"**")

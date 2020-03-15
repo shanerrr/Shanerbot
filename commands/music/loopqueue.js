@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 const prettyMilliseconds = require('pretty-ms');
 
 module.exports = { 
@@ -22,7 +22,7 @@ module.exports = {
 
         player.setQueueRepeat(!player.queueRepeat);
         if (player.queueRepeat) {
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
             .setAuthor(`${message.author.username}: Repeating a queue`, message.author.displayAvatarURL)
             .setTitle(`**${message.guild.name}'s Queue**`)
             .setColor("#B44874")
