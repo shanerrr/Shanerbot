@@ -1,4 +1,4 @@
-const prettyMilliseconds = require('pretty-ms');
+//const prettyMilliseconds = require('pretty-ms');
 module.exports = { 
     config: {
         name: "seek",
@@ -20,7 +20,8 @@ module.exports = {
         } catch (error) {
             return message.channel.send("`ok I seeked to idiocy, idot.`");   
         }
-        return message.channel.send("`ok, seeked to position "+`${prettyMilliseconds(toMil, {colonNotation: true, secondsDecimalDigits: 0})}`+".`");
+        //return message.channel.send("`ok, seeked to position "+`${prettyMilliseconds(toMil, {colonNotation: true, secondsDecimalDigits: 0})}`+".`");
+        return message.react("👌");
     }
 }
 function hmsToSecondsOnly(str) {
@@ -31,6 +32,5 @@ function hmsToSecondsOnly(str) {
         s += m * parseInt(p.pop(), 10);
         m *= 60;
     }
-
     return s*1000;
 }

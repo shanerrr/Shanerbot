@@ -13,6 +13,12 @@ module.exports = {
         if (!player) return message.channel.send("`no music playing so ill just pause myself.`");
         
         player.pause(player.playing);
-        return message.channel.send("`"+`ok, ${player.playing ? "resumed." : "paused."}`+"`");
+        if (player.playing) {
+            message.react("👌");
+            return message.react("⏸️");
+        }
+        message.react("👌");
+        return message.react("▶️");
+        //return message.channel.send("`"+`ok, ${player.playing ? "resumed." : "paused."}`+"`");
     }
 }

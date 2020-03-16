@@ -17,11 +17,13 @@ module.exports = {
         const {title, requester, uri, thumbnail, duration} = player.queue[0];
 
         let qEmbed = new MessageEmbed()
-        .setTitle("**"+title+"**")
-        .setURL(uri)
-        .setColor("#B44874")
-        .setFooter(`ShanerBot: Queue (${message.guild.name})`, client.user.displayAvatarURL())
-        .setThumbnail(thumbnail)
+            .setTitle("**"+title+"**")
+            .setURL(uri)
+            .setColor("#B44874")
+            .setFooter(`ShanerBot: Queue (${message.guild.name})`, client.user.displayAvatarURL())
+            .setThumbnail(thumbnail)
+        if (player.queueRepeat) qEmbed.setAuthor("🔁: Queue is Repeating")
+        if (player.trackRepeat) qEmbed.setAuthor("🔂: Song is Repeating")
         if (player.queue.length > 1) {
             qEmbed.addField('-------------------------------------------------------------------------', '**Currently in queue:**')
             var i = 0;
