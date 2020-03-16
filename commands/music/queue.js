@@ -20,7 +20,7 @@ module.exports = {
         .setTitle("**"+title+"**")
         .setURL(uri)
         .setColor("#B44874")
-        .setFooter(`ShanerBot: Queue (${message.guild.name})`, client.user.displayAvatarURL)
+        .setFooter(`ShanerBot: Queue (${message.guild.name})`, client.user.displayAvatarURL())
         .setThumbnail(thumbnail)
         if (player.queue.length > 1) {
             qEmbed.addField('-------------------------------------------------------------------------', '**Currently in queue:**')

@@ -11,7 +11,7 @@ module.exports = async client => {
         .on("trackStuck", (player) => player.textChannel.send("`something bad happened omg, help me.`"))
         .on("nodeError", (player) => player.textChannel.send("`omg im broken.`"))
         .on("playerCreate", player  => {
-            player.setVolume(25);
+            player.setVolume(10);
             let disconnect = setInterval(function() {
                 if (player.voiceChannel.members.size == 1 || player.playing == false){
                     client.music.players.destroy(player.guild.id);

@@ -9,7 +9,7 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
-        const { channel } = message.member.voice;
+        const {channel} = message.member.voice;
         if (!channel) return message.channel.send("`ur know i cant join if ur're not in channel, right?`");
         
         if (!client.music.players.get(message.guild.id)) {

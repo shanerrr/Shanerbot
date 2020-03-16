@@ -1,4 +1,4 @@
-const {RichEmbed} = require("discord.js")
+const {MessageEmbed} = require("discord.js")
 const fetch = require('node-fetch');
 
 module.exports = { 
@@ -14,7 +14,7 @@ module.exports = {
     fetch('https://apis.duncte123.me/meme')
     .then(res => res.json()).then(body => {
       if (!body) return msg.channel.send("``haha no meme for u, idot.``")
-      let mEmbed = new RichEmbed()
+      let mEmbed = new MessageEmbed()
       .setTitle(body.data['title'])
       .setColor("#FF8B00")
       .setFooter(`ShanerBot: Meme (${message.guild.name})`, client.user.displayAvatarURL)

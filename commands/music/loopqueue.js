@@ -17,8 +17,8 @@ module.exports = {
         if (!player) return message.channel.send("`man ur know im not even connected to a channel, idot.`");
         if (!player.playing) return message.channel.send("`man ur know im not even playing a song.`");
 
-        const { voiceChannel } = message.member;
-        if(!voiceChannel || voiceChannel.id !== player.voiceChannel.id) return message.channel.send("`no song looping unless youre in the same channel as me`");
+        const {channel} = message.member.voice;
+        if(!channel || channel.id !== player.voiceChannel.id) return message.channel.send("`no song looping unless youre in the same channel as me`");
 
         player.setQueueRepeat(!player.queueRepeat);
         if (player.queueRepeat) {
