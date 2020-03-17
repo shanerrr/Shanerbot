@@ -125,10 +125,12 @@ module.exports = {
                 collector.on("end", (_, reason) => {
                     if(["time", "cancelled"].includes(reason)) {
                         query.delete();
-                        return message.channel.send("❌ "+"`ok cancelled.`")
+                        return message.react("❌");
+                        //return message.channel.send("❌ "+"`ok cancelled.`")
                     }
                     if(["leave", "twoSearch"].includes(reason)) {
-                        return query.delete();
+                        query.delete();
+                        return message.react("❌");
                     }
                 });
                 break;
