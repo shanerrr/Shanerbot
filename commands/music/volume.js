@@ -18,10 +18,6 @@ module.exports = {
         if (Number(args[0]) > 100) return message.channel.send("`ur must be a different kind of stupid, ur want more than 100%? idot pls ur idot.`");
         player.setVolume(Number(args[0]));
         
-        return message.react("👌")
-        // let emojiT = Numbers.toEmoji(args[0])
-        // console.log(emojiT)
-        // message.react(emojiT);
-        // return message.channel.send("`🔊 ur got it, volume is now at "+`${args[0]}%`+".`");
+        return message.react("✅")
     }
 }

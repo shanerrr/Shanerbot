@@ -1,5 +1,6 @@
 const {MessageEmbed} = require("discord.js")
 const prettyMilliseconds = require('pretty-ms');
+const {prefix} = require("../../botconfig.json")
 
 module.exports = { 
   config: {
@@ -47,7 +48,7 @@ module.exports = {
                 const aEmbed = new MessageEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL())
                     .setURL(res.tracks[0].uri)
-                    .setThumbnail(res.tracks[0].thumbnail)
+                    .setThumbnail(`https://img.youtube.com/vi/${res.tracks[0].identifier}/default.jpg`)
                     .setColor("#B44874")
                     .setTitle("**"+res.tracks[0].title+"**")
                     .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
@@ -90,11 +91,14 @@ module.exports = {
                 });
                 
                 const collector = message.channel.createMessageCollector(m => {
-                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|1[0-9]|20|cancel|ur leave)$`, "i").test(m.content) || m.content.includes("ur search") || m.content.includes("ur play"))
+                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|1[0-9]|20|cancel|${prefix}leave)$`, "i").test(m.content) || m.content.includes(`${prefix}search`) || m.content.includes(`${prefix}play`))
                 }, { time: 30000, max: 1});
 
                 collector.on("collect", m => {
-                    if (/cancel/i.test(m.content)) return collector.stop("cancelled")
+                    if (/cancel/i.test(m.content)) {
+                        m.react("✅");
+                        return collector.stop("cancelled") 
+                    }
                     if (/ur leave/i.test(m.content)) return collector.stop("leave")
                     if (m.content.includes("ur search")||m.content.includes("ur play")) return collector.stop("twoSearch")
                     const tracks = res.tracks.slice(0, 20);
@@ -108,7 +112,7 @@ module.exports = {
                     const asEmbed = new MessageEmbed()
                         .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL())
                         .setURL(track.uri)
-                        .setThumbnail(track.thumbnail)
+                        .setThumbnail(`https://img.youtube.com/vi/${track.identifier}/default.jpg`)
                         .setColor("#B44874")
                         .setTitle("**"+track.title+"**")
                         .addField("Duration:", `${prettyMilliseconds(track.duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
@@ -123,19 +127,18 @@ module.exports = {
                 });
 
                 collector.on("end", (_, reason) => {
-                    if(["time", "cancelled"].includes(reason)) {
+                    if(["time", "leave", "twoSearch"].includes(reason)) {
                         query.delete();
                         return message.react("❌");
-                        //return message.channel.send("❌ "+"`ok cancelled.`")
                     }
-                    if(["leave", "twoSearch"].includes(reason)) {
+                    if(["cancelled"].includes(reason)) {
                         query.delete();
-                        return message.react("❌");
                     }
                 });
                 break;
 
             case "PLAYLIST_LOADED":
+                return message.channel.send("`currently not supporting playlists. sorry man.`")
                 res.playlist.tracks.forEach(track => player.queue.add(track));
                 const duration = prettyMilliseconds(res.playlist.tracks.reduce((acc, cur) => ({duration: acc.duration + cur.duration})).duration, {colonNotation: true, secondsDecimalDigits: 0});
                 message.channel.send(`Enqueuing \`${res.playlist.tracks.length}\` \`${duration}\` tracks in playlist \`${res.playlist.info.name}\``);

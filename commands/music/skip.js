@@ -18,14 +18,15 @@ module.exports = {
         if(!channel || channel.id != player.voiceChannel.id) return message.channel.send("`im not skipping unless your in the same channel and kiss me.`");
 
         player.stop();
-        const sEmbed = new MessageEmbed()
-        .setAuthor(`${message.author.username}: Skipping song`, message.author.displayAvatarURL())
-        .setColor("#B44874")
-        .setTitle("**"+title+"**")
-        .setURL(uri)
-        .setDescription(`Requested by: ${requester['username']}`)
-        .setFooter(`ShanerBot: Skip (${message.guild.name})`, client.user.displayAvatarURL())
-            message.channel.send({embed:sEmbed});  
+        return message.react("⏭️");
+        // const sEmbed = new MessageEmbed()
+        // .setAuthor(`${message.author.username}: Skipping song`, message.author.displayAvatarURL())
+        // .setColor("#B44874")
+        // .setTitle("**"+title+"**")
+        // .setURL(uri)
+        // .setDescription(`Requested by: ${requester['username']}`)
+        // .setFooter(`ShanerBot: Skip (${message.guild.name})`, client.user.displayAvatarURL())
+        //     message.channel.send({embed:sEmbed});  
 
     }
 }

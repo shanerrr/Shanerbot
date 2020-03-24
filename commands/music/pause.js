@@ -14,11 +14,11 @@ module.exports = {
         
         player.pause(player.playing);
         if (player.playing) {
-            message.react("👌");
+            // message.react("👌");
             return message.react("▶️");
             
         }
-        message.react("👌");
+        // message.react("👌");
         return message.react("⏸️");
         //return message.channel.send("`"+`ok, ${player.playing ? "resumed." : "paused."}`+"`");
     }

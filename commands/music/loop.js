@@ -23,7 +23,7 @@ module.exports = {
         const {title, requester, uri, duration} = player.queue[0];
         player.setTrackRepeat(!player.trackRepeat);
         if (player.trackRepeat) {
-            message.react("👌")
+            // message.react("👌")
             return message.react("🔂");
             // const embed = new MessageEmbed()
             // .setAuthor(`${message.author.username}: Repeating a song`, message.author.displayAvatarURL)
@@ -34,7 +34,7 @@ module.exports = {
             // .setFooter(`ShanerBot: Repeat (${message.guild.name})`, client.user.displayAvatarURL)
             //     message.channel.send(embed);
         } else{
-            message.react("👌");
+            // message.react("👌");
             return message.react("❌");
             //message.channel.send("`ok, i stopped repeating:`"+` **\`${title}\`**.`)
         }

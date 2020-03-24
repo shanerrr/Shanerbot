@@ -14,14 +14,14 @@ module.exports = {
 
         const player = client.music.players.get(message.guild.id);
         if(!player || !player.queue[0]) return message.channel.send("`bruh nothing in queue.`");
-        const {title, requester, uri, thumbnail, duration} = player.queue[0];
+        const {title, requester, uri, identifier, duration} = player.queue[0];
 
         let qEmbed = new MessageEmbed()
             .setTitle("**"+title+"**")
             .setURL(uri)
             .setColor("#B44874")
             .setFooter(`ShanerBot: Queue (${message.guild.name})`, client.user.displayAvatarURL())
-            .setThumbnail(thumbnail)
+            .setThumbnail(`https://img.youtube.com/vi/${identifier}/default.jpg`)
         if (player.queueRepeat) qEmbed.setAuthor("🔁: Queue is Repeating")
         if (player.trackRepeat) qEmbed.setAuthor("🔂: Song is Repeating")
         if (player.queue.length > 1) {

@@ -22,7 +22,7 @@ module.exports = {
 
         player.setQueueRepeat(!player.queueRepeat);
         if (player.queueRepeat) {
-            message.react("👌")
+            // message.react("👌")
             return message.react("🔁");
             // const embed = new MessageEmbed()
             // .setAuthor(`${message.author.username}: Repeating a queue`, message.author.displayAvatarURL)
@@ -33,7 +33,7 @@ module.exports = {
             //     message.channel.send(embed);
         } else{
             //message.channel.send("`ok, i stopped repeating the queue.`")
-            message.react("👌");
+            // message.react("👌");
             return message.react("❌");
         }
     }
