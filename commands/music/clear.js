@@ -7,7 +7,7 @@ module.exports = {
         description: "i will clear an active queue.",
         usage: "ur clear",
         category: "music",
-        accessableby: "Moderators",
+        accessableby: "Members",
         aliases: []
     },
     run: async (client, message, args) => {

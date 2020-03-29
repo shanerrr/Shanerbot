@@ -12,6 +12,7 @@ module.exports = async client => {
         .on("nodeError", (player) => player.textChannel.send("`omg im broken.`"))
         .on("playerCreate", player  => {
             player.setVolume(10);
+            if (!player.textChannel.permissionsFor(client.user).has("ADD_REACTIONS")) player.textChannel.send("`Please enable Add Reactions permission for ShanerBot for this text channel or provide ShanerBot with a role.`")
             let disconnect = setInterval(function() {
                 if (player.voiceChannel.members.size == 1 || player.playing == false){
                     client.music.players.destroy(player.guild.id);

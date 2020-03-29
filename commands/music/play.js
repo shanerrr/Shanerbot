@@ -43,8 +43,8 @@ module.exports = {
         switch (res.loadType) {
             case "TRACK_LOADED":
                 if (res.tracks[0].duration>10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
-                console.log(res.tracks);
                 player.queue.add(res.tracks[0]);
+                console.log(res.tracks[0])
                 const aEmbed = new MessageEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL())
                     .setURL(res.tracks[0].uri)
