@@ -44,7 +44,6 @@ module.exports = {
             case "TRACK_LOADED":
                 if (res.tracks[0].duration>10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
                 player.queue.add(res.tracks[0]);
-                console.log(res.tracks[0])
                 const aEmbed = new MessageEmbed()
                     .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL())
                     .setURL(res.tracks[0].uri)
@@ -55,7 +54,11 @@ module.exports = {
                     .addField("Uploader:", `${res.tracks[0].author}`, true)
                     .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL())
                     if (player.queue.length > 1) {
-                        aEmbed.addField("Position in queue:", `${player.queue.length-1}: (${prettyMilliseconds(player.queue.duration-player.position-res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                        if (player.trackRepeat) {
+                            asEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
+                        }else{
+                            aEmbed.addField("Position in queue:", `${player.queue.length-1}: (${prettyMilliseconds(player.queue.duration-player.position-res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                        }
                     }
                 message.channel.send({embed:aEmbed});
                 //message.channel.send(`Enqueuing \`${res.tracks[0].title}\` \`${Utils.formatTime(res.tracks[0].duration, true)}\``);
@@ -119,7 +122,11 @@ module.exports = {
                         .addField("Uploader:", `${track.author}`, true)
                         .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL())
                         if (player.queue.length > 1) {
-                            asEmbed.addField("Position in queue:", `${player.queue.length-1}: (${prettyMilliseconds(player.queue.duration-player.position-track.duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                            if (player.trackRepeat) {
+                                asEmbed.addField("Position in queue:", `${player.queue.length-1}`, true)
+                            }else{
+                                asEmbed.addField("Position in queue:", `${player.queue.length-1}: (${prettyMilliseconds(player.queue.duration-player.position-track.duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                            }
                         }
                     message.channel.send({embed:asEmbed});
                     //message.channel.send(`Enqueuing \`${track.title}\` \`${Utils.formatTime(track.duration, true)}\``);

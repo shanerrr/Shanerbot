@@ -1,6 +1,3 @@
-const {MessageEmbed} = require("discord.js")
-const prettyMilliseconds = require('pretty-ms');
-
 module.exports = { 
     config: {
         name: "remove",

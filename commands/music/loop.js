@@ -1,6 +1,3 @@
-const {MessageEmbed} = require("discord.js")
-const prettyMilliseconds = require('pretty-ms');
-
 module.exports = { 
     config: {
         name: "loop",
@@ -20,23 +17,11 @@ module.exports = {
         const {channel} = message.member.voice;
         if(!channel || channel.id !== player.voiceChannel.id) return message.channel.send("`no song looping unless youre in the same channel as me`");
 
-        const {title, requester, uri, duration} = player.queue[0];
         player.setTrackRepeat(!player.trackRepeat);
         if (player.trackRepeat) {
-            // message.react("👌")
             return message.react("🔂");
-            // const embed = new MessageEmbed()
-            // .setAuthor(`${message.author.username}: Repeating a song`, message.author.displayAvatarURL)
-            // .setTitle("**"+title+"**")
-            // .setURL(uri)
-            // .setColor("#B44874")
-            // .setDescription(`**Now Repeating (${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})})**\nRequested by: ` + requester['username'])       
-            // .setFooter(`ShanerBot: Repeat (${message.guild.name})`, client.user.displayAvatarURL)
-            //     message.channel.send(embed);
         } else{
-            // message.react("👌");
             return message.react("❌");
-            //message.channel.send("`ok, i stopped repeating:`"+` **\`${title}\`**.`)
         }
     }
 }

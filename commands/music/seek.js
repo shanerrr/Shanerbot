@@ -1,4 +1,3 @@
-//const prettyMilliseconds = require('pretty-ms');
 module.exports = { 
     config: {
         name: "seek",
@@ -21,7 +20,6 @@ module.exports = {
         } catch (error) {
             return message.channel.send("`ok I seeked to idiocy, idot.`");   
         }
-        //return message.channel.send("`ok, seeked to position "+`${prettyMilliseconds(toMil, {colonNotation: true, secondsDecimalDigits: 0})}`+".`");
         return message.react("⏩");
     }
 }

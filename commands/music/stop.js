@@ -1,8 +1,9 @@
+const {MessageEmbed} = require("discord.js")
 module.exports = { 
     config: {
-        name: "clear",
-        description: "i will clear an active queue.",
-        usage: "ur clear",
+        name: "stop",
+        description: "clears queue, and stops playing any songs.",
+        usage: "ur stop",
         category: "music",
         accessableby: "Members",
         aliases: []
@@ -13,8 +14,9 @@ module.exports = {
         if (!player) return message.react("❌");
         try {
             player.queue.removeFrom(1, player.queue.size);
+            player.stop();
         } catch (error) {
-            return message.react("❌");
+            player.stop();
         }
         return message.react("✅");
     }

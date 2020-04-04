@@ -9,18 +9,17 @@ module.exports = async client => {
         .on("nodeError", console.log)
         .on("nodeConnect", () => console.log("Created a new Node."))
         .on("trackStuck", (player) => player.textChannel.send("`something bad happened omg, help me.`"))
-        .on("nodeError", (player) => player.textChannel.send("`omg im broken.`"))
         .on("playerCreate", player  => {
             player.setVolume(10);
             if (!player.textChannel.permissionsFor(client.user).has("ADD_REACTIONS")) player.textChannel.send("`Please enable Add Reactions permission for ShanerBot for this text channel or provide ShanerBot with a role.`")
             let disconnect = setInterval(function() {
-                if (player.voiceChannel.members.size == 1 || player.playing == false){
+                if (player.voiceChannel.members.size == 1 || player.playing == false || player.voiceChannel.guild.me.voice.serverMute){
                     client.music.players.destroy(player.guild.id);
                     clearInterval(disconnect);
                 }
-            },600000);                    
+            },20000)//600000);                    
         }); 
 
-    let activities = ["im sad", `talk to me?`, "haha hello", "TikTok"], i = 0;
+    let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }
