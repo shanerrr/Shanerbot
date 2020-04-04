@@ -17,7 +17,7 @@ module.exports = async client => {
                     client.music.players.destroy(player.guild.id);
                     clearInterval(disconnect);
                 }
-            },20000)//600000);                    
+            },600000);                    
         }); 
 
     let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
