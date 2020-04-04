@@ -7,6 +7,14 @@ module.exports = async (client, message) => {
     let cmd = args.shift().toLowerCase();
 
     if(!message.content.startsWith(prefix)) return;
+    if(client.cooldown.has(message.author.id)) return;
+    if(!message.member.hasPermission("ADMINISTRATOR")){
+        client.cooldown.add(message.author.id)
+    }
     let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
     if(commandfile) commandfile.run(client, message, args)
+
+    setTimeout(() => {
+        client.cooldown.delete(message.author.id)
+    }, 5000)
 }

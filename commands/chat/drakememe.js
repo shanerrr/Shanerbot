@@ -21,7 +21,9 @@ module.exports = {
         if (!body) return msg.channel.send("``haha no meme for u, idot.``")
         let mEmbed = new MessageEmbed()
         .setColor("#FF8B00")
-        .setFooter(`ShanerBot: DrakeMemeGen (${message.guild.name})`, client.user.displayAvatarURL)
+        .setTitle("🔗 Click Me!")
+        .setURL(body.direct['masked'])
+        .setFooter(`ShanerBot: DrakeMemeGen (${message.guild.name})`, client.user.displayAvatarURL())
         .setImage(body.direct['masked'])
         message.channel.send({embed: mEmbed})
     });

@@ -18,8 +18,9 @@ module.exports = async client => {
                     clearInterval(disconnect);
                 }
             },600000);                    
-        }); 
+        });
 
+    client.cooldown = new Set(); 
     let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }
