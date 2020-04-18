@@ -7,15 +7,15 @@ module.exports = {
       name: "help",
       description: "man, ill give help with commands.",
       usage: "ur help <command>",
-      category: "stuff",
+      category: "chat",
       accessableby: "Members",
       aliases: ["h"]
   },
   run: async (client, message, args) => {
     const embed = new MessageEmbed()
       .setColor("#FF8B00")
-      .setAuthor(`${message.guild.me.displayName} Help`, message.guild.iconURL())
-      .setThumbnail(client.user.displayAvatarURL)
+      .setAuthor(`ShanerBot: Help Panel`, message.guild.iconURL())
+      .setThumbnail(client.user.displayAvatarURL())
 
       if(!args[0]) {
           const categories = readdirSync("./commands/")
@@ -31,7 +31,7 @@ module.exports = {
               } catch(e) {
                   console.log(e)
               }
-          })
+          });
 
           return message.channel.send(embed)
       } else {
@@ -39,12 +39,12 @@ module.exports = {
           if(!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${prefix}help\` for the list of the commands.`))
           command = command.config
 
-          embed.setDescription(`**ShanerBot's prefix is: __${prefix}__**\n
-          **Command:** ${command.name.slice(0, 1).toUpperCase() + command.name.slice(1)}
+          embed.setDescription(`**ShanerBot's prefix is: __${prefix}__**
           **Description:** ${command.description || "No Description provided."}
           **Usage:** ${command.usage}
           **Aliases:** ${command.aliases ? command.aliases.join(", ") : "None."}`)
           embed.setFooter(`ShanerBot: Help (${message.guild.name})`, client.user.displayAvatarURL())
+          .setAuthor(`ShanerBot: ${command.name} Help `, message.guild.iconURL())
 
           return message.channel.send(embed)
         }

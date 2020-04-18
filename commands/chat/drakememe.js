@@ -6,7 +6,7 @@ module.exports = {
       name: "drakememe",
       description: "man, its a drake meme generator.",
       usage: "ur drakememe <first sentence>/<second sentence>",
-      category: "stuff",
+      category: "chat",
       accessableby: "Members",
       aliases: ["drakem"]
   },
