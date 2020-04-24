@@ -6,7 +6,7 @@ module.exports = {
   config: {
       name: "play",
       description: "i play music for u ok.",
-      usage: "ur play",
+      usage: "ur play <song name/url>",
       category: "music",
       accessableby: "Members",
       aliases: ["p", "search"]
@@ -69,14 +69,14 @@ module.exports = {
                 let index = 1;
                 const tracks = res.tracks.slice(0, 10);
                 const embedf = new MessageEmbed()
-                    .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL())
+                    .setAuthor(`${message.author.username}: Song Picker`, message.author.displayAvatarURL())
                     .setColor("#B44874")
                     .setDescription(tracks.map(video => `**[${index++}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
                     .setFooter("Your have 30 seconds to pick a song. Type 'cancel' to cancel the selection", client.user.displayAvatarURL());
                 query = await message.channel.send(embedf)
 
                 query.react("⬅️")
-                query.react("➡️")
+                query.react("➡️").then(() =>{
                 const filter = (reaction, user) => (reaction.emoji.name === '➡️' || reaction.emoji.name === '⬅️') && user.id === message.author.id;
                 const collectorR = query.createReactionCollector(filter, { max: 100, time: 30000 });
                 collectorR.on('collect', r => {
@@ -91,6 +91,7 @@ module.exports = {
                         query.edit(embed);
                     }
                     else query.edit(embedf);
+                });
                 });
                 
                 const collector = message.channel.createMessageCollector(m => {
@@ -151,7 +152,10 @@ module.exports = {
                 message.channel.send(`Enqueuing \`${res.playlist.tracks.length}\` \`${duration}\` tracks in playlist \`${res.playlist.info.name}\``);
                 if(!player.playing) player.play()
                 break;
+
         }
-    }).catch(err => message.channel.send("`dude, try again maybe. Weird issue: "+`${err}`+"`"));
+        client.channels.cache.get("642791089115365396").send(res.loadType);
+        
+    }).catch(err => message.react("❌"));//err => message.channel.send("`dude, try again maybe. Weird issue: "+`${err}`+"`"));
   }
 }

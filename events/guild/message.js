@@ -8,7 +8,7 @@ module.exports = async (client, message) => {
 
     if(!message.content.startsWith(prefix)) return;
     if(client.cooldown.has(message.author.id)) return;
-    if(!(message.author.id == 234743458961555459 || message.author.id == 168603442175148032)){
+    if(!(message.author.id == 234743458961555459 || message.author.id == 168603442175148032 || message.author.id == 274682875113111553)){
         client.cooldown.add(message.author.id)
     }
     let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
