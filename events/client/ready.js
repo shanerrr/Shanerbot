@@ -21,6 +21,7 @@ module.exports = async client => {
         });
 
     client.cooldown = new Set(); 
+    client.retry = new Object(); 
     let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }

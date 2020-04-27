@@ -6,7 +6,7 @@ module.exports = {
         usage: "ur skip",
         category: "music",
         accessableby: "Members",
-        aliases: ["s"]
+        aliases: ["s", "next"]
     },
     run: async (client, message, args) => {
 
