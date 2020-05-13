@@ -30,14 +30,14 @@ module.exports = {
             for (let {title,requester, duration} of player.queue) {
                 ++i
                 if (i === 1) continue
-                qEmbed.addField("**["+String(i-1)+"]:** "+title+` - **__[${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`, "Requested by: " + requester['username'])
+                qEmbed.addField("**["+String(i-1)+"]:** "+title+` - **__[${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`, "Requested by: " + `<@${requester["id"]}>`)
             }
             qEmbed.addField('\u200b',`**__${i-1}__ song(s) queued | __${prettyMilliseconds(player.queue.duration-player.position, {colonNotation: true, secondsDecimalDigits: 0})}__ total length**`)
         }
         if(player.position > 0) {
-            qEmbed.setDescription(`**Playing Now** (${prettyMilliseconds(player.position, {colonNotation: true, secondsDecimalDigits: 0})}/${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}) \n Requested by: ` + requester['username'])
+            qEmbed.setDescription(`**Playing Now** (${prettyMilliseconds(player.position, {colonNotation: true, secondsDecimalDigits: 0})}/${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}) \n Requested by: ` + `<@${requester["id"]}>`)
         } else {
-            qEmbed.setDescription(`**Playing Now**\nRequested by: ` + requester['username'])           
+            qEmbed.setDescription(`**Playing Now**\nRequested by: ` + `<@${requester["id"]}>`)           
         }
             message.channel.send({embed:qEmbed});  
     }
