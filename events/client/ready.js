@@ -12,13 +12,16 @@ module.exports = async client => {
         .on("playerCreate", player  => {
             player.setVolume(10);
             if (!player.textChannel.permissionsFor(client.user).has("ADD_REACTIONS")) player.textChannel.send("`Please enable Add Reactions permission for ShanerBot for this text channel or provide ShanerBot with a role.`")
-            let disconnect = setInterval(function() {
+            player.disconnect = setInterval(function() {
                 if (player.voiceChannel.members.size == 1 || player.playing == false || player.voiceChannel.guild.me.voice.serverMute){
                     client.music.players.destroy(player.guild.id);
-                    clearInterval(disconnect);
+                    clearInterval(player.disconnect);
                 }
             },600000);                    
-        });
+        })
+        .on("playerDestroy", player  => {
+            clearInterval(player.disconnect);});
+
 
     client.cooldown = new Set(); 
     client.retry = new Map(); 

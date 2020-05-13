@@ -31,7 +31,8 @@ module.exports = {
             client.music.players.spawn({
                 guild: message.guild,
                 textChannel: message.channel,
-                voiceChannel: channel
+                voiceChannel: channel,
+                selfDeaf: true
             });
         }
         else {

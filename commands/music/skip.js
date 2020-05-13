@@ -19,7 +19,7 @@ module.exports = {
         const {title, requester, uri} = player.queue[0];
         if (client.vote.get(message.guild.id)) return message.channel.send("``dude, react to the active vote to skip...``");
 
-        if (player.voiceChannel.members.size>=3 && !message.member.hasPermission("MANAGE_ROLES") && !message.member.hasPermission("MANAGE_MESSAGES") && requester["id"]!=message.author.id) {
+        if (player.voiceChannel.members.size>=3 && !message.member.hasPermission("MOVE_MEMBERS") && requester["id"]!=message.author.id) {
             client.vote.set(message.guild.id, 0);
             const asEmbed = new MessageEmbed()
                 .setAuthor(`${message.author.username}: Voting to skip`, message.author.displayAvatarURL())
