@@ -1,10 +1,12 @@
 const {ErelaClient} = require("erela.js")
 const {nodes} = require("../../botconfig.json")
 const {prefix} = require ("../../botconfig.json");
+const flatfile = require('flat-file-db');
 
 module.exports = async client => {
     console.log(`Logged in as ${client.user.username}!`);
-
+    client.database = flatfile.sync('../../db.db');
+    
     client.music = new ErelaClient(client, nodes)
         .on("nodeError", console.log)
         .on("nodeConnect", () => console.log("Created a new Node."))
@@ -26,6 +28,7 @@ module.exports = async client => {
     client.cooldown = new Set(); 
     client.retry = new Map(); 
     client.vote = new Map();
+    client.query = new Map();
     let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }

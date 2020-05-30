@@ -16,8 +16,9 @@ module.exports = {
     const { channel } = message.member.voice;
     if (!channel) return message.channel.send("`ur know i cant join if youre not in channel, right?`");
     if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
+    let player = client.music.players.get(message.guild.id);
 
-    if (!client.music.players.get(message.guild.id)) {
+    if (!player) {
 
         const permissions = channel.permissionsFor(client.user);
         if (!permissions.has("CONNECT")) return message.channel.send("😢 "+"`mannnn, i don't have the permission to join that channel.`");
@@ -34,11 +35,12 @@ module.exports = {
             voiceChannel: channel,
             selfDeaf: true
         });
+        player = client.music.players.get(message.guild.id);
     }
     else {
-        if (client.music.players.get(message.guild.id) && (client.music.players.get(message.guild.id).voiceChannel.id != channel.id)) return message.channel.send("😍"+" `sorry man, seriosuly, but im already taken by a different voice channel.`");
+        if (player && (player.voiceChannel.id != channel.id)) return message.channel.send("😍"+" `sorry man, seriosuly, but im already taken by a different voice channel.`");
     }
-    const player = client.music.players.get(message.guild.id);
+    
     client.retry.set(message.author.id, 0);
     getMusic();
 
@@ -78,12 +80,13 @@ function getMusic() {
                     .setColor("#B44874")
                     .setDescription(tracks.map(video => `**[${index++}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
                     .setFooter("Your have 30 seconds to pick a song. Type 'cancel' to cancel the selection", client.user.displayAvatarURL());
-                query = await message.channel.send(embedf)
+                client.query.set(message.channel.id, await message.channel.send(embedf));
 
-                query.react("⬅️")
-                query.react("➡️").then(() =>{
+
+                client.query.get(message.channel.id).react("⬅️")
+                client.query.get(message.channel.id).react("➡️").then(() =>{
                 const filter = (reaction, user) => (reaction.emoji.name === '➡️' || reaction.emoji.name === '⬅️') && user.id === message.author.id;
-                const collectorR = query.createReactionCollector(filter, { max: 100, time: 30000 });
+                const collectorR = client.query.get(message.channel.id).createReactionCollector(filter, { max: 100, time: 30000 });
                 collectorR.on('collect', r => {
                     if (r.emoji.name === '➡️') {
                         const tracks = res.tracks.slice(10, 20);
@@ -93,9 +96,9 @@ function getMusic() {
                             .setColor("#B44874")
                             .setDescription(tracks.map(video => `**[${index++}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
                             .setFooter("Your response time closes within the next 30 seconds. Type 'cancel' to cancel the selection", client.user.displayAvatarURL());
-                        query.edit(embed);
+                            client.query.get(message.channel.id).edit(embed);
                     }
-                    else query.edit(embedf);
+                    else client.query.get(message.channel.id).edit(embedf);
                 });
                 }).catch(err => err);
                 
@@ -109,15 +112,15 @@ function getMusic() {
                         return collector.stop("cancelled") 
                     }
                     if (/ur leave/i.test(m.content)) return collector.stop("leave")
-                    if (m.content.includes("ur search")||m.content.includes("ur play")) return collector.stop("twoSearch")
+                    if (m.content.includes("ur search")||m.content.includes("ur play") ||m.content.includes("ur p")) return collector.stop("twoSearch")
                     const tracks = res.tracks.slice(0, 20);
                     const track = tracks[Number(m.content) - 1];
                     if (track.duration>10800000) {
-                        query.delete();
+                        client.query.get(message.channel.id).delete();
                         return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`")
                     }
                     player.queue.add(track)
-                    query.delete();
+                    client.query.get(message.channel.id).delete();
                     const asEmbed = new MessageEmbed()
                         .setAuthor(`${message.author.username}: Enqueuing`, message.author.displayAvatarURL())
                         .setURL(track.uri)
@@ -141,11 +144,11 @@ function getMusic() {
 
                 collector.on("end", (_, reason) => {
                     if(["time", "leave", "twoSearch"].includes(reason)) {
-                        query.delete();
+                        client.query.get(message.channel.id).delete();
                         return message.react("❌");
                     }
                     if(["cancelled"].includes(reason)) {
-                        query.delete();
+                        client.query.get(message.channel.id).delete();
                     }
                 });
                 break;

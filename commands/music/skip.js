@@ -14,7 +14,7 @@ module.exports = {
         if (!player || !player.queue[0]) return message.channel.send("`bruh, r u dumb? not even gonna say anything.`");
         
         const {channel} = message.member.voice;
-        if(!channel || channel.id != player.voiceChannel.id) return message.channel.send("`im not skipping unless your in the same channel and kiss me.`");
+        if(!channel || channel.id != player.voiceChannel.id) return message.react("❌");
         
         const {title, requester, uri} = player.queue[0];
         if (client.vote.get(message.guild.id)) return message.channel.send("``dude, react to the active vote to skip...``");
