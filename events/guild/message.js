@@ -12,7 +12,7 @@ module.exports = async (client, message) => {
         client.cooldown.add(message.author.id)
     }
     if (client.database.has(message.guild.id+"F") && client.database.get(message.guild.id+"F") != message.channel.id && !message.content.includes("forcechannel")) {
-        client.channels.fetch(client.database.get(message.guild.id+"F")).then(channela => message.channel.send("`Please use the`**`"+channela.name+"`**`text channel for all ShanerBot commands.`").then(msg => msg.delete({timeout: 5000})));
+        client.channels.fetch(client.database.get(message.guild.id+"F")).then(channela => message.reply("`Please use the`**`"+channela.name+"`**`text channel for all ShanerBot commands.`").then(msg => msg.delete({timeout: 10000})));
         return message.delete();
         // return message.channel.send("`Please use the"+`${client.channels.fetch(client.database.get(message.guild.id+"F"))}`+"`").then(msg => msg.delete(5000));
     }
