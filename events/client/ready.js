@@ -25,7 +25,8 @@ module.exports = async client => {
             clearInterval(player.disconnect);});
 
 
-    client.cooldown = new Set(); 
+    client.cooldown = new Set();
+    client.forcecooldown = new Set(); 
     client.retry = new Map(); 
     client.vote = new Map();
     client.query = new Map();
