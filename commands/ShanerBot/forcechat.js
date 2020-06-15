@@ -2,7 +2,7 @@ module.exports = {
   config: {
       name: "forcechat",
       description: "The text channel that the command is ran on will force the bot to only talk in that channel.",
-      usage: "ur forcechannel [on/off]",
+      usage: "ur forcechat [on/off]",
       category: "ShanerBot",
       accessableby: "Administrator",
       aliases: ["fc"]
