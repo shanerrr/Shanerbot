@@ -10,7 +10,7 @@ module.exports = async (client, message) => {
     if(client.cooldown.has(message.author.id)) return;
     if(client.reportcooldown.has(message.author.id)) {
         message.reply("Report command on cooldown, please try again later.").then(msg => msg.delete({timeout: 5000}));
-        if (!message.channel.permissionsFor(client.user).has("MANAGE_MESSAGES")) {
+        if (message.channel.permissionsFor(client.user).has("MANAGE_MESSAGES")) {
             return message.delete();
         }
     } 

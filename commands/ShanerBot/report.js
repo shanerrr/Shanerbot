@@ -9,9 +9,10 @@ module.exports = {
     },
     run: async (client, message, args) => {
         //client.report.clear();
-        console.log(client.report.keys())
+        //console.log(client.report.keys())
         if (args.join(" ").length < 30) {
             message.react("❌");
+            client.reportcooldown.delete(message.author.id)
             return message.channel.send("`Please provide a more detailed explanation of the issue/bug.`").then(msg => msg.delete({timeout: 5000}));
         }
         if (client.report.has(args.join(" "))){
