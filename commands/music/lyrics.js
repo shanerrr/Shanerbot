@@ -7,7 +7,7 @@ module.exports = {
         usage: "ur l or ur l <song author song name>",
         category: "music",
         accessableby: "Members",
-        aliases: ["l", "lyric"]
+        aliases: ["l", "lyrics"]
     },
     run: async (client, message, args) => {
 

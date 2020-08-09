@@ -6,6 +6,7 @@ const flatfile = require('flat-file-db');
 module.exports = async client => {
     console.log(`Logged in as ${client.user.username}!`);
     client.database = flatfile.sync('../../db.db');
+    client.report = flatfile.sync('../../Rdb.db');
     
     client.music = new ErelaClient(client, nodes)
         .on("nodeError", console.log)
@@ -26,6 +27,7 @@ module.exports = async client => {
 
 
     client.cooldown = new Set();
+    client.reportcooldown = new Set();
     client.forcecooldown = new Set(); 
     client.retry = new Map(); 
     client.vote = new Map();

@@ -20,7 +20,7 @@ module.exports = {
       if(!args[0]) {
           const categories = readdirSync("./commands/")
 
-          embed.setDescription(`**ShanerBot's prefix is: __${prefix}__**\nThese are the avaliable commands:`)
+          embed.setDescription(`**ShanerBot's prefix is: __${prefix}__**\ntyping ur help <command> will provide more details on that command.\nThese are the current avaliable commands:`)
           embed.setFooter(`ShanerBot: Help (${message.guild.name})`, client.user.displayAvatarURL())
 
           categories.forEach(category => {

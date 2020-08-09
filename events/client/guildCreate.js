@@ -5,7 +5,7 @@ module.exports = async (client, guild) => {
 
     const aEmbed = new MessageEmbed()
     .setTitle("**ShanerBot** - The best Discord bot")
-    .setDescription(`👋 omg thanks for inviting me to your discord server.\nIt really means a lot.\n\nTyping **${prefix}help** will provide all current available commands.`)
+    .setDescription(`👋 omg thanks for inviting me to your discord server.\nIt really means a lot.\n\nTyping **${prefix}help** will provide all current available commands.\nThis bot is still in development so if there is any issue, please you **ur report <details about issue/bug>**`)
     .setThumbnail(client.user.displayAvatarURL())
     .setColor("#ff0000");
     

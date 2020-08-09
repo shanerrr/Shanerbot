@@ -8,9 +8,19 @@ module.exports = async (client, message) => {
 
     if(!message.content.startsWith(prefix)) return;
     if(client.cooldown.has(message.author.id)) return;
+    if(client.reportcooldown.has(message.author.id)) {
+        message.reply("Report command on cooldown, please try again later.").then(msg => msg.delete({timeout: 5000}));
+        if (!message.channel.permissionsFor(client.user).has("MANAGE_MESSAGES")) {
+            return message.delete();
+        }
+    } 
     if(!(message.author.id == 234743458961555459 || message.author.id == 168603442175148032 || message.author.id == 274682875113111553)){
         client.cooldown.add(message.author.id)
         coolDown(client.cooldown, 5000)
+    }
+    if(message.content.includes(`${prefix}report`)){
+        client.reportcooldown.add(message.author.id);
+        coolDown(client.reportcooldown, 600000);
     }
     if (client.database.has(message.guild.id+"F") && client.database.get(message.guild.id+"F") != message.channel.id && !message.member.hasPermission('ADMINISTRATOR')) {
         if (client.forcecooldown.has(message.author.id)) {
