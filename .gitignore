@@ -6,3 +6,5 @@ logs
 indstart.bat
 node_modules
 db.db
+Rdb.db
+dbopener.js
