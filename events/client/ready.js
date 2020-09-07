@@ -6,6 +6,8 @@ const flatfile = require('flat-file-db');
 module.exports = async client => {
     console.log(`Logged in as ${client.user.username}!`);
     client.database = flatfile.sync('../../db.db');
+    client.playlist = flatfile.sync('playlistdb.db');
+    client.playlistkeys = flatfile.sync('playlistkeysdb.db');
     
     client.music = new ErelaClient(client, nodes)
         .on("nodeError", console.log)

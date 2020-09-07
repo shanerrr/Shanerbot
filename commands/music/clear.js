@@ -13,6 +13,7 @@ module.exports = {
         if (!player) return message.react("❌");
         try {
             player.queue.removeFrom(1, player.queue.size);
+            player.stop();
         } catch (error) {
             return message.react("❌");
         }
