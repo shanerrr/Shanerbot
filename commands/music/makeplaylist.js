@@ -20,16 +20,16 @@ module.exports = {
             if (temp.length == 3){
                 return message.reply(`sorry, you currently already have 3 playlists **(${temp[0]}, ${temp[1]}, ${temp[2]})**. Either delete a playlist or add to already made playlist.`).then(msg => msg.delete({timeout: 5000}));
             } else{
-                if (temp.includes(args.join(" "))){
+                if (temp.includes(args.join(" ").toLowerCase())){
                     return message.reply(`sorry, that playlist name already exists.`).then(msg => msg.delete({timeout: 5000}));
                 }
-                temp.push(args.join(' '))
+                temp.push(args.join(' ').toLowerCase())
             }
         } else{
-            var temp = [args.join(' ')] 
+            var temp = [args.join(' ').toLowerCase()] 
         }
         client.playlistkeys.put(message.author.id, temp)
-        client.playlist.put(message.author.id+args.join(" "), player.queue)
-        return message.reply(`playlist : __**${args.join(" ")}**__ created containing ${player.queue.size} song(s).`).then(msg => msg.delete({timeout: 10000}));
+        client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue))
+        return message.reply(`playlist : __**${args.join(" ").toUpperCase()}**__ created containing ${player.queue.size} song(s).`).then(msg => msg.delete({timeout: 10000}));
     }
 }

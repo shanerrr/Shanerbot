@@ -11,17 +11,17 @@ module.exports = {
         var temp = client.playlistkeys.get(message.author.id)
         if (temp){
             if (temp.length == 3){
-                return message.reply(`sorry, you currently already have 3 playlists **(${temp[0]}, ${temp[1]}, ${temp[2]})**. Either delete a playlist or add to another.`)
+                return message.reply(`sorry, you currently already have 3 playlists **(${temp[0].toUpperCase()}, ${temp[1].toUpperCase()}, ${temp[2].toUpperCase()})**. Either delete a playlist or add to another.`)
             } else{
-                if (temp.includes(args.join(" "))){
+                if (temp.includes(args.join(" ").toLowerCase())){
                     return message.reply(`sorry, that playlist name already exists.`)
                 }
-                temp.push(args.join(' '))
+                temp.push(args.join(' ').toLowerCase())
             }
         } else{
-            var temp = [args.join(' ')] 
+            var temp = [args.join(' ').toLowerCase()] 
         }
         client.playlistkeys.put(message.author.id, temp)
-        return message.reply(`created empty playlist: __**${args.join(' ')}**__`);
+        return message.reply(`created empty playlist: __**${args.join(' ').toUpperCase()}**__`);
     }
 }
