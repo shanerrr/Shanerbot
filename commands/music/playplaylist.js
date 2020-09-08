@@ -11,11 +11,11 @@ module.exports = {
     },
     run: async (client, message, args) => {
         var player = client.music.players.get(message.guild.id);
-        var playlist = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()))
         if (!args[0]) {
             return message.reply("please tell me what playlist to play.").then(msg => msg.delete({timeout: 5000}));
         }
         if (!client.playlist.has(message.author.id+args.join(" ").toLowerCase())) return message.reply("that playlist doesn't exist. Please check the name.").then(msg => msg.delete({timeout: 5000}));
+        var playlist = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()))
         if (!player) {
             let commandfile = client.commands.get("join") || client.commands.get(client.aliases.get("join"))
             if(commandfile) commandfile.run(client, message, "")

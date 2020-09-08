@@ -30,11 +30,7 @@ module.exports = {
             })
             return message.channel.send({embed:asEmbed});
         } else{
-            try{
-                var list = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()))
-            } catch{
-                return message.reply(`That playlist is empty.`).then(msg => msg.delete({timeout: 5000}));
-            }
+            var list = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()))
             let index = 1;
             if (!list) {
                 return message.reply(`That playlist doesnt exist.`).then(msg => msg.delete({timeout: 5000}));
