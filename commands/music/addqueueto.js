@@ -34,6 +34,11 @@ module.exports = {
                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue));
                 return message.react("✅");
             } else{
+                // if(playlist.length){
+
+                // }else{
+                    
+                // }
                 if(playlist.length + player.queue.size <= 14) {
                     player.queue.forEach((track) => {
                         playlist.push(track)
