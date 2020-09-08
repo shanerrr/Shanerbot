@@ -1,5 +1,4 @@
 const {MessageEmbed} = require("discord.js");
-//const play = require("./play");
 module.exports = { 
     config: {
         name: "playplaylist",
@@ -12,15 +11,25 @@ module.exports = {
     run: async (client, message, args) => {
         var player = client.music.players.get(message.guild.id);
         if (!args[0]) {
+            message.react("❌");
             return message.reply("please tell me what playlist to play.").then(msg => msg.delete({timeout: 5000}));
         }
-        if (!client.playlist.has(message.author.id+args.join(" ").toLowerCase())) return message.reply("that playlist doesn't exist. Please check the name.").then(msg => msg.delete({timeout: 5000}));
-        var playlist = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()))
+        if (!(client.playlistkeys.get(message.author.id)).includes(args.join(" ").toLowerCase())) {
+            message.react("❌");
+            return message.reply("that playlist doesn't exist. Please check the name.").then(msg => msg.delete({timeout: 5000}));
+        }
+        var playlist;
+        try{
+            playlist = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()))
+        }catch{
+            message.react("❌");
+            return message.reply("You're trying to play an empty playlist you dumbo.").then(msg => msg.delete({timeout: 5000}));
+        }
         if (!player) {
             let commandfile = client.commands.get("join") || client.commands.get(client.aliases.get("join"))
             if(commandfile) commandfile.run(client, message, "")
             player = client.music.players.get(message.guild.id);
-            if (!player) return;
+            if (!player) return message.react("❌");;
             return await getMusic(playlist, true);   
         } else{
             player.setQueueRepeat(false);
@@ -40,13 +49,21 @@ module.exports = {
                     collectorR.on('collect', async r => {
                         if (r.emoji.name === '🎶') {
                             plembed.delete();
-                            message.react("🎶")
+                            message.react("🎶");
+                            if (playlist.length + player.queue.size > 20) {
+                                message.react("❌");
+                                return message.reply(`Sorry, the queue can only store 20 songs at a time.`).then(msg => msg.delete({timeout: 5000}));
+                            }
                             return await getMusic(playlist, false);
                         }
                         if (r.emoji.name === '⏏️') {
                             plembed.delete();
-                            player.queue.removeFrom(1, player.queue.size);
-                            player.stop()
+                            try{
+                                player.queue.removeFrom(1, player.queue.size);
+                                player.stop();
+                            } catch{
+                                player.stop();
+                            }
                             message.react("⏏️");
                             return await getMusic(playlist, true);
                         }
@@ -55,12 +72,14 @@ module.exports = {
                         if(["time"].includes(reason)) {
                             plembed.delete();
                             message.react("🎶");
+                            if (playlist.length + player.queue.size <=20) return message.react("❌");
                             return await getMusic(playlist, false);
                         }
                     });
                     }).catch(async err => {
                         plembed.delete();
                         message.react("🎶");
+                        if (playlist.length + player.queue.size <=20) return message.react("❌");
                         return await getMusic(playlist, false);
                         });
             }

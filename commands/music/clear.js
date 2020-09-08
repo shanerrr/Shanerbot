@@ -17,7 +17,8 @@ module.exports = {
             player.queue.removeFrom(1, player.queue.size);
             player.stop();
         } catch (error) {
-            return message.react("❌");
+            player.stop();
+            //return message.react("❌");
         }
         return message.react("✅");
     }
