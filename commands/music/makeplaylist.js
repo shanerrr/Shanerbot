@@ -29,12 +29,7 @@ module.exports = {
             var temp = [args.join(' ')] 
         }
         client.playlistkeys.put(message.author.id, temp)
-        var queue = []
-        player.queue.forEach(track => queue.push(track.uri))
-        // console.log(queue);
-        // console.log("-----------------------------------------------------------------------")
-        client.playlist.put(message.author.id+args.join(" "), queue)
-        console.log(client.playlist.get(message.author.id+args.join(" ")))
-        return message.reply(`playlist : __**${args.join(" ")}**__ created containing ${player.queue.size} songs.`).then(msg => msg.delete({timeout: 10000}));
+        client.playlist.put(message.author.id+args.join(" "), player.queue)
+        return message.reply(`playlist : __**${args.join(" ")}**__ created containing ${player.queue.size} song(s).`).then(msg => msg.delete({timeout: 10000}));
     }
 }
