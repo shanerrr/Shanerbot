@@ -45,9 +45,9 @@ module.exports = {
                         playlist.push(player.queue[0]);
                         client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(playlist));
                     }catch{
-                        var pltemp = []
+                        var pltemp = [];
                         pltemp.push(playlist);
-                        pltemp.push(player.queue[0])
+                        pltemp.push(player.queue[0]);
                         client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(pltemp));
                     }
                     return message.react("✅");

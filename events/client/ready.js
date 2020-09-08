@@ -32,6 +32,6 @@ module.exports = async client => {
     client.retry = new Map(); 
     client.vote = new Map();
     client.query = new Map();
-    let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
+    let activities = ["Supports playlists!", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }

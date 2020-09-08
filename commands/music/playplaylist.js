@@ -31,9 +31,9 @@ module.exports = {
             player = client.music.players.get(message.guild.id);
             if (!player) return message.react("❌");;
             return await getMusic(playlist, true);   
-        } else{
+        }else{
             player.setQueueRepeat(false);
-            if(player.voiceChannel.members.size<3 && player.queue.size>0) {
+            if((player.voiceChannel.members.size<3 || message.member.hasPermission('MOVE_MEMBERS')) && player.queue.size>0) {
                 const pEmbed = new MessageEmbed()
                 .setColor("#B44874")
                 .setTitle("**"+"Adding Playlist: "+"__"+args.join(" ").toUpperCase()+"__"+"**")

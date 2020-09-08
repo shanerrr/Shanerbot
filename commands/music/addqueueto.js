@@ -34,16 +34,18 @@ module.exports = {
                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue));
                 return message.react("✅");
             } else{
-                // if(playlist.length){
-
-                // }else{
-                    
-                // }
-                if(playlist.length + player.queue.size <= 14) {
-                    player.queue.forEach((track) => {
-                        playlist.push(track)
-                    });
-                    client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(playlist));
+                if((playlist.length || 1) + player.queue.size <= 14) {
+                    try{
+                        player.queue.forEach((track) => {
+                            playlist.push(track)
+                        });
+                        client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(playlist));
+                    } catch{
+                        var pltemp = [];
+                        pltemp.push(playlist);
+                        pltemp.push(player.queue);
+                        client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(pltemp));
+                    }
                     return message.react("✅");
                 }else{
                     message.react("❌");
