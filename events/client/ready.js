@@ -6,7 +6,9 @@ const flatfile = require('flat-file-db');
 module.exports = async client => {
     console.log(`Logged in as ${client.user.username}!`);
     client.database = flatfile.sync('../../db.db');
-    client.report = flatfile.sync('../../Rdb.db');
+    //client.report = flatfile.sync('../../Rdb.db');
+    client.playlist = flatfile.sync('playlistdb.db');
+    client.playlistkeys = flatfile.sync('playlistkeysdb.db');
     
     client.music = new ErelaClient(client, nodes)
         .on("nodeError", console.log)
@@ -32,6 +34,6 @@ module.exports = async client => {
     client.retry = new Map(); 
     client.vote = new Map();
     client.query = new Map();
-    let activities = ["im sad", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
+    let activities = ["Supports playlists!", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
 }

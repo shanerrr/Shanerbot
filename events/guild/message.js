@@ -6,7 +6,7 @@ module.exports = async (client, message) => {
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
 
-    if(!message.content.startsWith(prefix)) return;
+    if(!message.content.toLowerCase().startsWith(prefix)) return;
     if(client.cooldown.has(message.author.id)) return;
     if(client.reportcooldown.has(message.author.id)) {
         message.reply("Report command on cooldown, please try again later.").then(msg => msg.delete({timeout: 5000}));
