@@ -12,6 +12,8 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
+        //doesnt support multiple deletes and right now if you enter a number or string it will disable the collector and make it useles
+
         if (args[0]) {
             var temp = client.playlistkeys.get(message.author.id);
             if (!temp.includes(args.join(" ").toLowerCase())) {
@@ -37,7 +39,7 @@ module.exports = {
                     asEmbed.setDescription(`**[1] -** [${list.title}](${list.uri}) ~ **__[${prettyMilliseconds(list.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`);
                     asEmbed.addField(`**__1__ song(s) | __${prettyMilliseconds(list.duration, {colonNotation: true, secondsDecimalDigits: 0})}__ total length**`, '----------------------------------------------------------------------------');
                 }
-                asEmbed.addField(`**To delete multiple songs: **`,'usage: (delete or d) 1,2,4 => will delete song 1, song 2, and song 4.');
+                // asEmbed.addField(`**To delete multiple songs: **`,'usage: (delete or d) 1,2,4 => will delete song 1, song 2, and song 4.');
                 asEmbed.addField(`**To delete only one song: **`,'usage: (delete or d) 1 => will delete only song 1.');
                 asEmbed.addField('\u200b', `To cancel deletion, react with ❌ or type cancel.`);
                 deletemsg = await message.channel.send({embed:asEmbed}); 
@@ -53,26 +55,19 @@ module.exports = {
                     }
                 });
                 }).catch(err => {
-                    return collector.stop("time") 
+                    return collector.stop("time");
                 });
                 
                 const collector = message.channel.createMessageCollector(m => {
-                    return m.author.id === message.author.id && (new RegExp(`^d ([1-9]|1[0-5]|cancel)$`, "i").test(m.content) || new RegExp(`^delete ([1-9]|1[0-5]|cancel)$`, "i").test(m.content) || m.content.includes(`${prefix}dsf`) || m.content.includes(`${prefix}dsfrom`) || m.content.includes(`${prefix}deletesongfrom`) ||  m.content.includes(`${prefix}${prefix}dsongfrom`))
+                    return m.author.id === message.author.id && (new RegExp(`^d .*$`, "i").test(m.content) || new RegExp(`^delete .*$`, "i").test(m.content) || m.content.includes(`${prefix}dsf`) || m.content.includes(`${prefix}dsfrom`) || m.content.includes(`${prefix}deletesongfrom`) ||  m.content.includes(`${prefix}${prefix}dsongfrom`))
                 }, { time: 30000, max: 1});
 
 
-                
-
-
-
-
                 collector.on("collect", m => {
-                    console.log(m.content);
                     if (/cancel/i.test(m.content)) {
                         return collector.stop("done") ;
                     }
                     if (m.content.includes(`${prefix}deletesongfrom`)||m.content.includes(`${prefix}dsongfrom`) || m.content.includes(`${prefix}dsfrom`) || m.content.includes(`${prefix}dsf`)) return collector.stop("twoSearch");
-
                     var res;
                     if (m.content.includes("delete")){
                         res = m.content.split("delete");
@@ -82,10 +77,11 @@ module.exports = {
                     if(!Number.isInteger(Number(res[1]))){
                         m.react("❌");
                         message.reply(`That is not a number!!!!!!!!!!!!!!!`).then(msg => msg.delete({timeout: 5000}));
+                        return collector.stop("time");
                     }else{
                         if ((Number(res[1]) <= (list.length | 1)) && Number(res[1]) >= 1){ 
                             try{
-                                list.splice(res[1], 1);
+                                list.splice(res[1]-1, 1);
                                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(list));
                                 return collector.stop("done");                    
                             }catch{
@@ -96,10 +92,9 @@ module.exports = {
                             }
                         }else{
                             message.reply(`hmmmmm, that number doesnt make sense.....`).then(msg => msg.delete({timeout: 5000}));
+                            return collector.stop("time");
                         }
-                    }
-
-                    
+                    }                    
                 });
 
                 collector.on("end", (_, reason) => {
