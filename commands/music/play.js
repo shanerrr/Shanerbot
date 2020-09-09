@@ -103,7 +103,7 @@ function getMusic() {
                 }).catch(err => err);
                 
                 const collector = message.channel.createMessageCollector(m => {
-                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|1[0-9]|20|cancel|${prefix}leave)$`, "i").test(m.content) || m.content.includes(`${prefix}search`) || m.content.includes(`${prefix}play`))
+                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|1[0-9]|20|cancel|${prefix}leave)$`, "i").test(m.content) || m.content.toLowerCase().includes(`${prefix}search`) || m.content.toLowerCase().includes(`${prefix}play`))
                 }, { time: 30000, max: 1});
 
                 collector.on("collect", m => {
@@ -111,8 +111,9 @@ function getMusic() {
                         m.react("✅");
                         return collector.stop("cancelled") 
                     }
-                    if (/ur leave/i.test(m.content)) return collector.stop("leave")
-                    if (m.content.includes("ur search")||m.content.includes("ur play") ||m.content.includes("ur p")) return collector.stop("twoSearch")
+                    //if (/ur leave/i.test(m.content)) return collector.stop("leave")
+                    if (m.content.toLowerCase().includes(`${prefix}leave`)) return collector.stop("leave");
+                    if (m.content.toLowerCase().includes(`${prefix}search`)||m.content.toLowerCase().includes(`${prefix}play`) ||m.content.toLowerCase().includes(`${prefix}p`)) return collector.stop("twoSearch");
                     const tracks = res.tracks.slice(0, 20);
                     const track = tracks[Number(m.content) - 1];
                     if (track.duration>10800000) {

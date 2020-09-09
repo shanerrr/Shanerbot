@@ -59,7 +59,7 @@ module.exports = {
                 });
                 
                 const collector = message.channel.createMessageCollector(m => {
-                    return m.author.id === message.author.id && (new RegExp(`^d .*$`, "i").test(m.content) || new RegExp(`^delete .*$`, "i").test(m.content) || m.content.includes(`${prefix}dsf`) || m.content.includes(`${prefix}dsfrom`) || m.content.includes(`${prefix}deletesongfrom`) ||  m.content.includes(`${prefix}${prefix}dsongfrom`))
+                    return m.author.id === message.author.id && (new RegExp(`^d .*$`, "i").test(m.content) || new RegExp(`^delete .*$`, "i").test(m.content) || m.content.toLowerCase().includes(`${prefix}dsf`) || m.content.toLowerCase().includes(`${prefix}dsfrom`) || m.content.toLowerCase().includes(`${prefix}deletesongfrom`) ||  m.content.toLowerCase().includes(`${prefix}${prefix}dsongfrom`))
                 }, { time: 30000, max: 1});
 
 
@@ -67,12 +67,12 @@ module.exports = {
                     if (/cancel/i.test(m.content)) {
                         return collector.stop("done") ;
                     }
-                    if (m.content.includes(`${prefix}deletesongfrom`)||m.content.includes(`${prefix}dsongfrom`) || m.content.includes(`${prefix}dsfrom`) || m.content.includes(`${prefix}dsf`)) return collector.stop("twoSearch");
+                    if (m.content.toLowerCase().includes(`${prefix}deletesongfrom`)||m.content.toLowerCase().includes(`${prefix}dsongfrom`) || m.content.toLowerCase().includes(`${prefix}dsfrom`) || m.content.toLowerCase().includes(`${prefix}dsf`)) return collector.stop("twoSearch");
                     var res;
-                    if (m.content.includes("delete")){
-                        res = m.content.split("delete");
+                    if (m.content.toLowerCase().includes("delete")){
+                        res = m.toLowerCase().content.split("delete");
                     } else{
-                        res = m.content.split("d");
+                        res = m.toLowerCase().content.split("d");
                     }
                     if(!Number.isInteger(Number(res[1]))){
                         m.react("❌");
