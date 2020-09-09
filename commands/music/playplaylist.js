@@ -29,7 +29,7 @@ module.exports = {
             let commandfile = client.commands.get("join") || client.commands.get(client.aliases.get("join"))
             if(commandfile) commandfile.run(client, message, "")
             player = client.music.players.get(message.guild.id);
-            if (!player) return message.react("❌");;
+            if (!player) return message.react("❌");
             return await getMusic(playlist, true);   
         }else{
             player.setQueueRepeat(false);

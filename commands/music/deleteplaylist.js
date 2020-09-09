@@ -25,8 +25,8 @@ module.exports = {
                 } catch{
                     temp = [];
                 }
-                client.playlistkeys.put(message.author.id, temp)
-                client.playlist.del(message.author.id+args.join(" ").toLowerCase())
+                client.playlistkeys.put(message.author.id, temp);
+                client.playlist.del(message.author.id+args.join(" ").toLowerCase());
                 message.react("✅");
                 return message.reply(`Playlist ${args.join(" ").toUpperCase()} deleted.`).then(msg => msg.delete({timeout: 5000}));
                 

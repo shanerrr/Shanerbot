@@ -34,7 +34,7 @@ module.exports = {
                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue));
                 return message.react("✅");
             } else{
-                if((playlist.length || 1) + player.queue.size <= 14) {
+                if((playlist.length || 1) + player.queue.size <= 15) {
                     try{
                         player.queue.forEach((track) => {
                             playlist.push(track)
@@ -43,7 +43,9 @@ module.exports = {
                     } catch{
                         var pltemp = [];
                         pltemp.push(playlist);
-                        pltemp.push(player.queue);
+                        player.queue.forEach((track) => {
+                            pltemp.push(track)
+                        });
                         client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(pltemp));
                     }
                     return message.react("✅");

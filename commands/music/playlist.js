@@ -58,7 +58,7 @@ module.exports = {
                     asEmbed.addField('\u200b',`**__${list.length+"__ song(s)"} | __${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}__ total length**`);
                 } else{
                     asEmbed.setDescription(`**[1] -** [${list.title}](${list.uri}) ~ **__[${prettyMilliseconds(list.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`);
-                    asEmbed.addField('\u200b',`**__1__ song" | __${prettyMilliseconds(list.duration, {colonNotation: true, secondsDecimalDigits: 0})}__ total length**`);
+                    asEmbed.addField('\u200b',`**__1__ song(s) | __${prettyMilliseconds(list.duration, {colonNotation: true, secondsDecimalDigits: 0})}__ total length**`);
                 }
                 return message.channel.send({embed:asEmbed});    
             } catch{

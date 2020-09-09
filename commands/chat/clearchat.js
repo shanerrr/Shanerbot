@@ -1,6 +1,3 @@
-const {MessageEmbed} = require("discord.js")
-const fetch = require('node-fetch');
-
 module.exports = { 
   config: {
       name: "clearchat",
@@ -8,14 +5,14 @@ module.exports = {
       usage: "ur clearchat <# of messages (MAX:50)>",
       category: "chat",
       accessableby: "Moderators",
-      aliases: []
+      aliases: ["clearc"]
   },
   run: async (client, message, args) => {
 
+    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`srry, nop, you dont have the permission to delete messages.`");
+    if (!message.channel.permissionsFor(client.user).has("MANAGE_MESSAGES")) return message.channel.send("`dude, i dont have the permission to delete messages.`");
     if (!args[0]) return message.channel.send("`dude, how many messages to delete?`");
-    if(args[0]>50) return message.channel.send("i can only delete 50 messages at a time.")
-    if (!message.channel.permissionsFor(client.user).has("MANAGE_MESSAGES")) return message.channel.send("`dude, i dont have the permission to delete messages.`")
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`srry, nop, you dont have the permission to delete messages.`")
+    if(args[0]>50) return message.channel.send("i can only delete 50 messages at a time.");
     message.channel.bulkDelete(args[0], false);
  } 
 }

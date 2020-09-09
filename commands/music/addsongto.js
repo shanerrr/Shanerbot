@@ -40,7 +40,7 @@ module.exports = {
                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue[0]));
                 return message.react("✅");
             }else{
-                if((playlist.length || 1) <= 15) {
+                if((playlist.length || 1) <= 14) {
                     try{
                         playlist.push(player.queue[0]);
                         client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(playlist));
