@@ -103,7 +103,7 @@ function getMusic() {
                 }).catch(err => err);
                 
                 const collector = message.channel.createMessageCollector(m => {
-                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|1[0-9]|20|cancel|${prefix}leave)$`, "i").test(m.content) || m.content.toLowerCase().includes(`${prefix}search`) || m.content.toLowerCase().includes(`${prefix}play`))
+                    return m.author.id === message.author.id && (new RegExp(`^([1-9]|1[0-9]|20|cancel|${prefix}leave)$`, "i").test(m.content) || m.content.toLowerCase().includes(`${prefix}search`) || m.content.toLowerCase().includes(`${prefix}play`) || m.content.toLowerCase().includes(`${prefix}p`))
                 }, { time: 30000, max: 1});
 
                 collector.on("collect", m => {
