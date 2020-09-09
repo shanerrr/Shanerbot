@@ -14,7 +14,7 @@ module.exports = {
   run: async (client, message, args) => {
       
     const { channel } = message.member.voice;
-    if (!channel) return message.channel.send("`ur know i cant join if youre not in channel, right?`");
+    if (!channel) return message.channel.send("`ur know i cant join if youre not in a channel, right?`");
     if (!args[0]) return message.channel.send("`play what song man? enter youtube url or search.`");
     let player = client.music.players.get(message.guild.id);
 
