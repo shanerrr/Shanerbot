@@ -83,11 +83,9 @@ module.exports = {
                         return await getMusic(playlist, false);
                         });
             }
-            if (player.queue.size==0) {
-                await getMusic(playlist, true);
-            }
-            if (player.voiceChannel.members.size>=3){
-                await getMusic(playlist, false);
+            if (player.queue.size==0 || player.voiceChannel.members.size>=3) {
+                message.react("✅");
+                return await getMusic(playlist, true);
             }
         }
 

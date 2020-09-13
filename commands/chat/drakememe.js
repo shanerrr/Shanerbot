@@ -22,9 +22,9 @@ module.exports = {
         let mEmbed = new MessageEmbed()
         .setColor("#FF8B00")
         .setTitle("🔗 Click Me!")
-        .setURL(body.direct['masked'])
+        .setURL(body.direct['visible'])
         .setFooter(`ShanerBot: DrakeMemeGen (${message.guild.name})`, client.user.displayAvatarURL())
-        .setImage(body.direct['masked'])
+        .setImage(body.direct['visible'])
         message.channel.send({embed: mEmbed})
     });
  } 
