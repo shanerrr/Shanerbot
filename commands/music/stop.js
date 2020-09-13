@@ -12,6 +12,8 @@ module.exports = {
 
         const player = client.music.players.get(message.guild.id);
         if (!player) return message.react("❌");
+        player.setTrackRepeat(false);
+        player.setQueueRepeat(false);    
         try {
             player.queue.removeFrom(1, player.queue.size);
             player.stop();
