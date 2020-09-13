@@ -21,7 +21,7 @@
     "erela.js": "^1.1.8",
     "flat-file-db": "^1.0.0",
     "fs": "0.0.1-security",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pretty-ms": "^6.0.0",
     "solenolyrics": "^5.0.0"
   }
