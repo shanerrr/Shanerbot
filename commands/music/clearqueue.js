@@ -1,11 +1,11 @@
 module.exports = { 
     config: {
-        name: "clear",
+        name: "clearqueue",
         description: "i will clear an active queue.",
         usage: "ur clear",
         category: "music",
         accessableby: "Members",
-        aliases: []
+        aliases: ["cq"]
     },
     run: async (client, message, args) => {
 
