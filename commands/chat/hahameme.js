@@ -13,7 +13,7 @@ module.exports = {
   run: async (client, message, args) => {
     fetch('https://apis.duncte123.me/meme')
     .then(res => res.json()).then(body => {
-      if (!body) return msg.channel.send("``haha no meme for u, idot.``")
+      if (!body) return msg.channel.send("``haha no meme for u, idot.``").then(msg => msg.delete({timeout: 5000}));
       let mEmbed = new MessageEmbed()
       .setTitle("🔗 "+body.data['title'])
       .setColor("#FF8B00")
