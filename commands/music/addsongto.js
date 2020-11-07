@@ -1,7 +1,4 @@
-const mongoose = require("mongoose");
 const User = require('../../models/user');
-const Playlist = require('../../models/playlist');
-const Song = require('../../models/song');
 module.exports = { 
     config: {
         name: "addsongto",
@@ -15,6 +12,7 @@ module.exports = {
 
         const player = client.manager.players.get(message.guild.id);
         const foundUser = await User.findOne({ userID: message.author.id });
+        let objFound = false;
 
         if (!player) {
             message.react("❌");
@@ -30,6 +28,7 @@ module.exports = {
         }
         await foundUser.playlists.forEach(async function(sPlaylist, idx, array) {
             if (sPlaylist.name === args.join(" ")){
+                objFound = true;
                 if (sPlaylist.songs.length < 15){
                     const {title, uri, identifier, duration} = player.queue.current;
                     await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, {
@@ -49,42 +48,10 @@ module.exports = {
                     return message.reply(`This playlist already has the limit of 15 songs.`).then(msg => msg.delete({timeout: 5000}));
                 }
             }
-            if (idx === array.length - 1){ 
+            if (idx === array.length - 1 && !objFound){ 
                 message.react("❌");
                 return message.reply(`That playlist doesn't exist, man....`).then(msg => msg.delete({timeout: 5000}));
             }        
         });
-
-        // if(!temp.includes(args.join(" ").toLowerCase())) {
-        //     message.react("❌");
-        //     return message.reply(`That playlist doesn't exist, man....`).then(msg => msg.delete({timeout: 5000}));
-        // }else{
-        //     var playlist;
-        //     try{
-        //         playlist = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()));
-        //     }catch{
-        //         playlist = false
-        //     }
-        //     if(!playlist) {
-        //         client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue[0]));
-        //         return message.react("✅");
-        //     }else{
-        //         if((playlist.length || 1) <= 14) {
-        //             try{
-        //                 playlist.push(player.queue[0]);
-        //                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(playlist));
-        //             }catch{
-        //                 var pltemp = [];
-        //                 pltemp.push(playlist);
-        //                 pltemp.push(player.queue[0]);
-        //                 client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(pltemp));
-        //             }
-        //             return message.react("✅");
-        //         }else{
-        //             message.react("❌");
-        //             return message.reply(`This playlist already has the limit of 15 songs.`).then(msg => msg.delete({timeout: 5000}));
-        //         }
-        //     }
-        // }
     }
 }

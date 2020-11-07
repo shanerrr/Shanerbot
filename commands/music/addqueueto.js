@@ -1,3 +1,4 @@
+const User = require('../../models/user');
 module.exports = { 
     config: {
         name: "addqueueto",
@@ -9,51 +10,59 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
-        const player = client.music.players.get(message.guild.id);
-        var temp = client.playlistkeys.get(message.author.id);
+        const player = client.manager.players.get(message.guild.id);
+        const foundUser = await User.findOne({ userID: message.author.id });
+        let objFound = false;
+
         if (!player) {
             message.react("❌");
             return message.reply(`dude, wtf?, im not even playing anything.`).then(msg => msg.delete({timeout: 5000}));}
-        if (player.queue.empty) {
+        if (!player.queue.current) {
             message.react("❌");
             return message.reply(`ok man! I added this queue of these amazing songs that are playing right now to your playlist!!!`).then(msg => msg.delete({timeout: 5000}));}
         if (!args[0]) {
             message.react("❌");
             return message.reply(`Tell me a playlist to add the song to`).then(msg => msg.delete({timeout: 5000}));}
-        if(!temp.includes(args.join(" ").toLowerCase())) {
-            message.react("❌");
-            return message.reply(`That playlist doesn't exist, man....`).then(msg => msg.delete({timeout: 5000}));
-        }else{
-            var playlist;
-            try{
-                playlist = JSON.parse(client.playlist.get(message.author.id+args.join(" ").toLowerCase()));
-            } catch{
-                playlist = false;
-            }
-            if(!playlist) {
-                client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(player.queue));
-                return message.react("✅");
-            } else{
-                if((playlist.length || 1) + player.queue.size <= 15) {
-                    try{
-                        player.queue.forEach((track) => {
-                            playlist.push(track)
+        
+        await foundUser.playlists.forEach(async function(sPlaylist, idx, array) {
+            if (sPlaylist.name === args.join(" ")){
+                objFound = true;
+                if (sPlaylist.songs.length + player.queue.size <= 15){
+                    const {title, uri, identifier, duration} = player.queue.current;
+                    await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, { //for current playing song
+                        "$push": {
+                            "playlists.$.songs": {
+                                name: title,
+                                duration,
+                                uri,
+                                identifier
+                                }
+                            }
                         });
-                        client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(playlist));
-                    } catch{
-                        var pltemp = [];
-                        pltemp.push(playlist);
-                        player.queue.forEach((track) => {
-                            pltemp.push(track)
-                        });
-                        client.playlist.put(message.author.id+args.join(" ").toLowerCase(), JSON.stringify(pltemp));
-                    }
+                    await player.queue.forEach(async song => {
+                        const {title, uri, identifier, duration} = song;
+                        await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, { //for current playing song
+                            "$push": {
+                                "playlists.$.songs": {
+                                    name: title,
+                                    duration,
+                                    uri,
+                                    identifier
+                                    }
+                                }
+                            });
+                    })
                     return message.react("✅");
-                }else{
+                }
+                else{
                     message.react("❌");
-                    return message.reply(`A playlist can only hold 15 songs.`).then(msg => msg.delete({timeout: 5000}));
+                    return message.reply(`This playlist can only have a limit of 15 songs.`).then(msg => msg.delete({timeout: 5000}));
                 }
             }
-        }
+            if (idx === array.length - 1 && !objFound){ 
+                message.react("❌");
+                return message.reply(`That playlist doesn't exist, man....`).then(msg => msg.delete({timeout: 5000}));
+            }        
+        });    
     }
 }

@@ -40,7 +40,7 @@ module.exports = {
         //If the bot is already connected to a channel error
         else {
             if (player && (player.voiceChannel != channel.id)) return message.channel.send("😒 "+"`dude, nty. I'm already in a channel that i'm having fun in.`").then(msg => msg.delete({timeout: 5000}));
-            else return message.channel.send("`dude? I'm already in the channel.....`").then(msg => msg.delete({timeout: 5000}));
+            //else return message.channel.send("`dude? I'm already in the channel.....`").then(msg => msg.delete({timeout: 5000}));
         }
         
     }

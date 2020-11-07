@@ -44,11 +44,11 @@ function getMusic() {
                     .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
                     .addField("Uploader:", `${res.tracks[0].author}`, true)
                     .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL())
-                    if (player.queue.size > 1) {
+                    if (player.queue.size >= 1) {
                         if (player.trackRepeat) {
-                            asEmbed.addField("Position in queue:", `${player.queue.size-1}`, true)
+                            asEmbed.addField("Position in queue:", `${player.queue.size+1}`, true)
                         }else{
-                            aEmbed.addField("Position in queue:", `${player.queue.size-1}: (${prettyMilliseconds(player.queue.duration-player.position-res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                            aEmbed.addField("Position in queue:", `${player.queue.size+1}: (${prettyMilliseconds(player.queue.duration-player.position-res.tracks[0].duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
                         }
                     }
                 message.channel.send({embed:aEmbed});
@@ -115,11 +115,11 @@ function getMusic() {
                         .addField("Duration:", `${prettyMilliseconds(track.duration, {colonNotation: true, secondsDecimalDigits: 0})}`, true)
                         .addField("Uploader:", `${track.author}`, true)
                         .setFooter(`ShanerBot: Play (${message.guild.name})`, client.user.displayAvatarURL())
-                        if (player.queue.size > 1) {
+                        if (player.queue.size >= 1) {
                             if (player.trackRepeat) {
-                                asEmbed.addField("Position in queue:", `${player.queue.size-1}`, true)
+                                asEmbed.addField("Position in queue:", `${player.queue.size+1}`, true)
                             }else{
-                                asEmbed.addField("Position in queue:", `${player.queue.size-1}: (${prettyMilliseconds(player.queue.duration-player.position-track.duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
+                                asEmbed.addField("Position in queue:", `${player.queue.size+1}: (${prettyMilliseconds(player.queue.duration-player.position-track.duration, {colonNotation: true, secondsDecimalDigits: 0})} till played)`, true)
                             }
                         }
                     message.channel.send({embed:asEmbed});
