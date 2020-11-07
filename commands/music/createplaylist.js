@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const User = require('../../models/user');
-const Playlist = require('../../models/playlist');
-const Song = require('../../models/song');
 module.exports = { 
     config: {
         name: "createplaylist",
@@ -21,7 +19,6 @@ module.exports = {
             foundUser.playlists.forEach(sPlaylist => {
                 if (sPlaylist.name === args.join(" ")) {
                     foundPlaylist=true
-                    break;
                 }
             })
             if (foundPlaylist) {
@@ -32,11 +29,13 @@ module.exports = {
                 message.react("❌");
                 return message.reply(`The playlist name must be less than 10 characters.`).then(msg => msg.delete({timeout: 5000}));
             }
-            const newPlaylist = new Playlist({
-                name: args.join(" "),
-                public: false,
+            await User.findOneAndUpdate({userID:message.author.id}, {
+                $push: {playlists: {                
+                    name: args.join(" "),
+                    public: false
+                    }
+                }   
             });
-            await newPlaylist.save();
             message.react("✅");
             return message.reply(`created empty private playlist: __**${args.join(' ')}**__`).then(msg => msg.delete({timeout: 5000}));
         } else{

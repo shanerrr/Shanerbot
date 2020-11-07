@@ -14,15 +14,13 @@ module.exports = {
     run: async (client, message, args) => {
 
         const player = client.manager.players.get(message.guild.id);
-        const foundUser = await User.findOne ({ userID: message.author.id });
-
-        console.log(foundUser);
+        const foundUser = await User.findOne({ userID: message.author.id });
 
         if (!player) {
             message.react("❌");
             return message.reply(`dude, wtf?, im not even playing anything.`).then(msg => msg.delete({timeout: 5000}));
         }
-        if (!player.queue.size) {
+        if (!player.queue.current) {
             message.react("❌");
             return message.reply(`ok man! I added this song that is totally playing to your playlist!!!`).then(msg => msg.delete({timeout: 5000}));
         }
@@ -30,29 +28,31 @@ module.exports = {
             message.react("❌");
             return message.reply(`Tell me a playlist to add the song to`).then(msg => msg.delete({timeout: 5000}));
         }
-        await foundUser.playlists.forEach(sPlaylist => {
+        await foundUser.playlists.forEach(async function(sPlaylist, idx, array) {
             if (sPlaylist.name === args.join(" ")){
                 if (sPlaylist.songs.length < 15){
                     const {title, uri, identifier, duration} = player.queue.current;
-                    const newSong = new Song({
-                        name: title,
-                        duration,
-                        uri,
-                        identifier
-                    });
-                    await newSong.save();
+                    await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, {
+                        "$push": {
+                            "playlists.$.songs": {
+                                name: title,
+                                duration,
+                                uri,
+                                identifier
+                                }
+                            }
+                        });
                     return message.react("✅");
                 }
                 else{
                     message.react("❌");
                     return message.reply(`This playlist already has the limit of 15 songs.`).then(msg => msg.delete({timeout: 5000}));
                 }
-
-            }else{
+            }
+            if (idx === array.length - 1){ 
                 message.react("❌");
                 return message.reply(`That playlist doesn't exist, man....`).then(msg => msg.delete({timeout: 5000}));
-            }
-            
+            }        
         });
 
         // if(!temp.includes(args.join(" ").toLowerCase())) {
