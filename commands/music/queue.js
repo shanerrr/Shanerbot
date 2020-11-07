@@ -26,7 +26,7 @@ module.exports = {
         if (player.queueRepeat) qEmbed.setAuthor("🔁: Queue is Repeating")
         if (player.trackRepeat) qEmbed.setAuthor("🔂: Song is Repeating")
         if (player.queue.size >= 1) {
-            qEmbed.addField('\u200b', '**Currently in queue:**')
+            qEmbed.addField('\u200b', '**__CURRENTLY IN QUEUE:__**')
             var i = 1;
             for (let {title,requester, duration} of player.queue) {
                 qEmbed.addField("**["+String(i)+"]:** "+title+` - **__[${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`, "Requested by: " + `<@${requester["id"]}>`)
