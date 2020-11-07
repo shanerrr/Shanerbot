@@ -6,10 +6,10 @@ const flatfile = require('flat-file-db');
 module.exports = async client => {
     const clientID = spotifyClientID;
     const clientSecret = spotifySecret;
-    client.database = flatfile.sync('../../db.db');
-    //client.report = flatfile.sync('../../Rdb.db');
-    client.playlist = flatfile.sync('playlistdb.db');
-    client.playlistkeys = flatfile.sync('playlistkeysdb.db');
+    // client.database = flatfile.sync('../../db.db');
+    // //client.report = flatfile.sync('../../Rdb.db');
+    // client.playlist = flatfile.sync('playlistdb.db');
+    // client.playlistkeys = flatfile.sync('playlistkeysdb.db');
     
     client.manager = new Manager({
         nodes,
@@ -43,7 +43,6 @@ module.exports = async client => {
     client.on("raw", d => client.manager.updateVoiceState(d));  
 
     client.cooldown = new Set();
-    client.reportcooldown = new Set();
     client.forcecooldown = new Set(); 
     client.retry = new Map(); 
     client.vote = new Map();
