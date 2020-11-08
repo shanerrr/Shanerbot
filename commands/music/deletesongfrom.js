@@ -1,5 +1,6 @@
 const {MessageEmbed} = require("discord.js");
 const prettyMilliseconds = require('pretty-ms');
+const User = require('../../models/user');
 const {prefix} = require("../../botconfig.json")
 module.exports = { 
     config: {
@@ -13,6 +14,9 @@ module.exports = {
     run: async (client, message, args) => {
 
         //doesnt support multiple deletes and right now if you enter a number or string it will disable the collector and make it useles
+
+        if (!args[0]) return message.reply(`Please specify which playlist to delete.`).then(msg => msg.delete({timeout: 5000}));
+        const foundUser = await User.findOne ({ userID: message.author.id });
 
         if (args[0]) {
             var temp = client.playlistkeys.get(message.author.id);
