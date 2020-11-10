@@ -41,17 +41,36 @@ module.exports = {
                     const asEmbed = new MessageEmbed()
                         .setAuthor(`${message.author.username}: Playlist Manager`, message.author.displayAvatarURL())
                         .setColor("#B44874")
-                        .setTitle("**PLAYLIST: "+"__"+sPlaylist.name.toUpperCase()+"__**")
+                        .setTitle("**PLAYLIST: "+"__"+sPlaylist.name.toUpperCase()+"__**"+(sPlaylist.public ? " (🔓)" : " (🔒)"))
                         .setFooter(`ShanerBot: Playlists (${message.guild.name})`, client.user.displayAvatarURL());
                         if(sPlaylist.songs.length){
                             asEmbed.setDescription(sPlaylist.songs.map(song => `**[${index++}] -** [${song.name}](${song.uri}) ~ **__[${prettyMilliseconds(parseInt(song.duration), {colonNotation: true, secondsDecimalDigits: 0})}]__**`));
                             sPlaylist.songs.forEach((track)=> {duration += parseInt(track.duration)});
-                            asEmbed.addField('\u200b',`**__${sPlaylist.songs.length+"__ song(s)"} | __${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}__ total length**`);
-                        } else{
+                            asEmbed.addField('\u200b',`**__${sPlaylist.songs.length+"__ song(s)"} | __${prettyMilliseconds(duration, {colonNotation: true, secondsDecimalDigits: 0})}__ total length** | **created on: ${sPlaylist.createdAt.toISOString().slice(0,10)}** | **updated on: ${sPlaylist.updatedAt.toISOString().slice(0,10)}**`);
+                        
+                        }else{
                             message.react("❌");
                             return message.reply(`That playlist is empty.`).then(msg => msg.delete({timeout: 5000}));
                         }
-                    return message.channel.send({embed:asEmbed});   
+                    playlistembed = await message.channel.send(asEmbed);
+                    playlistembed.react(!sPlaylist.public ? "🔓" : "🔒").then(() =>{
+                        const filter = (reaction, user) => reaction.emoji.name === (!sPlaylist.public ? "🔓" : "🔒") && user.id == message.author.id;
+                        const collectorR = playlistembed.createReactionCollector(filter, { max: 1, time: 15000 });
+                        collectorR.on('collect', async (r) => {
+                            if (r.emoji.name === (!sPlaylist.public ? "🔓" : "🔒")) {
+                                await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, {
+                                    "$set": {
+                                        "playlists.$.public": !sPlaylist.public
+                                        }
+                                    },
+                                );
+                                return message.reply(`Your playlist is now set to **${sPlaylist.public ? "PRIVATE":"PUBLIC"}** ${sPlaylist.public ? ". Only you can see and play it.":". Everyone can see and play it."}`).then(msg => msg.delete({timeout: 9000}));
+                            }
+                        });
+                        collectorR.on("end", (_, reason) => {
+                            //pass
+                        });
+                    });     
                 }
                 if (idx === array.length - 1 && !objFound){ 
                     message.react("❌");

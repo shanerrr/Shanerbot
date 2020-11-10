@@ -11,7 +11,7 @@ module.exports = {
         
         var player = client.manager.players.get(message.guild.id);
         let {channel} = message.member.voice;
-        if (args.join(" ")) {
+        if (args.join(" ")||false) {
             channel = message.guild.channels.cache.find(VoiceChannel => VoiceChannel.name === args.join(" "));
             if (!channel) return message.react("❌");
         }
