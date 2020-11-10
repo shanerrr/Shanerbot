@@ -29,61 +29,63 @@ module.exports = {
                     if (!player) return message.react("❌");
                     return await getMusic(sPlaylist.songs, true);   
                 }else{
-                    if((client.channels.cache.get(player.voiceChannel).members.size<3 || message.member.hasPermission('MOVE_MEMBERS')) && player.queue.size>0) {
-                        const pEmbed = new MessageEmbed()
+                    player.setQueueRepeat(false);
+                    if((client.channels.cache.get(player.voiceChannel).members.size<3 || message.member.hasPermission('MOVE_MEMBERS')) && player.queue.totalSize>0) {
+                        const pEmbed =  new MessageEmbed()
                         .setColor("#B44874")
                         .setTitle("**"+"Adding Playlist: "+"__"+args.join(" ").toUpperCase()+"__"+"**")
                         .setDescription("React to this message with one of the options below to state what to do with the following playlist.")
                         .addField("\u200b","🎶: Will **__add__** the playlist to the current queue. (Queue will not be looping)", false)
                         .addField("\u200b", "⏏️: Will **__clear__** the current queue and start playing the playlist. (Queue will be looping)", false)
+                        .addField("\u200b", "❌: Will **__cancel__** this request.", false)
                         .setFooter(`ShanerBot: QueueManager (${message.guild.name})`, client.user.displayAvatarURL())
-                        plembed = await message.channel.send(pEmbed);
-                        plembed.react("⏏️");
-                        plembed.react("🎶");
-                        plembed.react("❌").then(()=>{
-                            const filter = (reaction, user) => (reaction.emoji.name === '🎶' || reaction.emoji.name === '⏏️' || reaction.emoji.name === '❌') && user.id == message.author.id;
-                            const collectorR = plembed.createReactionCollector(filter, { max: 1, time: 30000 });
-                            collectorR.on('collect', async r => {
-                                if (r.emoji.name === '🎶') {
-                                    plembed.delete();
-                                    message.react("🎶");
-                                    if (sPlaylist.songs.length + player.queue.size > 20) {
-                                        message.react("❌");
-                                        return message.reply(`Sorry, the queue can only store 20 songs at a time.`).then(msg => msg.delete({timeout: 5000}));
+                        plembed = await message.channel.send(pEmbed).then(plembed => {
+                            plembed.react("🎶");
+                            plembed.react("⏏️");
+                            plembed.react("❌").then(()=>{
+                                const filter = (reaction, user) => (reaction.emoji.name === '🎶' || reaction.emoji.name === '⏏️' || reaction.emoji.name === '❌') && user.id == message.author.id;
+                                const collectorR = plembed.createReactionCollector(filter, { max: 1, time: 15000 });
+                                collectorR.on('collect', async r => {
+                                    if (r.emoji.name === '🎶') {
+                                        plembed.delete();
+                                        message.react("🎶");
+                                        if (sPlaylist.songs.length + player.queue.size > 20) {
+                                            message.react("❌");
+                                            return message.reply(`Sorry, the queue can only store 20 songs at a time.`).then(msg => msg.delete({timeout: 5000}));
+                                        }
+                                        return await getMusic(sPlaylist.songs, false);
                                     }
-                                    return await getMusic(sPlaylist.songs, false);
-                                }
-                                if (r.emoji.name === '⏏️') {
-                                    player.queue.clear();
-                                    player.stop();
-                                    plembed.delete();
-                                    message.react("⏏️");
-                                    return await getMusic(sPlaylist.songs, true);
-                                }
-                                if (r.emoji.name === '❌') {
+                                    if (r.emoji.name === '⏏️') {
+                                        player.queue.clear();  
+                                        player.stop();                                      
+                                        plembed.delete();
+                                        message.react("⏏️");
+                                        return await getMusic(sPlaylist.songs, true);
+                                    }
+                                    if (r.emoji.name === '❌') {
+                                        return collectorR.stop("time") 
+                                    }
+                                });
+                                collectorR.on("end", async (_, reason) => {
+                                    if(["time"].includes(reason)) {
+                                        plembed.delete();
+                                        return message.react("❌");
+                                    }
+                                });
+                                }).catch(async err => {
                                     plembed.delete();
                                     return message.react("❌");
-                                }
-
+                                    });
                             });
-                            collectorR.on("end", async (_, reason) => {
-                                if(["time"].includes(reason)) {
-                                    plembed.delete();
-                                }
-                            });
-                            }).catch(async err => {
-                                plembed.delete();
-                                return message.react("❌");
-                                });
-                    }
-                    if (player.queue.size==0 || client.channels.cache.get(player.voiceChannel).members.size>=3) {
+                    }else {
                         message.react("✅");
-                        return await getMusic(sPlaylist.songs, true);
+                        message.reply(`your playlist: **__${sPlaylist.name}__** has been added to the queue.`).then(msg => msg.delete({timeout: 5000}));
+                        return await getMusic(sPlaylist.songs, false);
                     }
-                }
-                
+                }                
             } else if (!sPlaylist.songs.length){
-                return message.reply("You're trying to play an empty playlist you dumbo.").then(msg => msg.delete({timeout: 5000}));
+                console.log(sPlaylist.songs.length)
+                return message.reply("you're trying to play an empty playlist you dumbo.").then(msg => msg.delete({timeout: 5000}));
             }
             if (idx === array.length - 1 && !objFound){ 
                 message.react("❌");
@@ -106,6 +108,6 @@ async function getMusic(playlist, repeat) {
         
         // Checks if the client should play the track if it's the first one added
         if (!player.playing && !player.paused && !player.queue.size) player.play()    
+        player.setQueueRepeat(repeat);
     });
-    if (repeat) player.setQueueRepeat(repeat);
 }}}

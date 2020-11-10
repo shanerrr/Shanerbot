@@ -26,7 +26,7 @@ module.exports = {
             }
             else{
                 message.react("❌");
-                return message.channel.send("✌ "+"`Sorry bro, I'm not listening to you because I kinda don't like you. `").then(msg => msg.delete({timeout: 5000}));
+                return message.channel.send("✌ "+"`hahahahahaah nty.`").then(msg => msg.delete({timeout: 5000}));
             }
         }
     }

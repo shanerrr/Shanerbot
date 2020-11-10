@@ -11,15 +11,9 @@ module.exports = {
 
         const player = client.manager.players.get(message.guild.id);
         if (message.member.hasPermission("ADMINSTRATOR")){
-            player.setQueueRepeat(false);
             player.setTrackRepeat(false);
-            if (!player) return message.react("❌");
-            try {
-                player.queue.removeFrom(1, player.queue.size);
-                player.stop();
-            } catch (error) {
-                player.stop();
-            }
+            player.setQueueRepeat(false);    
+            player.queue.clear();
             return message.react("✅");
         }
         message.react("❌");

@@ -68,7 +68,9 @@ module.exports = {
                             }
                         });
                         collectorR.on("end", (_, reason) => {
-                            //pass
+                            if(["time"].includes(reason)) {
+                                if (message.channel.permissionsFor(client.user).has("MANAGE_MESSAGES")) return playlistembed.reactions.removeAll()
+                            }
                         });
                     });     
                 }

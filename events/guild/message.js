@@ -14,6 +14,7 @@ module.exports = async (client, message) => {
         if (!doc) {
             const newUser = new User({
                 _id: mongoose.Types.ObjectId(),
+                username:message.author.tag,
                 userID: message.author.id,
                 playlists:[]
             });

@@ -17,13 +17,9 @@ module.exports = {
             return message.react("❌");
         }
         player.setTrackRepeat(false);
-        player.setQueueRepeat(false);    
-        try {
-            player.queue.removeFrom(1, player.queue.size);
-            player.stop();
-        } catch (error) {
-            player.stop();
-        }
+        player.setQueueRepeat(false);
+        player.queue.clear();
+        player.stop();
         return message.react("✅");
     }
 }
