@@ -20,13 +20,14 @@ module.exports = {
                 return message.channel.send("`Please either enter a song name, or have the bot be playing a song to use this command.`").then(msg => msg.delete({timeout:10000}));
             }
             let msglyrics = await message.channel.send("``Looking for Lyrics for current playing song...``")
-            let check = await getInfo(player.current.title, message, msglyrics)
+            let check = await getInfo(player.queue.current.title, message, msglyrics)
             if (check == 0) return;
         }else {
             let msglyrics = await message.channel.send("Looking for Lyrics for "+ "`"+`${args.join(" ")}`+"`")
             let check = await getInfo(args.join(" "), message, msglyrics)
             if (check == 0) return;
         }
+
         if (lyrics.length > 2048) var chunks = lyrics.match(/(.|[\r\n]){1,2048}(\s|$)/g);
         else {
             const asEmbed = new MessageEmbed()
@@ -50,6 +51,7 @@ module.exports = {
             asEmbed.setDescription(chunks[x]) 
             return message.channel.send({embed:asEmbed});
         });
+
 async function getInfo(infoI, messageI, delI) {
     let [ artist, title ] = await getArtistTitle(infoI);
     lyrics = await solenolyrics.requestLyricsFor(artist + title);
