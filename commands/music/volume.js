@@ -9,7 +9,7 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
-        const player = client.music.players.get(message.guild.id);
+        const player = client.manager.players.get(message.guild.id);
         if (!player) return message.channel.send("`yeah man, ill changed the volume of this imaginary song, k did it.`");
         if (!args[0]) return message.channel.send("`"+`dude, the volume is at ${player.volume}%.`+"`");
         if (!Number.isInteger(Number(args[0]))) return message.channel.send("`hey man, u need to put a number in, u know, to change the volume, idot.`");

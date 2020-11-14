@@ -1,5 +1,7 @@
-const {MessageEmbed} = require("discord.js")
-const solenolyrics = require("solenolyrics"); 
+const {MessageEmbed} = require("discord.js");
+const solenolyrics = require("solenolyrics");
+const getArtistTitle = require('get-artist-title')
+
 module.exports = { 
     config: {
         name: "lyrics",
@@ -11,21 +13,19 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
-        var lyrics, author, song, icon;
+        let lyrics, author, song, icon;
         if(!args[0]) {
-            const player = client.music.players.get(message.guild.id);
+            const player = client.manager.players.get(message.guild.id);
             if (!player) {
                 return message.channel.send("`Please either enter a song name, or have the bot be playing a song to use this command.`").then(msg => msg.delete({timeout:10000}));
             }
-            var msglyrics = await message.channel.send("``Looking for Lyrics for current playing song...``")
-            var check = await getInfo(player.queue[0].title, message, msglyrics)
+            let msglyrics = await message.channel.send("``Looking for Lyrics for current playing song...``")
+            let check = await getInfo(player.current.title, message, msglyrics)
             if (check == 0) return;
-        }
-        else {
-            var msglyrics = await message.channel.send("Looking for Lyrics for "+ "`"+`${args.join(" ")}`+"`")
-            var check = await getInfo(args.join(" "), message, msglyrics)
+        }else {
+            let msglyrics = await message.channel.send("Looking for Lyrics for "+ "`"+`${args.join(" ")}`+"`")
+            let check = await getInfo(args.join(" "), message, msglyrics)
             if (check == 0) return;
-
         }
         if (lyrics.length > 2048) var chunks = lyrics.match(/(.|[\r\n]){1,2048}(\s|$)/g);
         else {
@@ -50,17 +50,18 @@ module.exports = {
             asEmbed.setDescription(chunks[x]) 
             return message.channel.send({embed:asEmbed});
         });
-    async function getInfo(infoI, messageI, delI) {
-        lyrics = await solenolyrics.requestLyricsFor(infoI);
-        if (lyrics == undefined) {
-            messageI.react("❌");
-            delI.delete();
-            return 0;
-        }
-        lyrics += `\n\n[Lyrics Requested by: <@${message.author.id}>]`;
-        author = await solenolyrics.requestAuthorFor(infoI);
-        song = await solenolyrics.requestTitleFor(infoI);
-        icon = await solenolyrics.requestIconFor(infoI);
+async function getInfo(infoI, messageI, delI) {
+    let [ artist, title ] = await getArtistTitle(infoI);
+    lyrics = await solenolyrics.requestLyricsFor(artist + title);
+    if (lyrics == undefined) {
+        messageI.react("❌");
+        delI.delete();
+        return 0;
+    }
+    lyrics += `\n\n[Lyrics Requested by: <@${message.author.id}>]`;
+    author = await solenolyrics.requestAuthorFor(infoI);
+    song = await solenolyrics.requestTitleFor(infoI);
+    icon = await solenolyrics.requestIconFor(infoI);
     }
     }
 }

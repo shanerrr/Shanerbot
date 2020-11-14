@@ -5,11 +5,11 @@ module.exports = {
         usage: "ur pause",
         category: "music",
         accessableby: "Members",
-        aliases: ["resume"]
+        aliases: ["resume", "unpause"]
     },
     run: async (client, message, args) => {
 
-        const player = client.music.players.get(message.guild.id);
+        const player = client.manager.players.get(message.guild.id);
         if (!player) return message.channel.send("`no music playing so ill just pause myself.`");
         
         player.pause(player.playing);

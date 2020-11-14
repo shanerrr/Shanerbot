@@ -10,16 +10,16 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
-        const player = client.music.players.get(message.guild.id);
+        const player = client.manager.players.get(message.guild.id);
         if (!player) return message.react("❌");
-        player.setTrackRepeat(false);
-        player.setQueueRepeat(false);    
-        try {
-            player.queue.removeFrom(1, player.queue.size);
-            player.stop();
-        } catch (error) {
-            player.stop();
+        if (player.queue.size > 0 && !message.member.hasPermission("ADMINSTRATOR")) {
+            message.channel.send("sorry bro, you dont have that kind of power to stop me playing music.").then(msg => msg.delete({timeout: 5000}));
+            return message.react("❌");
         }
+        player.setTrackRepeat(false);
+        player.setQueueRepeat(false);
+        player.queue.clear();
+        player.stop();
         return message.react("✅");
     }
 }

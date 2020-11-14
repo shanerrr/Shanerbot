@@ -1,3 +1,4 @@
+const User = require('../../models/user');
 module.exports = { 
     config: {
         name: "deleteplaylist",
@@ -9,31 +10,26 @@ module.exports = {
     },
     run: async (client, message, args) => {
 
-        var temp = client.playlistkeys.get(message.author.id)
-        if (temp){
-            if (!args[0]) {
-                message.react("❌");
-                return message.reply(`Please state a name of a playlist in order to delete it.`).then(msg => msg.delete({timeout: 5000}));
-            }
-            if(!temp.includes(args.join(" ").toLowerCase())){
-                message.react("❌");
-                return message.reply(`You don't have a playlist named ${args.join(" ").toUpperCase()}. `).then(msg => msg.delete({timeout: 5000}));
-            } else{
-                try{
-                    var indexof = temp.indexOf(args.join(" ").toLowerCase());
-                    temp.splice(indexof, 1);
-                } catch{
-                    temp = [];
-                }
-                client.playlistkeys.put(message.author.id, temp);
-                client.playlist.del(message.author.id+args.join(" ").toLowerCase());
+        if (!args[0]) return message.reply(`Please specify which playlist to delete.`).then(msg => msg.delete({timeout: 5000}));
+        const foundUser = await User.findOne ({ userID: message.author.id });
+        let numOfSongs;
+        let objFound = false;
+
+        await foundUser.playlists.forEach(async function(sPlaylist, idx, array) {
+            if (sPlaylist.name === args.join(" ")){
+                numOfSongs = sPlaylist.songs.length;
+                objFound = true;
+                await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, {
+                    $pull: {playlists: {                
+                        name: args.join(" ")}
+                }});
                 message.react("✅");
-                return message.reply(`Playlist ${args.join(" ").toUpperCase()} deleted.`).then(msg => msg.delete({timeout: 5000}));
-                
+                return message.reply(`Playlist: **__${args.join(" ")}__** deleted containing **__${numOfSongs}__** songs. `).then(msg => msg.delete({timeout: 5000}));
             }
-        } else{
-            message.react("❌");
-            return message.reply(`You have no playlists.`).then(msg => msg.delete({timeout: 5000}));
-        }
+            if (idx === array.length - 1 && !objFound){ 
+                message.react("❌");
+                return message.reply(`You don't have a playlist named **__${args.join(" ")}__**. `).then(msg => msg.delete({timeout: 5000}));
+            }        
+        });
     }
 }
