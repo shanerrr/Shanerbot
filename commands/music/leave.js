@@ -15,12 +15,12 @@ module.exports = {
         if (message.member.hasPermission("ADMINSTRATOR")){
             player.disconnect();
             return message.react("😔")
-        } else{
+        }else{
             if(!channel || channel.id !== player.voiceChannel) {
                 message.react("❌");
                 return message.channel.send("`haha, can't make me leave when im not in the same voice channel as you.`").then(msg => msg.delete({timeout: 5000}));
             }
-            if (channel.members.size <= 2 || !player.queue.size){
+            if (channel.members.size <= 2 || !player.queue.totalSize){
                 player.disconnect();
                 return message.react("😔")
             }

@@ -11,17 +11,17 @@ module.exports = {
 
         const player = client.manager.players.get(message.guild.id);
 
-        if (!player) return message.channel.send("`man ur know im not even connected to a channel, idot.`");
-        if (!player.playing) return message.channel.send("`man ur know im not even playing a song.`");
+        if (!player) return message.channel.send("`man ur know im not even connected to a channel, idot.`").then(msg => msg.delete({timeout: 5000}));
+        if (!player.playing) return message.channel.send("`man ur know im not even playing a song.`").then(msg => msg.delete({timeout: 5000}));
 
         const {channel} = message.member.voice;
-        if(!channel || channel.id !== player.voiceChannel) return message.channel.send("`no song looping unless youre in the same channel as me`");
+        if(!channel || channel.id !== player.voiceChannel) return message.channel.send("`no queue looping unless youre in the same channel as me`").then(msg => msg.delete({timeout: 5000}));
 
         player.setQueueRepeat(!player.queueRepeat);
         if (player.queueRepeat) {
             return message.react("🔁");
         } else{
-            return message.react("❌");
+            return message.reply("queue is no longer looping.").then(msg => msg.delete({timeout: 5000}));
         }
     }
 }
