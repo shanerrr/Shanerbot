@@ -22,7 +22,7 @@ module.exports = {
             return message.reply(`ok man! I added this queue of these amazing songs that are playing right now to your playlist!!!`).then(msg => msg.delete({timeout: 5000}));}
         if (!args[0]) {
             message.react("❌");
-            return message.reply(`Tell me a playlist to add the song to`).then(msg => msg.delete({timeout: 5000}));}
+            return message.reply(`Tell me a playlist to add the playing queue to`).then(msg => msg.delete({timeout: 5000}));}
         
         await foundUser.playlists.forEach(async function(sPlaylist, idx, array) {
             if (sPlaylist.name === args.join(" ")){
