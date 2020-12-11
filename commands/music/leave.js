@@ -20,7 +20,7 @@ module.exports = {
                 message.react("❌");
                 return message.channel.send("`haha, can't make me leave when im not in the same voice channel as you.`").then(msg => msg.delete({timeout: 5000}));
             }
-            if (channel.members.size <= 2 || !player.queue.totalSize){
+            else if (!player.queue.totalSize || channel.members.size <= 2){
                 player.disconnect();
                 return message.react("😔")
             }

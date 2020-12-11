@@ -24,12 +24,6 @@ module.exports = {
         player = client.manager.players.get(message.guild.id);
     }
     if (!player) return
-    else {
-        client.retry.set(message.author.id, 0);
-        getMusic();
-    }
-
-function getMusic() {
     client.manager.search(args.join(" "), message.author).then(async res => {
         switch (res.loadType) {
             case "TRACK_LOADED":
@@ -55,7 +49,6 @@ function getMusic() {
                 //message.channel.send(`Enqueuing \`${res.tracks[0].title}\` \`${Utils.formatTime(res.tracks[0].duration, true)}\``);
                 if (!player.playing) player.play()
                 break;
-            
             case "SEARCH_RESULT":
                 let index = 1;
                 const tracks = res.tracks.slice(0, 10);
@@ -63,7 +56,7 @@ function getMusic() {
                     .setAuthor(`${message.author.username}: Song Picker`, message.author.displayAvatarURL())
                     .setColor("#B44874")
                     .setDescription(tracks.map(video => `**[${index++}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, {colonNotation: true, secondsDecimalDigits: 0})}]__**`))
-                    .setFooter("Your have 30 seconds to pick a song. Type 'cancel' to cancel the selection", client.user.displayAvatarURL());
+                    .setFooter("You have 30 seconds to pick a song. Type 'cancel' to cancel the selection", client.user.displayAvatarURL());
                 client.query.set(message.channel.id, await message.channel.send(embedf));
 
 
@@ -145,9 +138,7 @@ function getMusic() {
                 message.channel.send(`Enqueuing \`${res.playlist.tracks.length}\` \`${duration}\` tracks in playlist \`${res.playlist.info.name}\``);
                 if(!player.playing) player.play()
                 break;
-
         }       
-    }).catch(err => {if (err == "Error: No tracks were found." && client.retry.get(message.author.id) < 2) {client.retry.set(message.author.id, client.retry.get(message.author.id)+1); return getMusic();} else{return message.react("❌")}}) //message.react("❌"));//err => message.channel.send("`dude, try again maybe. Weird issue: "+`${err}`+"`"));
-}
+    }).catch() //err => {if (err == "Error: No tracks were found." && client.retry.get(message.author.id) < 2) {client.retry.set(message.author.id, client.retry.get(message.author.id)+1); return getMusic();} else{return message.react("❌")}}) //message.react("❌"));//err => message.channel.send("`dude, try again maybe. Weird issue: "+`${err}`+"`"));
   }
 }

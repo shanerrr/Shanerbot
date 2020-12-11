@@ -106,9 +106,8 @@ async function getMusic(playlist, repeat) {
             return message.reply(`there was an error while searching: ${err.message}`);
         }
         await player.queue.add(res.tracks[0]);
-        
         // Checks if the client should play the track if it's the first one added
-        if (!player.playing && !player.paused && !player.queue.size) player.play()    
+        if (!player.playing && !player.paused && !player.queue.size) player.play();    
         player.setQueueRepeat(repeat);
     });
 }}}
