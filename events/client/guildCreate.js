@@ -7,7 +7,8 @@ module.exports = async (client, guild) => {
     nguild = new Guild({
         _id: mongoose.Types.ObjectId(),
         guildName: guild.name,
-        guildID: guild.id
+        guildID: guild.id,
+        fc:[]
     })
     nguild.save()
     // .then(result => console.log(result))
