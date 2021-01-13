@@ -14,6 +14,7 @@ module.exports = async (client, message) => {
         if (!doc) {
             const newUser = new User({
                 _id: mongoose.Types.ObjectId(),
+                guild:message.guild.id,
                 username:message.author.tag,
                 userID: message.author.id,
                 playlists:[]
@@ -49,6 +50,7 @@ module.exports = async (client, message) => {
     //     return client.channels.fetch(client.database.get(message.guild.id+"F")).then(channela => message.reply("`Please use the`__**`"+channela.name+"`**__`text channel for all ShanerBot commands.`").then(msg => msg.delete({timeout: 10000})));
     // }
     let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
+    console.log(commandfile.config.category)
     if(commandfile) commandfile.run(client, message, args)
 
     function coolDown(context, time) {
