@@ -39,9 +39,8 @@ module.exports = {
     }
     else{
         if (args[0].toUpperCase() === "OFF"){
-          message.react("✅");
           message.reply(`Commands can be used in any text channels now.`).then(msg => msg.delete({timeout: 10000}));
-          return await Guild.updateOne(foundGuild, {
+          await Guild.updateOne(foundGuild, {
             $set: {fc: {                
                 music: null,
                 chat: null,
@@ -49,11 +48,12 @@ module.exports = {
                 }
             }   
           });
+          client.guildList = await Guild.find({});
+          return message.react("✅");
         } else if(args[0].toUpperCase() === "ON"){
           if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`Sorry, I dont have the` "+"__**`MANAGE MESSAGES`**__"+" `permission to enfore this rule.`").then(msg => msg.delete({timeout: 10000}));
-            message.react("✅");
             message.reply(`Commands can only now be used in this channel.`).then(msg => msg.delete({timeout: 10000}));
-            return await Guild.updateOne(foundGuild, {
+            await Guild.updateOne(foundGuild, {
               $set: {fc: {                
                   music: message.channel.id,
                   chat: message.channel.id,
@@ -61,6 +61,8 @@ module.exports = {
                   }
               }   
             });
+            client.guildList = await Guild.find({});
+            return message.react("✅");
         } else if (args[0].toUpperCase() === "CHAT"){
             if (args[1] && args[1].toUpperCase() == "ON") {
               if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`Sorry, I dont have the` "+"__**`MANAGE MESSAGES`**__"+" `permission to enfore this rule.`").then(msg => msg.delete({timeout: 10000}));
@@ -73,6 +75,7 @@ module.exports = {
                   }
                 }   
               });
+              client.guildList = await Guild.find({});
               return message.react("✅");
             } else if (args[1] && args[1].toUpperCase() == "OFF"){
                 await Guild.updateOne(foundGuild, {
@@ -83,6 +86,7 @@ module.exports = {
                     }
                   }   
                 });
+                client.guildList = await Guild.find({});
                 return message.react("✅");
             } else {
               return message.channel.send("`Hey, you want it on or off? ex: ur fc chat on`").then(msg => msg.delete({timeout: 5000}));
@@ -99,6 +103,7 @@ module.exports = {
                   }
                 }   
               });
+              client.guildList = await Guild.find({});
               return message.react("✅");
             }
             else if (args[1] && args[1].toUpperCase() == "OFF"){
@@ -110,6 +115,7 @@ module.exports = {
                   }
                 }   
               });
+              client.guildList = await Guild.find({});
               return message.react("✅");
             } else{
               return message.channel.send("`Hey, you want it on or off? ex: ur fc music on`").then(msg => msg.delete({timeout: 5000}));
