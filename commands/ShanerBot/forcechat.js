@@ -3,13 +3,14 @@ const Guild = require('../../models/guild');
 module.exports = { 
   config: {
       name: "forcechat",
-      description: "The text channel that the command is ran on will force the bot to only talk in that channel.",
+      description: "The text channel that the command is ran on will force the bot to only accept commands in that channel.",
       usage: "ur forcechat [music/meme] [on/off]",
       category: "ShanerBot",
       accessableby: "Administrator",
       aliases: ["fc"]
   },
   run: async (client, message, args) => {
+    if (!message.member.hasPermission("ADMINISTRATOR")) return message.react("❌");
     const foundGuild = await Guild.findOne ({ guildID: message.guild.id });
     let musicChannel, chatChannel;
     try {
@@ -28,7 +29,7 @@ module.exports = {
         .setFooter(`ShanerBot: ForceChat (${message.guild.name})`, client.user.displayAvatarURL())
         .setDescription(`Using this command, you can force certain commands to be used in only certain channels. `)
         .addField('**MUSIC:**', foundGuild.fc[0].music ? `Currently set to textchannel: __**${musicChannel}**__` : 'Music commands can be accepted from any channel. ' , false)
-        .addField('**CHAT:**', foundGuild.fc[0].chat ? `Currently set to textchannel __**${chatChannel}**__` : 'Commands can be accepted from any channel. ' , false)
+        .addField('**CHAT:**', foundGuild.fc[0].chat ? `Currently set to textchannel __**${chatChannel}**__` : 'Chat commands can be accepted from any channel. ' , false)
         .addField('\u200b', '**``ur fc on:``**'+' This will enable all commands to only be used in this channel.', false)
         .addField('\u200b', '**``ur fc music:``**'+' This will enable all music commands to only be used in this channel.', false)
         .addField('\u200b', '**``ur fc chat:``**'+' This will enable all chat/memes commands to only be used in this channel.', false)
@@ -49,6 +50,7 @@ module.exports = {
             }   
           });
         } else if(args[0].toUpperCase() === "ON"){
+          if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`Sorry, I dont have the` "+"__**`MANAGE MESSAGES`**__"+" `permission to enfore this rule.`").then(msg => msg.delete({timeout: 10000}));
             message.react("✅");
             message.reply(`Commands can only now be used in this channel.`).then(msg => msg.delete({timeout: 10000}));
             return await Guild.updateOne(foundGuild, {
@@ -61,6 +63,7 @@ module.exports = {
             });
         } else if (args[0].toUpperCase() === "CHAT"){
             if (args[1] && args[1].toUpperCase() == "ON") {
+              if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`Sorry, I dont have the` "+"__**`MANAGE MESSAGES`**__"+" `permission to enfore this rule.`").then(msg => msg.delete({timeout: 10000}));
               message.reply(`Chat category commands can only now be used in this channel from now on.`).then(msg => msg.delete({timeout: 10000}));
               await Guild.updateOne(foundGuild, {
                 $set: {fc: {                
@@ -86,6 +89,7 @@ module.exports = {
             }
         } else if (args[0].toUpperCase() === "MUSIC"){
             if (args[1] && args[1].toUpperCase() == "ON") {
+              if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("`Sorry, I dont have the` "+"__**`MANAGE MESSAGES`**__"+" `permission to enfore this rule.`").then(msg => msg.delete({timeout: 10000}));
               message.reply(`Music category commands can only now be used in this channel from now on.`).then(msg => msg.delete({timeout: 10000}));
               await Guild.updateOne(foundGuild, {
                 $set: {fc: {                
@@ -111,7 +115,7 @@ module.exports = {
               return message.channel.send("`Hey, you want it on or off? ex: ur fc music on`").then(msg => msg.delete({timeout: 5000}));
             }
         } else{
-          return message.channel.send("`I only have two options: __Music__ and __Memes__ can only be used in the force chat command. `").then(msg => msg.delete({timeout: 5000}));
+          return message.channel.send("I only have two options: __**Music**__ and __**Chat**__. | usage: ur fc music on -> will enable all music commands to the channel you type this command in.").then(msg => msg.delete({timeout: 10000}));
         }
     }
   }

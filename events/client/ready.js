@@ -1,11 +1,11 @@
 const { Manager } = require("erela.js");
 const Spotify  = require("erela.js-spotify");
 const {nodes, prefix, spotifyClientID, spotifySecret} = require ("../../botconfig.json");
-const flatfile = require('flat-file-db');
+const Guild = require('../../models/guild');
 
 module.exports = async client => {
     const clientID = spotifyClientID;
-    const clientSecret = spotifySecret;    
+    const clientSecret = spotifySecret;
     client.manager = new Manager({
         nodes,
         autoPlay: true,
@@ -38,6 +38,7 @@ module.exports = async client => {
     client.on("raw", d => client.manager.updateVoiceState(d));  
 
     client.cooldown = new Set();
+    client.guildList = await Guild.find({}); //initally stores to a list to avoid always being called in message event of bot
     //client.forcecooldown = new Set(); 
     client.vote = new Map();
     client.query = new Map();
