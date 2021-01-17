@@ -1,7 +1,6 @@
 const {DB_MONG} = require ("../botconfig.json");
 const mongoose = require("mongoose");
 module.exports = () => {
-    console.log()
     mongoose.connect(
         DB_MONG,
         {

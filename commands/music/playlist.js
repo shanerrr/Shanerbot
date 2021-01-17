@@ -43,6 +43,9 @@ module.exports = {
                         .setColor("#B44874")
                         .setTitle("**"+"__"+sPlaylist.name.toUpperCase()+"__**"+(sPlaylist.public ? " (🔓)" : " (🔒)"))
                         .setFooter(`ShanerBot: Playlists (${message.guild.name})`, client.user.displayAvatarURL());
+                    try{
+                        asEmbed.setThumbnail(sPlaylist.image)
+                    } catch (UnhandledPromiseRejectionWarning) {}
                     if(sPlaylist.songs.length){
                         asEmbed.setDescription(sPlaylist.songs.map(song => `**[${index++}] -** [${song.name}](${song.uri}) ~ **__[${prettyMilliseconds(parseInt(song.duration), {colonNotation: true, secondsDecimalDigits: 0})}]__**`));
                         sPlaylist.songs.forEach((track)=> {duration += parseInt(track.duration)});
