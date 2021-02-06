@@ -45,7 +45,8 @@ module.exports = {
                     collectorR.on('collect', r => {
                         if (r.emoji.name === '❌') {
                             message.react("❌");
-                            collector.stop("time") 
+                            collector.stop("time");
+                            deletemsg.delete();
                         }
                     });
                 })
