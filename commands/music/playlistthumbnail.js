@@ -18,7 +18,7 @@ module.exports = {
             await foundUser.playlists.forEach(async function(sPlaylist, idx, array) {
                 if (sPlaylist.name === args[0]) {
                     foundPlaylist = true;
-                    if (args[1].match(/\.(jpeg|jpg|gif|png)$/) != null){
+                    if (args[1].match(/\.(jpeg|jpg|gif|png|JPEG|PNG|JPG)$/) != null){
                         await User.findOneAndUpdate({ userID:message.author.id, "playlists.name": sPlaylist.name}, {
                             "$set": {
                                 "playlists.$.image": args[1]
