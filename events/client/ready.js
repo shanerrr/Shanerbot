@@ -24,7 +24,6 @@ module.exports = async client => {
     })
     client.manager.on("trackStuck", (player) => player.textChannel.send("`something bad happened omg, help me.`"))
     client.manager.on("playerCreate", (player)  => {
-        player.setVolume(10);
         if (!client.channels.cache.get(player.textChannel).permissionsFor(client.user).has("ADD_REACTIONS")) player.textChannel.send("`Please enable Add Reactions permission for ShanerBot for this text channel or provide ShanerBot with a role.`")
             player.disc = setInterval(function() {
             if (client.channels.cache.get(player.voiceChannel).members.size == 1 || player.playing == false || client.channels.cache.get(player.voiceChannel).guild.me.voice.serverMute){
