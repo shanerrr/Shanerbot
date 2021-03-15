@@ -12,7 +12,7 @@ module.exports = {
         if(!player) return message.channel.send("`man ur know im not connected to a channel, idot.`").then(msg => msg.delete({timeout: 5000}));
         const {channel} = message.member.voice;
 
-        if (message.member.hasPermission("ADMINISTRATOR")){
+        if (message.member.hasPermission("MOVE_MEMBERS")){
             player.disconnect();
             return message.react("😔")
         }else{

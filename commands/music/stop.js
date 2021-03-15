@@ -12,7 +12,7 @@ module.exports = {
 
         const player = client.manager.players.get(message.guild.id);
         if (!player) return message.react("❌");
-        if (player.queue.totalSize > 0 && !message.member.hasPermission("ADMINSTRATOR")) {
+        if (player.queue.totalSize > 0 && !message.member.hasPermission("ADMINISTRATOR")) {
             message.channel.send("sorry bro, you dont have that kind of power to stop me playing music.").then(msg => msg.delete({timeout: 5000}));
             return message.react("❌");
         }
