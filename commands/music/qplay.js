@@ -57,7 +57,6 @@ module.exports = {
           while (true) {
             if (res.tracks[testSearch].duration > 10800000) {
               testSearch += 1;
-              console.log(res.tracks.length)
               continue;
             }
             if (res.tracks.length === testSearch) return message.channel.send("`Couldn't find a youtube video that was under 3 hours, sorry bro..`");
