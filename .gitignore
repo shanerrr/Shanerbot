@@ -1,12 +1,2 @@
-start.bat
-botconfig.json
-start_bot.bat
-application.yml
-logs
-indstart.bat
 node_modules
-
-db.db
-Rdb.db
-dbopener.js
-*.db
+config.json
