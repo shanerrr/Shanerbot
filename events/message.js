@@ -8,7 +8,7 @@ module.exports = {
 
     let commandfile = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
     if (commandfile) { //for force chat command
-      commandfile.run(client, message, args)
+      commandfile.run(client, message, { content: args, isInteraction: false });
     }
   },
 };
