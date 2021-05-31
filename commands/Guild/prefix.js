@@ -36,7 +36,7 @@ module.exports = {
       }
     }
 
-    const bundledPrefix = args.isInteraction ? args['0'].value : args?.content.join(' ') || ""
+    const bundledPrefix = args.isInteraction ? args['0'].value : args?.content.join(' ') || "";
     //Error handling
     if (!bundledPrefix) return sendMessage("❌ : Empty argument. Please rerun command with an argument.");
     else if (bundledPrefix.length > 3) return sendMessage("❌ : You need to add a prefix that is no more than 3 characters long.");

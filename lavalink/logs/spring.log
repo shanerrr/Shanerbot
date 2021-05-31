@@ -336,3 +336,63 @@
 2021-05-31 06:27:00.382  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"642174295363158018","volume":100}
 2021-05-31 06:27:00.538  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"5ccbe78be01c11d76fb3632802adbae0","op":"voiceUpdate","guildId":"642174295363158018","event":{"token":"cd7b3b085304aa17","guild_id":"642174295363158018","endpoint":"us-west2669.discord.media:443"}}
 2021-05-31 06:27:02.865  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"642174295363158018"}
+2021-05-31 06:40:11.072  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61306 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:40:11.073  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:40:12.605  INFO 13892 --- [XNIO-1 task-29] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53803
+2021-05-31 06:40:12.609  INFO 13892 --- [XNIO-1 task-29] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53803
+2021-05-31 06:40:37.884  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53803 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:40:37.884  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:40:39.355  INFO 13892 --- [XNIO-1 task-30] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50826
+2021-05-31 06:40:39.358  INFO 13892 --- [XNIO-1 task-30] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50826
+2021-05-31 06:40:57.056  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"642174295363158018","volume":100}
+2021-05-31 06:40:57.215  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"fadf78bf9d72f542509dac352044d970","op":"voiceUpdate","guildId":"642174295363158018","event":{"token":"712c10e08bc15a11","guild_id":"642174295363158018","endpoint":"us-west2669.discord.media:443"}}
+2021-05-31 06:41:47.094  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"fadf78bf9d72f542509dac352044d970","op":"voiceUpdate","guildId":"642174295363158018","event":{"token":"712c10e08bc15a11","guild_id":"642174295363158018","endpoint":"us-west2669.discord.media:443"}}
+2021-05-31 06:43:07.743  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50826 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:43:07.744  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:43:09.169  INFO 13892 --- [XNIO-1 task-31] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:63083
+2021-05-31 06:43:09.173  INFO 13892 --- [XNIO-1 task-31] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:63083
+2021-05-31 06:43:17.267  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"642174295363158018","volume":100}
+2021-05-31 06:43:17.432  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"sessionId":"e325563cdf7583b914d0d39927f1991f","op":"voiceUpdate","guildId":"642174295363158018","event":{"token":"712c10e08bc15a11","guild_id":"642174295363158018","endpoint":"us-west2669.discord.media:443"}}
+2021-05-31 06:43:41.905  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:63083 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:43:41.906  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:43:43.421  INFO 13892 --- [XNIO-1 task-32] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:63100
+2021-05-31 06:43:43.424  INFO 13892 --- [XNIO-1 task-32] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:63100
+2021-05-31 06:43:49.632  INFO 13892 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"642174295363158018","volume":100}
+2021-05-31 06:43:49.794  INFO 13892 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"3d6d1a32b26affbb7c8ad7fb1b76f80a","op":"voiceUpdate","guildId":"642174295363158018","event":{"token":"712c10e08bc15a11","guild_id":"642174295363158018","endpoint":"us-west2669.discord.media:443"}}
+2021-05-31 06:45:36.999  INFO 13892 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:63100 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:45:36.999  INFO 13892 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:45:38.580  INFO 13892 --- [XNIO-1 task-33] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:65229
+2021-05-31 06:45:38.583  INFO 13892 --- [XNIO-1 task-33] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:65229
+2021-05-31 06:51:46.296  INFO 13892 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:65229 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:51:46.297  INFO 13892 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:51:48.093  INFO 13892 --- [XNIO-1 task-34] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53032
+2021-05-31 06:51:48.100  INFO 13892 --- [XNIO-1 task-34] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53032
+2021-05-31 06:52:09.826  INFO 13892 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"642174295363158018","volume":100}
+2021-05-31 06:52:09.861  INFO 13892 --- [XNIO-1 task-35] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage"
+2021-05-31 06:52:10.167  INFO 13892 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"sessionId":"4190cfe7c628e7aa122c49003e123970","op":"voiceUpdate","guildId":"642174295363158018","event":{"token":"dad7b726ca5a2a5e","guild_id":"642174295363158018","endpoint":"us-west2669.discord.media:443"}}
+2021-05-31 06:52:11.053  INFO 13892 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage
+2021-05-31 06:52:11.093  INFO 13892 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"play","guildId":"642174295363158018","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-05-31 06:56:47.408  INFO 13892 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53032 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:56:47.408  INFO 13892 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:56:49.109  INFO 13892 --- [XNIO-1 task-37] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50988
+2021-05-31 06:56:49.113  INFO 13892 --- [XNIO-1 task-37] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50988
+2021-05-31 06:57:55.694  INFO 13892 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50988 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:57:55.695  INFO 13892 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:57:57.319  INFO 13892 --- [XNIO-1 task-38] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62527
+2021-05-31 06:57:57.323  INFO 13892 --- [XNIO-1 task-38] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62527
+2021-05-31 06:58:28.106  INFO 13892 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62527 -- CloseStatus[code=1006, reason=]
+2021-05-31 06:58:28.107  INFO 13892 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 06:58:29.935  INFO 13892 --- [XNIO-1 task-39] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62543
+2021-05-31 06:58:29.940  INFO 13892 --- [XNIO-1 task-39] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62543
+2021-05-31 07:00:33.074  INFO 13892 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62543 -- CloseStatus[code=1006, reason=]
+2021-05-31 07:00:33.075  INFO 13892 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 07:00:34.704  INFO 13892 --- [XNIO-1 task-40] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52587
+2021-05-31 07:00:34.709  INFO 13892 --- [XNIO-1 task-40] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52587
+2021-05-31 07:01:35.873  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52587 -- CloseStatus[code=1006, reason=]
+2021-05-31 07:01:35.874  INFO 13892 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 07:01:37.427  INFO 13892 --- [XNIO-1 task-41] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50898
+2021-05-31 07:01:37.430  INFO 13892 --- [XNIO-1 task-41] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50898
+2021-05-31 07:01:41.648  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50898 -- CloseStatus[code=1006, reason=]
+2021-05-31 07:01:41.650  INFO 13892 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-05-31 07:02:26.347  INFO 13892 --- [XNIO-1 task-42] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58372
+2021-05-31 07:02:26.350  INFO 13892 --- [XNIO-1 task-42] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58372
