@@ -23,7 +23,7 @@ module.exports = (args, client, message, msgToSend, response, ephemeral = null) 
     });
   }
   else {
-    message.react(response);
+    response ? message.react(response) : null;
     return message.channel.send({ embed: msgToSend });
   }
 }
