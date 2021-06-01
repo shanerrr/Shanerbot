@@ -28,7 +28,7 @@ module.exports = {
     else if (bundledPrefix.length > 3) return sendMessage(args, client, message, "❌ : You need to add a prefix that is no more than 3 characters long.", "❌");
 
     //logic
-    await Guild.findOneAndUpdate({ guildID: message.guild?.id || message.guild_id }, { prefix: bundledPrefix }, (err, _) => {
+    await Guild.findOneAndUpdate({ guildID: message.guild?.id || message.guild_id }, { prefix: bundledPrefix }, { upsert: true }, (err, _) => {
 
       //error with DB
       if (err) return sendMessage(args, client, message, "❌ : Weird issue, try again later. ", "❌");
