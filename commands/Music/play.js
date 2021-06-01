@@ -39,6 +39,20 @@ module.exports = {
     });
     if (player.state === "DISCONNECTED") player.connect();
 
+    //function that builds the song details embed.
+    const embedBuilder = (track) => {
+      return new MessageEmbed()
+        .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue - (in ${prettyMilliseconds(player.queue.duration - player.position, { colonNotation: true, secondsDecimalDigits: 0 })}` : `Playing Next - (in ${prettyMilliseconds(player.queue.duration - player.position, { colonNotation: true, secondsDecimalDigits: 0 })}`})` + "``**" : "**``Playing Now``**")
+        .setURL(track.uri)
+        .setThumbnail(track.thumbnail)
+        .setColor("#B44874")
+        .setTitle("**" + track.title + "**")
+        .addField("Uploader:", `${track.author}`, true)
+        .addField("Duration:", `${prettyMilliseconds(track.duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
+        .setTimestamp()
+        .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
+    }
+
     //searches on youtube and what not.
     //TODO: VIDEO LENGTH
     client.manager.search(query, requestedUser).then(async res => {
@@ -47,37 +61,37 @@ module.exports = {
         case "TRACK_LOADED":
 
           // if (res.tracks[0].duration > 10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
-          const songEmbed = new MessageEmbed()
-            .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
-            .setURL(res.tracks[0].uri)
-            .setThumbnail(res.tracks[0].thumbnail)
-            .setColor("#B44874")
-            .setTitle("**" + res.tracks[0].title + "**")
-            .addField("Uploader:", `${res.tracks[0].author}`, true)
-            .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
-            .setTimestamp()
-            .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
+          // const songEmbed = new MessageEmbed()
+          //   .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
+          //   .setURL(res.tracks[0].uri)
+          //   .setThumbnail(res.tracks[0].thumbnail)
+          //   .setColor("#B44874")
+          //   .setTitle("**" + res.tracks[0].title + "**")
+          //   .addField("Uploader:", `${res.tracks[0].author}`, true)
+          //   .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
+          //   .setTimestamp()
+          //   .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
 
+          sendMessage(args, client, message, embedBuilder(res.tracks[0]), "👍");
           player.queue.add(res.tracks[0]);
-          sendMessage(args, client, message, songEmbed, "👍");
           break;
 
         case "SEARCH_RESULT":
 
           // if (res.tracks[0].duration > 10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
-          const songSearchEmbed = new MessageEmbed()
-            .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
-            .setURL(res.tracks[0].uri)
-            .setThumbnail(res.tracks[0].thumbnail)
-            .setColor("#B44874")
-            .setTitle("**" + res.tracks[0].title + "**")
-            .addField("Uploader:", `${res.tracks[0].author}`, true)
-            .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
-            .setTimestamp()
-            .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
+          // const songSearchEmbed = new MessageEmbed()
+          //   .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
+          //   .setURL(res.tracks[0].uri)
+          //   .setThumbnail(res.tracks[0].thumbnail)
+          //   .setColor("#B44874")
+          //   .setTitle("**" + res.tracks[0].title + "**")
+          //   .addField("Uploader:", `${res.tracks[0].author}`, true)
+          //   .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
+          //   .setTimestamp()
+          //   .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
 
+          sendMessage(args, client, message, embedBuilder(res.tracks[0]), "👍");
           player.queue.add(res.tracks[0]);
-          sendMessage(args, client, message, songSearchEmbed, "👍");
           break;
 
         case "PLAYLIST_LOADED":

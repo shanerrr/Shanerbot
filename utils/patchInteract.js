@@ -10,11 +10,10 @@
  */
 module.exports = async (args, client, message, msgToSend, response, msgToEdit = null) => {
 
-  console.log(msgToEdit)
   if (args.isInteraction) {
-    // console.log(msgToSend);
-    const data = typeof msgToSend === 'object' ? { embeds: [msgToSend] } : { content: msgToSend };
-    // console.log(data);
+    // const data = typeof msgToSend === 'object' ? { embeds: [msgToSend] } : { content: msgToSend }; 
+    // ^- this way sometime if there was an embed and you're trying to delete that and replace with normal text, embed will still be there
+    const data = typeof msgToSend === 'object' ? { content: null, embeds: [msgToSend] } : { content: msgToSend, embeds: [] };
     const channel = await client.channels.resolve(message.channel_id);
 
     return client.api.webhooks(client.user.id, message.token).messages('@original').patch({

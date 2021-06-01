@@ -44,7 +44,7 @@ module.exports = {
     //function that builds the song details embed.
     const embedBuilder = (track) => {
       return new MessageEmbed()
-        .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
+        .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue - (in ${prettyMilliseconds(player.queue.duration - player.position, { colonNotation: true, secondsDecimalDigits: 0 })}` : `Playing Next - (in ${prettyMilliseconds(player.queue.duration - player.position, { colonNotation: true, secondsDecimalDigits: 0 })}`})` + "``**" : "**``Playing Now``**")
         .setURL(track.uri)
         .setThumbnail(track.thumbnail)
         .setColor("#B44874")
@@ -77,7 +77,7 @@ module.exports = {
             .setTimestamp()
             .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
 
-          await sendMessage(args, client, message, queryEmbed, "👍").then((searchEmbed) => {
+          sendMessage(args, client, message, queryEmbed, "👍").then((searchEmbed) => {
 
             //collecter for response of what song to play
             const collector = msgchannel.createMessageCollector(m => {
@@ -92,11 +92,11 @@ module.exports = {
               m.filter((userMsg) => {
                 if (reason === "limit") {
                   // console.log(userMsg);
-                  sendMessage(args, client, userMsg, embedBuilder(res.tracks[userMsg.content - 1]), "👍", searchEmbed);
+                  sendMessage(args, client, args.isInteraction ? message : userMsg, embedBuilder(res.tracks[userMsg.content - 1]), "👍", searchEmbed);
                   player.queue.add(res.tracks[userMsg.content - 1]);
                   if (!player.playing) player.play();
                 }
-                if (reason === "cancelled") return sendMessage(args, client, userMsg, "❌: **Cancelled**", "❌", searchEmbed);
+                if (reason === "cancelled") return sendMessage(args, client, args.isInteraction ? message : userMsg, "❌: **Cancelled**", "❌", searchEmbed);
               })
               if (reason === "time") return sendMessage(args, client, message, "❌: **Time ran out.**", "❌", searchEmbed);
             });

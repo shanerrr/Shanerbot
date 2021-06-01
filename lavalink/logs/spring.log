@@ -1377,3 +1377,173 @@
 2021-06-01 07:28:29.439  INFO 6644 --- [XNIO-1 task-39] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em cochise"
 2021-06-01 07:28:29.772  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"70e1e11b4526b70f0cd71e99f589a919","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"4340013ac04194cd","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
 2021-06-01 07:28:29.958  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em cochise
+2021-06-01 07:31:47.866  INFO 6644 --- [XNIO-1 task-41] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em chosie"
+2021-06-01 07:31:48.362  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em chosie
+2021-06-01 07:31:50.553  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAlQIANENvY2hpc2UgLSBUZWxsIEVtIChmZWF0LiAkTk9UKSAoT2ZmaWNpYWwgVmlzdWFsaXplcikAB2NvY2hpc2UAAAAAAALDCAALZUhfVE9yZGRuWjAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1lSF9UT3JkZG5aMAAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 07:33:57.111  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52151 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:33:57.112  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 07:34:07.904  INFO 6644 --- [XNIO-1 task-43] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:53874
+2021-06-01 07:34:07.907  INFO 6644 --- [XNIO-1 task-43] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:53874
+2021-06-01 07:34:24.573  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:34:24.579  INFO 6644 --- [XNIO-1 task-44] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:34:24.932  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"f7399d059208350a0d0ecf54ece921d3","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"4340013ac04194cd","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:34:25.120  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:34:26.492  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAnwIANUNvY2hpc2UgLSBUZWxsIEVtIGZ0LiAkTk9UIChEaXJlY3RlZCBieSBDb2xlIEJlbm5ldHQpABBMeXJpY2FsIExlbW9uYWRlAAAAAAADLIAAC0w1QnlZMzB0ZnZNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9TDVCeVkzMHRmdk0AB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 07:35:19.572  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:53874 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:35:19.574  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 07:35:21.131  INFO 6644 --- [XNIO-1 task-46] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49854
+2021-06-01 07:35:21.134  INFO 6644 --- [XNIO-1 task-46] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49854
+2021-06-01 07:35:31.404  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:35:31.414  INFO 6644 --- [XNIO-1 task-47] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:35:31.747  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"sessionId":"96b0ecb787121c3e5ad4beffb047e6ec","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"4340013ac04194cd","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:35:31.940  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:35:33.310  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAnwIANUNvY2hpc2UgLSBUZWxsIEVtIGZ0LiAkTk9UIChEaXJlY3RlZCBieSBDb2xlIEJlbm5ldHQpABBMeXJpY2FsIExlbW9uYWRlAAAAAAADLIAAC0w1QnlZMzB0ZnZNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9TDVCeVkzMHRmdk0AB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 07:36:13.103  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49854 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:36:13.103  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 07:36:14.845  INFO 6644 --- [XNIO-1 task-49] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49875
+2021-06-01 07:36:14.848  INFO 6644 --- [XNIO-1 task-49] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49875
+2021-06-01 07:36:22.136  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:36:22.142  INFO 6644 --- [XNIO-1 task-50] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:36:22.299  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"sessionId":"ceb61b9ac6bd88c7d773a761d3fc20d3","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"4340013ac04194cd","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:36:22.658  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:36:23.652  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAnwIANUNvY2hpc2UgLSBUZWxsIEVtIGZ0LiAkTk9UIChEaXJlY3RlZCBieSBDb2xlIEJlbm5ldHQpABBMeXJpY2FsIExlbW9uYWRlAAAAAAADLIAAC0w1QnlZMzB0ZnZNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9TDVCeVkzMHRmdk0AB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 07:38:06.658  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49875 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:38:06.659  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 07:38:08.570  INFO 6644 --- [XNIO-1 task-52] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49903
+2021-06-01 07:38:08.573  INFO 6644 --- [XNIO-1 task-52] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49903
+2021-06-01 07:38:19.957  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:38:19.963  INFO 6644 --- [XNIO-1 task-53] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em cochise"
+2021-06-01 07:38:20.296  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"bdb1d9956d8924bfb52312e42244f714","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"4340013ac04194cd","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:38:20.462  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em cochise
+2021-06-01 07:38:21.752  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAnwIANUNvY2hpc2UgLSBUZWxsIEVtIGZ0LiAkTk9UIChEaXJlY3RlZCBieSBDb2xlIEJlbm5ldHQpABBMeXJpY2FsIExlbW9uYWRlAAAAAAADLIAAC0w1QnlZMzB0ZnZNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9TDVCeVkzMHRmdk0AB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 07:38:36.184  INFO 6644 --- [XNIO-1 task-55] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em cochise"
+2021-06-01 07:38:36.692  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em cochise
+2021-06-01 07:41:49.539  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAdgIAGXRlbGwgZW0gKHNpZCdzIHZlcnNpb27CuSkAA3NpZAAAAAAAAg9YAAthcVQ4QkJqZUR0SQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWFxVDhCQmplRHRJAAd5b3V0dWJlAAAAAAAAAAA="}
+2021-06-01 07:43:09.367  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49903 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:43:09.368  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 07:43:11.065  INFO 6644 --- [XNIO-1 task-57] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52047
+2021-06-01 07:43:11.068  INFO 6644 --- [XNIO-1 task-57] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52047
+2021-06-01 07:43:23.974  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:43:23.982  INFO 6644 --- [XNIO-1 task-58] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:43:24.316  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"a30faf97fddbc74195a37326268b9238","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"4340013ac04194cd","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:43:24.602  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:43:29.943  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAnwIANUNvY2hpc2UgLSBUZWxsIEVtIGZ0LiAkTk9UIChEaXJlY3RlZCBieSBDb2xlIEJlbm5ldHQpABBMeXJpY2FsIExlbW9uYWRlAAAAAAADLIAAC0w1QnlZMzB0ZnZNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9TDVCeVkzMHRmdk0AB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 07:43:43.560  INFO 6644 --- [XNIO-1 task-60] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:43:44.112  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:47:45.003  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52047 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:47:45.004  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 07:47:46.832  INFO 6644 --- [XNIO-1 task-62] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50863
+2021-06-01 07:47:46.835  INFO 6644 --- [XNIO-1 task-62] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50863
+2021-06-01 07:54:03.726  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50863 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:54:03.726  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 07:54:05.255  INFO 6644 --- [XNIO-1 task-63] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51341
+2021-06-01 07:54:05.259  INFO 6644 --- [XNIO-1 task-63] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51341
+2021-06-01 07:54:19.199  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:54:19.209  INFO 6644 --- [XNIO-1 task-64] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:54:19.556  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"sessionId":"5359614901b6a6ac309cfb24d6fa1814","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"73ea802c95fefce4","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:54:19.804  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:54:38.521  INFO 6644 --- [XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:54:39.101  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:54:49.510  INFO 6644 --- [XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:tell em coochise"
+2021-06-01 07:54:50.006  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: tell em coochise
+2021-06-01 07:56:10.220  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51341 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:56:10.221  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 07:56:11.754  INFO 6644 --- [XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:65068
+2021-06-01 07:56:11.757  INFO 6644 --- [XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:65068
+2021-06-01 07:58:09.621  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:65068 -- CloseStatus[code=1006, reason=]
+2021-06-01 07:58:09.621  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 07:58:21.327  INFO 6644 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62476
+2021-06-01 07:58:21.329  INFO 6644 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62476
+2021-06-01 07:58:36.289  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 07:58:36.297  INFO 6644 --- [XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:coohise tell em'"
+2021-06-01 07:58:36.451  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"4d5acd24a5fb732864bff88b780ca160","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"90d4d12bc024d321","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 07:58:36.898  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: coohise tell em'
+2021-06-01 07:58:36.906  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAnwIANUNvY2hpc2UgLSBUZWxsIEVtIGZ0LiAkTk9UIChEaXJlY3RlZCBieSBDb2xlIEJlbm5ldHQpABBMeXJpY2FsIExlbW9uYWRlAAAAAAADLIAAC0w1QnlZMzB0ZnZNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9TDVCeVkzMHRmdk0AB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 07:59:12.767  INFO 6644 --- [XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 07:59:13.236  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 07:59:53.077  INFO 6644 --- [XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 07:59:53.556  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:00:38.757  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62476 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:00:38.758  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:00:50.482  INFO 6644 --- [XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61582
+2021-06-01 08:00:50.485  INFO 6644 --- [XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61582
+2021-06-01 08:00:57.334  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:00:57.341  INFO 6644 --- [XNIO-1 task-15] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:00:57.693  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"sessionId":"c97a8e4bbd38fec57ddac1d41e92f582","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"90d4d12bc024d321","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:00:57.754  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:00:57.781  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:01:02.779  INFO 6644 --- [XNIO-1 task-17] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:01:03.205  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:01:08.351  INFO 6644 --- [XNIO-1 task-19] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:01:08.860  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:04:35.229  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:06:27.314  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61582 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:06:27.314  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:06:28.720  INFO 6644 --- [XNIO-1 task-21] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58630
+2021-06-01 08:06:28.722  INFO 6644 --- [XNIO-1 task-21] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58630
+2021-06-01 08:06:57.398  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:06:57.404  INFO 6644 --- [XNIO-1 task-22] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:06:57.765  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"sessionId":"4e58f9f42554cd5e01012896f5c95cec","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"90d4d12bc024d321","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:06:57.846  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:06:57.855  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:07:01.682  INFO 6644 --- [XNIO-1 task-24] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:07:02.047  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:08:14.019  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58630 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:08:14.020  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:08:15.650  INFO 6644 --- [XNIO-1 task-26] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58654
+2021-06-01 08:08:15.653  INFO 6644 --- [XNIO-1 task-26] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58654
+2021-06-01 08:08:24.216  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:08:24.222  INFO 6644 --- [XNIO-1 task-27] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:08:24.549  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:08:24.558  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:08:24.564  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"sessionId":"eff1df93d0a2bac3ccfdf093cb3d6e82","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"90d4d12bc024d321","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:08:29.293  INFO 6644 --- [XNIO-1 task-29] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:08:29.699  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:09:09.279  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58654 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:09:09.280  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:09:10.874  INFO 6644 --- [XNIO-1 task-31] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50964
+2021-06-01 08:09:10.876  INFO 6644 --- [XNIO-1 task-31] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50964
+2021-06-01 08:09:23.656  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:09:23.671  INFO 6644 --- [XNIO-1 task-32] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:09:23.819  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"7711140173acfefba067c481409696fa","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"90d4d12bc024d321","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:09:24.144  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:09:24.155  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:09:28.397  INFO 6644 --- [XNIO-1 task-34] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:09:28.960  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:10:05.629  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"pause","guildId":"583564729692454913","pause":true}
+2021-06-01 08:10:05.631  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"583564729692454913"}
+2021-06-01 08:10:09.442  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:10:09.447  INFO 6644 --- [XNIO-1 task-36] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:10:09.605  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"7711140173acfefba067c481409696fa","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"f2b44a977acdc0e9","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:10:09.875  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:10:09.881  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:10:20.733  INFO 6644 --- [XNIO-1 task-38] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:10:21.118  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:13:03.333  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50964 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:13:03.333  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:13:04.995  INFO 6644 --- [XNIO-1 task-40] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51963
+2021-06-01 08:13:04.998  INFO 6644 --- [XNIO-1 task-40] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51963
+2021-06-01 08:13:13.281  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:13:13.296  INFO 6644 --- [XNIO-1 task-41] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:13:13.637  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"sessionId":"417675171511a6cabaa2b18adbcef4a0","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"f2b44a977acdc0e9","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:13:13.817  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:13:13.830  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAgAIAHENvY2hpc2UgLSBURUxMIEVNIChFeHRlbmRlZCkACnhza3VsbHNob3QAAAAAAANPqAALa3VadzZUbEtRTEkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1rdVp3NlRsS1FMSQAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:13:15.582  INFO 6644 --- [XNIO-1 task-43] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:13:16.000  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:13:18.221  INFO 6644 --- [XNIO-1 task-45] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:13:18.643  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:13:40.550  INFO 6644 --- [XNIO-1 task-47] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=kuZw6TlKQLI"
+2021-06-01 08:13:40.939  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Cochise - TELL EM (Extended)
+2021-06-01 08:14:24.860  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51963 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:14:24.860  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:14:26.323  INFO 6644 --- [XNIO-1 task-49] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51992
+2021-06-01 08:14:26.325  INFO 6644 --- [XNIO-1 task-49] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51992
+2021-06-01 08:14:38.852  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:14:38.858  INFO 6644 --- [XNIO-1 task-50] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:james blake"
+2021-06-01 08:14:39.193  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"sessionId":"360555b7920a06f255ea18c5ff976c15","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"f2b44a977acdc0e9","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:14:39.631  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: james blake
+2021-06-01 08:14:49.862  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAjAIAJ0phbWVzIEJsYWtlIC0gR29kc3BlZWQgKE9mZmljaWFsIFZpZGVvKQALSmFtZXMgQmxha2UAAAAAAAKnsAALT2FweE1zWkhOa3cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1PYXB4TXNaSE5rdwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:15:10.369  INFO 6644 --- [XNIO-1 task-52] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage"
+2021-06-01 08:15:11.233  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage
+2021-06-01 08:16:05.794  INFO 6644 --- [XNIO-1 task-54] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 pilots"
+2021-06-01 08:16:06.537  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 pilots
