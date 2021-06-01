@@ -1,4 +1,5 @@
-const sendMessage = require('../../utils/sendInteractMsg');
+const sendMessage = require('../../utils/patchInteract');
+const initalInteract = require('../../utils/initalInteract');
 
 module.exports = {
   config: {
@@ -11,6 +12,9 @@ module.exports = {
     options: []
   },
   run: async (client, message, args) => {
+
+    //makes an inital POST request so it says the bot is thinking
+    args.isInteraction ? initalInteract(client, message) : null;
 
     const player = client.manager.players.get(message.guild?.id || message.guild_id);
     const channel = message.member.voice?.channel || client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;

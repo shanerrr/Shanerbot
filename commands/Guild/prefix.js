@@ -1,5 +1,6 @@
 const Guild = require('../../models/Guild');
-const sendMessage = require('../../utils/sendInteractMsg');
+const sendMessage = require('../../utils/patchInteract');
+const initalInteract = require('../../utils/initalInteract');
 
 module.exports = {
   config: {
@@ -17,6 +18,9 @@ module.exports = {
     }]
   },
   run: async (client, message, args) => {
+
+    //makes an inital POST request so it says the bot is thinking
+    args.isInteraction ? initalInteract(client, message) : null;
 
     const bundledPrefix = args.isInteraction ? args['0'].value : args?.content.join(' ') || "";
     //Error handling

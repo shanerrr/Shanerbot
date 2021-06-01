@@ -1,8 +1,9 @@
 const prettyMilliseconds = require('pretty-ms');
 const { MessageEmbed } = require("discord.js");
 const ordinal = require('ordinal');
-const sendMessage = require('../../utils/sendInteractEmbed');
-const sendStandardMsg = require('../../utils/sendInteractMsg');
+
+const sendMessage = require('../../utils/patchInteract');
+const initalInteract = require('../../utils/initalInteract');
 
 module.exports = {
   config: {
@@ -21,6 +22,9 @@ module.exports = {
   },
 
   run: async (client, message, args) => {
+
+    //makes an inital POST request so it says the bot is thinking
+    args.isInteraction ? initalInteract(client, message) : null;
 
     const channel = message.member.voice?.channel || client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
     const query = args.isInteraction ? args['0'].value : args?.content.join(' ') || "";
@@ -78,22 +82,22 @@ module.exports = {
 
         case "PLAYLIST_LOADED":
 
-          sendStandardMsg(args, client, message, "**Sorry, I currently don't do playlists.**", "❌")
+          sendMessage(args, client, message, "**Sorry, I currently don't do playlists.**", "❌")
           break;
 
         case "LOAD_FAILED":
 
-          sendStandardMsg(args, client, message, "**Huh, something bad happened. **", "❌")
+          sendMessage(args, client, message, "**Huh, something bad happened. **", "❌")
           break;
 
         case "NO_MATCHES":
 
-          sendStandardMsg(args, client, message, "**Could not find that song, maybe try again?**", "❌")
+          sendMessage(args, client, message, "**Could not find that song, maybe try again?**", "❌")
           break;
 
         default:
 
-          sendStandardMsg(args, client, message, "**Well, something went really wrong. Maybe try again later?**", "❌")
+          sendMessage(args, client, message, "**Well, something went really wrong. Maybe try again later?**", "❌")
           break;
       }
 
