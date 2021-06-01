@@ -3,7 +3,10 @@
     "discord.js": "^12.5.3",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
-    "mongoose": "^5.12.12"
+    "genius-lyrics-api": "^3.0.6",
+    "mongoose": "^5.12.12",
+    "ordinal": "^1.0.3",
+    "pretty-ms": "^7.0.1"
   },
   "scripts": {
     "dev": "nodemon index.js"

@@ -1,6 +1,8 @@
 const { DB_MONG } = require("../config.json");
 const mongoose = require("mongoose");
+
 module.exports = () => {
+  
   mongoose.connect(
     DB_MONG,
     {

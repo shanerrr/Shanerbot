@@ -6,15 +6,15 @@ const sendStandardMsg = require('../../utils/sendInteractMsg');
 
 module.exports = {
   config: {
-    name: "play",
-    description: "Plays a song or adds to the current queue.",
-    usage: "<guild-set-prefix> play <song query/youtube url>",
+    name: "search",
+    description: "Searches for a song and adds to queue.",
+    usage: "<guild-set-prefix> search <song query/youtube url>",
     category: "Music",
     accessableby: "Members",
-    aliases: ["p"],
+    aliases: [],
     options: [{
       name: "query",
-      description: "URL or a search query of the song.",
+      description: "Search for a song or direct url.",
       type: 3,
       required: true
     }]
@@ -61,19 +61,26 @@ module.exports = {
         case "SEARCH_RESULT":
 
           // if (res.tracks[0].duration > 10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
-          const songSearchEmbed = new MessageEmbed()
-            .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
-            .setURL(res.tracks[0].uri)
-            .setThumbnail(res.tracks[0].thumbnail)
-            .setColor("#B44874")
-            .setTitle("**" + res.tracks[0].title + "**")
-            .addField("Uploader:", `${res.tracks[0].author}`, true)
-            .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
-            .setTimestamp()
-            .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
+          // const songSearchEmbed = new MessageEmbed()
+          //   .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
+          //   .setURL(res.tracks[0].uri)
+          //   .setThumbnail(res.tracks[0].thumbnail)
+          //   .setColor("#B44874")
+          //   .setTitle("**" + res.tracks[0].title + "**")
+          //   .addField("Uploader:", `${res.tracks[0].author}`, true)
+          //   .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
+          //   .setTimestamp()
+          //   .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
 
-          player.queue.add(res.tracks[0]);
-          sendMessage(args, client, message, songSearchEmbed, "👍");
+          // player.queue.add(res.tracks[0]);
+          const queryEmbed = new MessageEmbed()
+            .setTitle("**Search Results**")
+            .setColor("#B44874")
+            .setTimestamp()
+            .setDescription(res.tracks.slice(0, 15).map((video, idx) => `**[${idx + 1}] -** ${video.title} ~ **__[${prettyMilliseconds(video.duration, { colonNotation: true, secondsDecimalDigits: 0 })}]__**`))
+            .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
+          // .setFooter("You have 30 seconds to pick a song. Type 'cancel' to cancel the selection", client.user.displayAvatarURL());
+          sendMessage(args, client, message, queryEmbed, "👍");
           break;
 
         case "PLAYLIST_LOADED":
@@ -97,7 +104,7 @@ module.exports = {
           break;
       }
 
-      if (!player.playing) player.play();
+      // if (!player.playing) player.play();
     });
 
   }

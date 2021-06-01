@@ -1,6 +1,6 @@
 const { Manager } = require("erela.js");
 const Spotify = require("erela.js-spotify");
-const { nodes, clientID, clientSecret } = require("../config.json");
+const { nodes, spotifyClientID, spotifyClientSecret } = require("../config.json");
 // const Guild = require('../../models/guild');
 
 module.exports = async client => {
@@ -12,7 +12,7 @@ module.exports = async client => {
       const guild = client.guilds.cache.get(id);
       if (guild) guild.shard.send(payload);
     },
-    plugins: [new Spotify({ clientID, clientSecret })],
+    plugins: [new Spotify({ clientID: spotifyClientID, clientSecret: spotifyClientSecret })],
   })
     .on("nodeConnect", node => {
       console.log(`Node "${node.options.identifier}" connected.`)
@@ -22,6 +22,7 @@ module.exports = async client => {
     })
     .on("trackStuck", (player) => player.textChannel.send("`something bad happened omg, help me.`"))
     .on("playerCreate", (player) => {
+      // console.log(player);
       // if (!client.channels.cache.get(player.textChannel).permissionsFor(client.user).has("ADD_REACTIONS")) player.textChannel.send("`Please enable Add Reactions permission for ShanerBot for this text channel or provide ShanerBot with a role.`")
       // player.disc = setInterval(function () {
       //   if (client.channels.cache.get(player.voiceChannel).members.size == 1 || player.playing == false || client.channels.cache.get(player.voiceChannel).guild.me.voice.serverMute) {
@@ -31,7 +32,7 @@ module.exports = async client => {
       // }, 600000);
     })
     .on("playerDestroy", player => {
-      clearInterval(player.disc);
+      // clearInterval(player.disc);
     });
 
   client.on("raw", d => client.manager.updateVoiceState(d));
