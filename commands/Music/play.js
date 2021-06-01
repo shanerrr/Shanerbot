@@ -60,35 +60,11 @@ module.exports = {
 
         case "TRACK_LOADED":
 
-          // if (res.tracks[0].duration > 10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
-          // const songEmbed = new MessageEmbed()
-          //   .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
-          //   .setURL(res.tracks[0].uri)
-          //   .setThumbnail(res.tracks[0].thumbnail)
-          //   .setColor("#B44874")
-          //   .setTitle("**" + res.tracks[0].title + "**")
-          //   .addField("Uploader:", `${res.tracks[0].author}`, true)
-          //   .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
-          //   .setTimestamp()
-          //   .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
-
           sendMessage(args, client, message, embedBuilder(res.tracks[0]), "👍");
           player.queue.add(res.tracks[0]);
           break;
 
         case "SEARCH_RESULT":
-
-          // if (res.tracks[0].duration > 10800000) return message.channel.send("`im not in the mood to listen to anything longer than 3 hours sorry nty.`");
-          // const songSearchEmbed = new MessageEmbed()
-          //   .setDescription(player.queue.totalSize ? "**``" + `${player.queue.size ? `${ordinal(player.queue.size + 1)} in Queue` : "Playing Next"}` + "``**" : "**``Playing Now``**")
-          //   .setURL(res.tracks[0].uri)
-          //   .setThumbnail(res.tracks[0].thumbnail)
-          //   .setColor("#B44874")
-          //   .setTitle("**" + res.tracks[0].title + "**")
-          //   .addField("Uploader:", `${res.tracks[0].author}`, true)
-          //   .addField("Duration:", `${prettyMilliseconds(res.tracks[0].duration, { colonNotation: true, secondsDecimalDigits: 0 })}`, true)
-          //   .setTimestamp()
-          //   .setFooter(requestedUser.tag, requestedUser.displayAvatarURL());
 
           sendMessage(args, client, message, embedBuilder(res.tracks[0]), "👍");
           player.queue.add(res.tracks[0]);

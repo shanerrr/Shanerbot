@@ -1549,3 +1549,379 @@
 2021-06-01 08:16:06.537  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 pilots
 2021-06-01 08:17:44.167  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAkQIALjIxIFNhdmFnZSAtIGEgbG90IChPZmZpY2lhbCBWaWRlbykgZnQuIEouIENvbGUACTIxIFNhdmFnZQAAAAAABftAAAtEbVdXcW9ncl9yOAABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURtV1dxb2dyX3I4AAd5b3V0dWJlAAAAAAAAAAA="}
 2021-06-01 08:24:16.306  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmQIAMHR3ZW50eSBvbmUgcGlsb3RzOiBTdHJlc3NlZCBPdXQgW09GRklDSUFMIFZJREVPXQAPRnVlbGVkIEJ5IFJhbWVuAAAAAAADctAAC3BYUnZpdUw2dk1ZAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9cFhSdml1TDZ2TVkAB3lvdXR1YmUAAAAAAAAAAA=="}
+2021-06-01 08:28:05.145  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51992 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:28:05.146  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:28:06.599  INFO 6644 --- [XNIO-1 task-56] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:54691
+2021-06-01 08:28:06.601  INFO 6644 --- [XNIO-1 task-56] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:54691
+2021-06-01 08:29:03.278  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:54691 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:29:03.278  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:29:04.991  INFO 6644 --- [XNIO-1 task-57] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62307
+2021-06-01 08:29:04.994  INFO 6644 --- [XNIO-1 task-57] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62307
+2021-06-01 08:31:29.385  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62307 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:31:29.386  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:31:30.861  INFO 6644 --- [XNIO-1 task-58] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57176
+2021-06-01 08:31:30.863  INFO 6644 --- [XNIO-1 task-58] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57176
+2021-06-01 08:31:42.320  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:31:42.328  INFO 6644 --- [XNIO-1 task-59] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:cochise"
+2021-06-01 08:31:42.659  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"sessionId":"f27a9a8adbf48035a020d9a5102901dd","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"fb28c756c48dced9","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:31:43.009  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: cochise
+2021-06-01 08:32:31.744  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57176 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:32:31.744  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:32:33.320  INFO 6644 --- [XNIO-1 task-61] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57229
+2021-06-01 08:32:33.323  INFO 6644 --- [XNIO-1 task-61] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57229
+2021-06-01 08:37:53.957  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57229 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:37:53.958  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:37:55.426  INFO 6644 --- [XNIO-1 task-62] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50474
+2021-06-01 08:37:55.428  INFO 6644 --- [XNIO-1 task-62] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50474
+2021-06-01 08:38:15.492  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:38:15.503  INFO 6644 --- [XNIO-1 task-63] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage"
+2021-06-01 08:38:15.849  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"ff95ef163b835248f5e95e71c845306d","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:38:16.348  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage
+2021-06-01 08:38:16.358  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:38:33.204  INFO 6644 --- [XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:38:33.856  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:39:37.557  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50474 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:39:37.558  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:39:39.037  INFO 6644 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:63746
+2021-06-01 08:39:39.039  INFO 6644 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:63746
+2021-06-01 08:39:46.678  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:39:46.686  INFO 6644 --- [XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:39:46.840  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"3a2868da0df8cc77ef7aa3545be7d2e2","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:39:47.257  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:41:04.936  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:63746 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:41:04.937  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:41:06.636  INFO 6644 --- [XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64801
+2021-06-01 08:41:06.639  INFO 6644 --- [XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64801
+2021-06-01 08:42:12.772  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64801 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:42:12.773  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:42:14.238  INFO 6644 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64818
+2021-06-01 08:42:14.241  INFO 6644 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64818
+2021-06-01 08:42:36.503  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64818 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:42:36.503  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:42:37.995  INFO 6644 --- [XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49266
+2021-06-01 08:42:37.997  INFO 6644 --- [XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49266
+2021-06-01 08:42:44.360  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:42:44.365  INFO 6644 --- [XNIO-1 task-9] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:42:44.709  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"1c8864f7153b53d1afc0b3911d4728fc","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:42:45.058  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:42:45.565  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:43:15.536  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49266 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:43:15.537  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:43:17.158  INFO 6644 --- [XNIO-1 task-11] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49291
+2021-06-01 08:43:17.160  INFO 6644 --- [XNIO-1 task-11] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49291
+2021-06-01 08:43:23.621  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:43:23.630  INFO 6644 --- [XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:43:23.813  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"sessionId":"2c74be567e1a463d1a3660b250f40004","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:43:24.135  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:43:24.542  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 08:44:46.513  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49291 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:44:46.513  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 08:44:48.008  INFO 6644 --- [XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55319
+2021-06-01 08:44:48.011  INFO 6644 --- [XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55319
+2021-06-01 08:45:04.073  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55319 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:45:04.074  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:45:05.515  INFO 6644 --- [XNIO-1 task-15] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55335
+2021-06-01 08:45:05.517  INFO 6644 --- [XNIO-1 task-15] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55335
+2021-06-01 08:45:12.069  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:45:12.083  INFO 6644 --- [XNIO-1 task-16] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:45:12.245  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"19e56028953871b975a6752d4380351e","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:45:12.631  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:45:27.166  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55335 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:45:27.166  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:45:28.889  INFO 6644 --- [XNIO-1 task-18] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55353
+2021-06-01 08:45:28.893  INFO 6644 --- [XNIO-1 task-18] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55353
+2021-06-01 08:45:34.725  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:45:34.738  INFO 6644 --- [XNIO-1 task-19] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:45:34.885  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"sessionId":"3e5e456c50336e7056dd0ed95d601261","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:45:35.288  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:47:53.943  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55353 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:47:53.943  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:47:55.464  INFO 6644 --- [XNIO-1 task-21] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50394
+2021-06-01 08:47:55.466  INFO 6644 --- [XNIO-1 task-21] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50394
+2021-06-01 08:48:09.192  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:48:09.203  INFO 6644 --- [XNIO-1 task-22] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:48:09.534  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"abfdd29301064e42cc23e9829c1a8f1a","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:48:09.632  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:49:00.929  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50394 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:49:00.930  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:49:02.592  INFO 6644 --- [XNIO-1 task-24] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56953
+2021-06-01 08:49:02.597  INFO 6644 --- [XNIO-1 task-24] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56953
+2021-06-01 08:49:09.144  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56953 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:49:09.145  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:49:10.771  INFO 6644 --- [XNIO-1 task-25] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56965
+2021-06-01 08:49:10.775  INFO 6644 --- [XNIO-1 task-25] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56965
+2021-06-01 08:49:18.576  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:49:18.582  INFO 6644 --- [XNIO-1 task-26] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:49:18.923  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"sessionId":"e34c2bf563fdb4fca20a06abf7b4290f","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:49:19.165  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:49:27.284  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56965 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:49:27.284  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:49:28.836  INFO 6644 --- [XNIO-1 task-28] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56984
+2021-06-01 08:49:28.838  INFO 6644 --- [XNIO-1 task-28] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56984
+2021-06-01 08:50:05.897  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56984 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:50:05.898  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:50:17.641  INFO 6644 --- [XNIO-1 task-29] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:60269
+2021-06-01 08:50:17.643  INFO 6644 --- [XNIO-1 task-29] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:60269
+2021-06-01 08:50:24.556  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:50:24.570  INFO 6644 --- [XNIO-1 task-30] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:50:24.897  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"sessionId":"33f1abebbbac9baa93b48a9fd6433f4d","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:50:25.185  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:51:05.166  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:60269 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:51:05.166  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:51:06.656  INFO 6644 --- [XNIO-1 task-32] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:60289
+2021-06-01 08:51:06.658  INFO 6644 --- [XNIO-1 task-32] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:60289
+2021-06-01 08:51:33.953  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:60289 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:51:33.953  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:51:35.587  INFO 6644 --- [XNIO-1 task-33] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61679
+2021-06-01 08:51:35.589  INFO 6644 --- [XNIO-1 task-33] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61679
+2021-06-01 08:51:42.285  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:51:42.292  INFO 6644 --- [XNIO-1 task-34] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:51:42.446  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"0d6d0a1d7006c44490f478023f424ed7","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:51:42.822  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:53:29.666  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61679 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:53:29.666  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:53:31.100  INFO 6644 --- [XNIO-1 task-36] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61539
+2021-06-01 08:53:31.102  INFO 6644 --- [XNIO-1 task-36] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61539
+2021-06-01 08:54:01.698  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61539 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:54:01.698  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:54:03.212  INFO 6644 --- [XNIO-1 task-37] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64585
+2021-06-01 08:54:03.216  INFO 6644 --- [XNIO-1 task-37] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64585
+2021-06-01 08:54:03.991  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64585 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:54:03.991  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:54:13.492  INFO 6644 --- [XNIO-1 task-38] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64590
+2021-06-01 08:54:13.495  INFO 6644 --- [XNIO-1 task-38] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64590
+2021-06-01 08:54:14.511  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:54:14.526  INFO 6644 --- [XNIO-1 task-39] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:54:14.854  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"sessionId":"5c864f60ce00c8c295943348f2466234","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:54:14.963  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 08:54:46.462  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64590 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:54:46.463  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:54:47.875  INFO 6644 --- [XNIO-1 task-41] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64608
+2021-06-01 08:54:47.877  INFO 6644 --- [XNIO-1 task-41] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64608
+2021-06-01 08:54:54.171  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:54:54.331  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"sessionId":"c589b376fc9afe3a87bd937d2776ec40","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"591f82aa14179fee","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:54:58.495  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"583564729692454913"}
+2021-06-01 08:57:44.910  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64608 -- CloseStatus[code=1006, reason=]
+2021-06-01 08:57:44.910  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 08:57:46.462  INFO 6644 --- [XNIO-1 task-42] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50333
+2021-06-01 08:57:46.465  INFO 6644 --- [XNIO-1 task-42] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50333
+2021-06-01 08:57:55.673  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 08:57:55.686  INFO 6644 --- [XNIO-1 task-43] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 08:57:56.047  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : {"sessionId":"161b204408c6595c423cc90f51e7a569","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 08:57:56.332  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:00:54.108  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50333 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:00:54.109  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:02:07.014  INFO 6644 --- [XNIO-1 task-45] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:60251
+2021-06-01 09:02:07.017  INFO 6644 --- [XNIO-1 task-45] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:60251
+2021-06-01 09:02:18.394  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:02:18.401  INFO 6644 --- [XNIO-1 task-46] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage immortal"
+2021-06-01 09:02:18.562  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"sessionId":"64547e3a7e58613ba266c24dba4c35a0","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:02:19.052  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage immortal
+2021-06-01 09:02:19.063  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAiAIAJTIxIFNhdmFnZSAtIEltbW9ydGFsIChPZmZpY2lhbCBBdWRpbykACTIxIFNhdmFnZQAAAAAAA+QYAAtjVXREYi1ibEVNUQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWNVdERiLWJsRU1RAAd5b3V0dWJlAAAAAAAAAAA="}
+2021-06-01 09:02:39.635  INFO 6644 --- [XNIO-1 task-48] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage"
+2021-06-01 09:02:40.343  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage
+2021-06-01 09:02:57.072  INFO 6644 --- [XNIO-1 task-50] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:02:57.459  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:06:36.367  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:06:52.732  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:60251 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:06:52.733  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:06:54.563  INFO 6644 --- [XNIO-1 task-52] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61251
+2021-06-01 09:06:54.565  INFO 6644 --- [XNIO-1 task-52] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61251
+2021-06-01 09:07:05.320  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:07:05.335  INFO 6644 --- [XNIO-1 task-53] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:07:05.678  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"sessionId":"448b94a963ecbe1bb5aae2d36ee4f7bf","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:07:05.912  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:07:06.288  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:08:37.649  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61251 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:08:37.650  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:08:39.145  INFO 6644 --- [XNIO-1 task-55] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:59476
+2021-06-01 09:08:39.147  INFO 6644 --- [XNIO-1 task-55] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:59476
+2021-06-01 09:08:45.647  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:08:45.661  INFO 6644 --- [XNIO-1 task-56] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:08:45.816  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"2497ed2c3a0c3118416f4553ad9ba0f3","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:08:46.028  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:08:46.475  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:09:40.976  INFO 6644 --- [XNIO-1 task-58] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:09:41.472  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:12:12.458  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:14:44.204  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:59476 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:14:44.205  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:14:56.158  INFO 6644 --- [XNIO-1 task-60] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55060
+2021-06-01 09:14:56.160  INFO 6644 --- [XNIO-1 task-60] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55060
+2021-06-01 09:15:04.847  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:15:04.855  INFO 6644 --- [XNIO-1 task-61] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:15:05.007  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"50151c615b1e1e2f55bac0e5a8788bd7","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:15:05.487  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:15:05.938  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:16:15.059  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55060 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:16:15.060  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:16:16.546  INFO 6644 --- [XNIO-1 task-63] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62005
+2021-06-01 09:16:16.549  INFO 6644 --- [XNIO-1 task-63] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62005
+2021-06-01 09:16:27.780  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62005 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:16:27.781  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:16:29.306  INFO 6644 --- [XNIO-1 task-64] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62020
+2021-06-01 09:16:29.308  INFO 6644 --- [XNIO-1 task-64] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62020
+2021-06-01 09:16:36.402  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:16:36.409  INFO 6644 --- [XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:16:36.747  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"81941a11be4c868a09d53b2f0c9dc4dc","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:16:36.822  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:16:37.190  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:17:21.503  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62020 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:17:21.504  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:17:23.028  INFO 6644 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62046
+2021-06-01 09:17:23.031  INFO 6644 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62046
+2021-06-01 09:17:38.350  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:17:38.362  INFO 6644 --- [XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:17:38.513  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"sessionId":"7f892146faa7b9fd4e213a6d54aa108a","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"80c988b7a53f35b5","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:17:39.010  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:17:39.350  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:22:47.265  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62046 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:22:47.265  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:22:49.101  INFO 6644 --- [XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58330
+2021-06-01 09:22:49.105  INFO 6644 --- [XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58330
+2021-06-01 09:23:21.416  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58330 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:23:21.416  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:23:23.070  INFO 6644 --- [XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58348
+2021-06-01 09:23:23.074  INFO 6644 --- [XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58348
+2021-06-01 09:28:29.258  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58348 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:28:29.260  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:28:30.725  INFO 6644 --- [XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56797
+2021-06-01 09:28:30.727  INFO 6644 --- [XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56797
+2021-06-01 09:29:14.448  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56797 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:29:14.448  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:29:15.895  INFO 6644 --- [XNIO-1 task-9] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:56813
+2021-06-01 09:29:15.898  INFO 6644 --- [XNIO-1 task-9] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:56813
+2021-06-01 09:29:22.683  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:56813 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:29:22.684  INFO 6644 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:29:24.234  INFO 6644 --- [XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57928
+2021-06-01 09:29:24.236  INFO 6644 --- [XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57928
+2021-06-01 09:29:43.714  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57928 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:29:43.714  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:29:45.184  INFO 6644 --- [XNIO-1 task-11] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57944
+2021-06-01 09:29:45.187  INFO 6644 --- [XNIO-1 task-11] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57944
+2021-06-01 09:29:55.631  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:29:55.637  INFO 6644 --- [XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:29:55.982  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"sessionId":"bb2ef1a0b2ed1d61b17b5a93fc8d4489","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"bc3730c64b93d91b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:29:56.463  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:29:56.484  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:32:26.173  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57944 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:32:26.174  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:32:27.671  INFO 6644 --- [XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50865
+2021-06-01 09:32:27.673  INFO 6644 --- [XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50865
+2021-06-01 09:32:43.998  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:32:44.010  INFO 6644 --- [XNIO-1 task-15] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:32:44.366  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"sessionId":"c38edafd8d80dcc958b83892764ea789","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"bc3730c64b93d91b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:32:44.445  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:32:44.454  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:33:10.475  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50865 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:33:10.475  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:33:11.813  INFO 6644 --- [XNIO-1 task-17] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51402
+2021-06-01 09:33:11.815  INFO 6644 --- [XNIO-1 task-17] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51402
+2021-06-01 09:33:21.155  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:33:21.173  INFO 6644 --- [XNIO-1 task-18] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage"
+2021-06-01 09:33:21.322  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"a7d7c96ca3534b82dfeebeb7c78daab0","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"bc3730c64b93d91b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:33:22.268  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage
+2021-06-01 09:33:24.527  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:33:57.143  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51402 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:33:57.144  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:33:58.630  INFO 6644 --- [XNIO-1 task-20] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51425
+2021-06-01 09:33:58.633  INFO 6644 --- [XNIO-1 task-20] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51425
+2021-06-01 09:34:09.708  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:34:09.714  INFO 6644 --- [XNIO-1 task-21] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:34:09.879  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"sessionId":"687626c6f2aab800382071618c22a439","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"bc3730c64b93d91b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:34:10.322  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:34:10.330  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:37:01.569  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51425 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:37:01.570  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:37:03.079  INFO 6644 --- [XNIO-1 task-23] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55633
+2021-06-01 09:37:03.083  INFO 6644 --- [XNIO-1 task-23] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55633
+2021-06-01 09:37:12.437  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:37:12.444  INFO 6644 --- [XNIO-1 task-24] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:37:12.785  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"sessionId":"7019cbb6e98cb1e5f196fa222fce38a0","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"bc3730c64b93d91b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:37:12.911  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:37:12.918  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:37:27.525  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55633 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:37:27.526  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:37:29.225  INFO 6644 --- [XNIO-1 task-26] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57343
+2021-06-01 09:37:29.227  INFO 6644 --- [XNIO-1 task-26] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57343
+2021-06-01 09:37:39.475  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:37:39.482  INFO 6644 --- [XNIO-1 task-27] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:37:39.643  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"653e77061760363a0dc3ff47cd994039","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"bc3730c64b93d91b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:37:40.067  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:37:40.076  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:41:59.881  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57343 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:41:59.881  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:42:01.563  INFO 6644 --- [XNIO-1 task-29] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57371
+2021-06-01 09:42:01.566  INFO 6644 --- [XNIO-1 task-29] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57371
+2021-06-01 09:47:18.834  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57371 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:47:18.834  INFO 6644 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:47:20.345  INFO 6644 --- [XNIO-1 task-30] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61052
+2021-06-01 09:47:20.348  INFO 6644 --- [XNIO-1 task-30] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61052
+2021-06-01 09:47:33.835  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:47:33.854  INFO 6644 --- [XNIO-1 task-31] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:47:34.177  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"3ce1b2f9ac884e7a7f86fff0cfd3dd93","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"55c853f87e8a2e51","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:47:34.623  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:47:34.640  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:48:23.206  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61052 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:48:23.207  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:48:24.801  INFO 6644 --- [XNIO-1 task-33] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61076
+2021-06-01 09:48:24.805  INFO 6644 --- [XNIO-1 task-33] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61076
+2021-06-01 09:48:32.155  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:48:32.170  INFO 6644 --- [XNIO-1 task-34] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:48:32.313  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"30c005eb555625e7c411eead79ae73b1","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"55c853f87e8a2e51","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:48:32.631  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:48:32.648  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:49:39.981  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61076 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:49:39.981  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:49:41.468  INFO 6644 --- [XNIO-1 task-36] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58583
+2021-06-01 09:49:41.472  INFO 6644 --- [XNIO-1 task-36] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58583
+2021-06-01 09:49:52.214  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:49:52.223  INFO 6644 --- [XNIO-1 task-37] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:49:52.569  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"77e76af14f7d61c67e70eb2d35994b3d","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"55c853f87e8a2e51","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:49:52.630  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:49:52.639  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 09:52:09.831  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58583 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:52:09.832  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 09:52:11.273  INFO 6644 --- [XNIO-1 task-39] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52038
+2021-06-01 09:52:11.276  INFO 6644 --- [XNIO-1 task-39] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52038
+2021-06-01 09:56:14.495  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52038 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:56:14.497  INFO 6644 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:57:53.971  INFO 6644 --- [XNIO-1 task-40] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51281
+2021-06-01 09:57:53.974  INFO 6644 --- [XNIO-1 task-40] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51281
+2021-06-01 09:59:19.647  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51281 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:59:19.648  INFO 6644 --- [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:59:21.153  INFO 6644 --- [XNIO-1 task-41] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51740
+2021-06-01 09:59:21.158  INFO 6644 --- [XNIO-1 task-41] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51740
+2021-06-01 09:59:33.897  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:59:33.904  INFO 6644 --- [XNIO-1 task-42] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:59:34.250  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"sessionId":"dc97ef3857199f0f3c52005a9f97db37","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"6e4906f9bf668e1b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:59:34.631  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:59:46.604  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51740 -- CloseStatus[code=1006, reason=]
+2021-06-01 09:59:46.605  INFO 6644 --- [XNIO-1 I/O-8] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-06-01 09:59:48.136  INFO 6644 --- [XNIO-1 task-44] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51759
+2021-06-01 09:59:48.138  INFO 6644 --- [XNIO-1 task-44] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51759
+2021-06-01 09:59:54.185  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 09:59:54.191  INFO 6644 --- [XNIO-1 task-45] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 09:59:54.340  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"sessionId":"45df68cbf57bb3bddf096cad0d0f52ff","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"6e4906f9bf668e1b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 09:59:54.771  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 09:59:54.787  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 10:00:10.257  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51759 -- CloseStatus[code=1006, reason=]
+2021-06-01 10:00:10.258  INFO 6644 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 10:00:11.712  INFO 6644 --- [XNIO-1 task-47] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51778
+2021-06-01 10:00:11.714  INFO 6644 --- [XNIO-1 task-47] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:51778
+2021-06-01 10:00:28.035  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 10:00:28.040  INFO 6644 --- [XNIO-1 task-48] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=ZZ6VhTBcc-c"
+2021-06-01 10:00:28.197  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"sessionId":"5d1903739e450a18e759e641aabd1e5b","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"6e4906f9bf668e1b","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 10:00:28.541  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track 21 Savage x Metro Boomin - Runnin (Official Music Video)
+2021-06-01 10:00:28.552  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 10:01:39.309  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51778 -- CloseStatus[code=1006, reason=]
+2021-06-01 10:01:39.309  INFO 6644 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-06-01 10:03:42.833  INFO 6644 --- [XNIO-1 task-50] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:63288
+2021-06-01 10:03:42.836  INFO 6644 --- [XNIO-1 task-50] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:63288
+2021-06-01 10:03:52.367  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"volume","guildId":"583564729692454913","volume":100}
+2021-06-01 10:03:52.374  INFO 6644 --- [XNIO-1 task-51] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:21 savage"
+2021-06-01 10:03:52.530  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"sessionId":"085c2487d56f9cdedb7a2eea648966a1","op":"voiceUpdate","guildId":"583564729692454913","event":{"token":"cfa486edaa78f123","guild_id":"583564729692454913","endpoint":"us-west1658.discord.media:443"}}
+2021-06-01 10:03:53.236  INFO 6644 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 21 savage
+2021-06-01 10:03:53.244  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"play","guildId":"583564729692454913","track":"QAAAmwIAODIxIFNhdmFnZSB4IE1ldHJvIEJvb21pbiAtIFJ1bm5pbiAoT2ZmaWNpYWwgTXVzaWMgVmlkZW8pAAkyMSBTYXZhZ2UAAAAAAAMksAALWlo2VmhUQmNjLWMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aWjZWaFRCY2MtYwAHeW91dHViZQAAAAAAAAAA"}
+2021-06-01 10:03:58.191  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"pause","guildId":"583564729692454913","pause":true}
+2021-06-01 10:03:58.193  INFO 6644 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : {"op":"destroy","guildId":"583564729692454913"}

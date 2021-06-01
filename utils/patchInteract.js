@@ -6,6 +6,7 @@
  * @param {*} msgToSend the embed or msg to send
  * @param {*} response the reponse like a status code with https methods
  * @param {*} msgToEdit the message object to edit.
+ * @param {*} button a button
  * @returns message object.
  */
 module.exports = async (args, client, message, msgToSend, response, msgToEdit = null) => {

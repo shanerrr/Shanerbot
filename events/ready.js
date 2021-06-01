@@ -5,7 +5,7 @@ module.exports = {
   once: true,
   execute(client) {
 
-    //global maps
+    //global maps /vars
     client.guildPrefixes = new Map();
 
     //commands and other handlers
