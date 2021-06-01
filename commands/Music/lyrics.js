@@ -3,8 +3,6 @@ const getArtistTitle = require('get-artist-title');
 const { getLyrics } = require('../../utils/lyricsAPI');
 
 const sendMessage = require('../../utils/patchInteract');
-const sendMessagePost = require('../../utils/postInteract');
-
 const initalInteract = require('../../utils/initalInteract');
 
 module.exports = {
@@ -64,15 +62,5 @@ module.exports = {
     });
     // send an array of embeds for the interact (webhooks)
     args.isInteraction && sendMessage(args, client, message, embedArray, null);
-
-
-    // //either send afor loop of e
-    // args.isInteraction ?
-    //   sendMessage(args, client, message, embedArray, null)
-    //   :
-    //   embedArray.map((embed, idx) => {
-    //     if (!idx) sendMessage(args, client, message, embed, null);
-    //     else sendMessagePost(args, client, message, embed, null);
-    //   });
   }
 }
