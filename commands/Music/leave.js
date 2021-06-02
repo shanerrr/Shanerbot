@@ -17,13 +17,13 @@ module.exports = {
     args.isInteraction ? initalInteract(client, message) : null;
 
     const player = client.manager.players.get(message.guild?.id || message.guild_id);
-    const channel = message.member.voice?.channel || client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
-
     //checks if player exists.
     if (!player) return sendMessage(args, client, message, `😲 **are you dumb? I can't leave a channel I'm not in?**`, "❌");
 
+    const channel = player.voiceChannel;
+
     //checks if member has a permission
-    else if (client.guilds.cache.get(message.guild?.id || message.guild_id).member(message.member?.id || message.member.user.id).hasPermission("MOVE_MEMBERS") || !player.queue.totalSize) {
+    if (client.guilds.cache.get(message.guild?.id || message.guild_id).member(message.member?.id || message.member.user.id).hasPermission("MOVE_MEMBERS") || !player.queue.totalSize) {
       player.destroy();
       return sendMessage(args, client, message, `😔 **Alright, I'll show myself out...**`, "👍");
     }

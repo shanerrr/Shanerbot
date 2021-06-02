@@ -26,7 +26,11 @@ module.exports = {
     //makes an inital POST request so it says the bot is thinking
     args.isInteraction ? initalInteract(client, message) : null;
 
-    const channel = message.member.voice?.channel || client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
+    try {
+      var channel = client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
+    } catch (TypeError) {
+      return sendMessage(args, client, message, "**❌: Join a voice channel first.**", "❌");
+    }
     const msgchannel = message.channel || client.guilds.cache.get(message.guild_id).channels.cache.get(message.channel_id);
 
     const query = args.isInteraction ? args['0'].value : args?.content.join(' ') || "";
