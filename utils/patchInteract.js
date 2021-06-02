@@ -10,6 +10,7 @@
  * @returns message object.
  */
 module.exports = async (args, client, message, msgToSend, response, msgToEdit = null) => {
+  
   if (args.isInteraction) {
     // const data = typeof msgToSend === 'object' ? { embeds: [msgToSend] } : { content: msgToSend }; 
     // ^- this way sometime if there was an embed and you're trying to delete that and replace with normal text, embed will still be there
@@ -25,7 +26,7 @@ module.exports = async (args, client, message, msgToSend, response, msgToEdit = 
   else {
     response ? message.react(response) : null;
     if (msgToEdit) return msgToEdit.edit(msgToSend)
-    return message.channel.send({ embed: msgToSend });
+    return message.channel.send(typeof msgToSend === 'object' ? { embed: msgToSend } : msgToSend);
 
   }
 }

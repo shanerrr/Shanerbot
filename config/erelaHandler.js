@@ -22,17 +22,12 @@ module.exports = async client => {
     })
     .on("trackStuck", (player) => player.textChannel.send("`something bad happened omg, help me.`"))
     .on("playerCreate", (player) => {
-      // console.log(player);
-      // if (!client.channels.cache.get(player.textChannel).permissionsFor(client.user).has("ADD_REACTIONS")) player.textChannel.send("`Please enable Add Reactions permission for ShanerBot for this text channel or provide ShanerBot with a role.`")
-      // player.disc = setInterval(function () {
-      //   if (client.channels.cache.get(player.voiceChannel).members.size == 1 || player.playing == false || client.channels.cache.get(player.voiceChannel).guild.me.voice.serverMute) {
-      //     player.destroy();
-      //     clearInterval(player.disc);
-      //   }
-      // }, 600000);
+      client.disconnect = setInterval(() => {
+        if (client.channels.cache.get(player.voiceChannel).members.size == 1 || !player.playing || client.channels.cache.get(player.voiceChannel).guild.me.voice.serverMute) player.destroy();
+      }, 5000);
     })
     .on("playerDestroy", player => {
-      // clearInterval(player.disc);
+      clearInterval(client.disconnect);
     });
 
   client.on("raw", d => client.manager.updateVoiceState(d));
@@ -42,6 +37,6 @@ module.exports = async client => {
   // //client.forcecooldown = new Set(); 
   // client.vote = new Map();
   // client.query = new Map();
-  // let activities = ["Supports playlists!", `talk to me?`, "haha hello", "TikTok", "quarantine"], i = 0;
-  // setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]} | ${prefix}help`, { type: "WATCHING" }), 25000)
+  let activities = ["Slash Commands!", "str8 chillin'"], i = 0;
+  setInterval(() => client.user.setActivity(activities[i++ % activities.length], { type: "COMPETING" }), 25000)
 }

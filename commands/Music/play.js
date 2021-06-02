@@ -27,7 +27,7 @@ module.exports = {
     args.isInteraction ? initalInteract(client, message) : null;
 
     try {
-      var channel = client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
+      var channel = message.member.voice?.channel || client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
     } catch (TypeError) {
       return sendMessage(args, client, message, "**❌: Join a voice channel first.**", "❌");
     }

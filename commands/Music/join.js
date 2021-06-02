@@ -18,7 +18,7 @@ module.exports = {
 
     const player = client.manager.players.get(message.guild?.id || message.guild_id);
     try {
-      var channel = client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
+      var channel = message.member.voice?.channel || client.guilds.cache.get(message.guild_id).member(message.member.user.id).voice.channel;
     } catch (TypeError) {
       return sendMessage(args, client, message, "**❌: Join a voice channel first.**", "❌");
     }
