@@ -14,7 +14,7 @@ module.exports = {
     accessableby: "Members",
     aliases: ["p"],
     options: [{
-      name: "query",
+      name: "song",
       description: "URL or a search query of the song.",
       type: 3,
       required: true
