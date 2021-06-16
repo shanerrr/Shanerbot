@@ -24,7 +24,7 @@ module.exports = async client => {
     .on("playerCreate", (player) => {
       client.disconnect = setInterval(() => {
         if (client.channels.cache.get(player.voiceChannel).members.size == 1 || !player.playing || client.channels.cache.get(player.voiceChannel).guild.me.voice.serverMute) player.destroy();
-      }, 5000);
+      }, 600000);
     })
     .on("playerDestroy", player => {
       clearInterval(client.disconnect);

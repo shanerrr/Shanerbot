@@ -35,7 +35,7 @@ module.exports = {
       //SUCESS
       else {
         client.guildPrefixes[message.guild?.id || message.guild_id] = bundledPrefix;
-        return sendMessage(args, client, message, `👍 : Changes set. Prefix for this server is now **${bundledPrefix}**`, "❌");
+        return sendMessage(args, client, message, `👍 : Changes set. Prefix for this server is now **${bundledPrefix}**`, "👍");
       }
     });
   }
