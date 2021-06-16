@@ -15,9 +15,10 @@ module.exports = {
     //for lavalink erela.js
     client.manager.init(client.user.id);
 
-    console.log(`Ready! Logged in as ${client.user.tag}`);
-
+    //activites (display message)
     let activities = ["Slash Commands!", "str8 chillin'"], i = 0;
     setInterval(() => client.user.setActivity(activities[i++ % activities.length], { type: "COMPETING" }), 25000);
+
+    console.log(`Ready! Logged in as ${client.user.tag}`);
   },
 };
