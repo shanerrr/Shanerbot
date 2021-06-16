@@ -37,6 +37,4 @@ module.exports = async client => {
   // //client.forcecooldown = new Set(); 
   // client.vote = new Map();
   // client.query = new Map();
-  let activities = ["Slash Commands!", "str8 chillin'"], i = 0;
-  setInterval(() => client.user.setActivity(activities[i++ % activities.length], { type: "COMPETING" }), 25000)
 }
