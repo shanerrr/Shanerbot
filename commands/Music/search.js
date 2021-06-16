@@ -36,6 +36,8 @@ module.exports = {
     const query = args.isInteraction ? args['0'].value : args?.content.join(' ') || "";
     const requestedUser = client.guilds.cache.get(message.guild?.id || message.guild_id).member(message.member?.id || message.member.user.id).user
 
+    if (!query) return sendMessage(args, client, message, "**❌: Please input a song or artist name to search.**", "❌");
+
     //if player doesn't exist, make on ore return an already created one.
     const player = client.manager.create({
       guild: message.guild?.id || message.guild_id,

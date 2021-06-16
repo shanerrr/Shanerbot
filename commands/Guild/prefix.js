@@ -22,10 +22,12 @@ module.exports = {
     //makes an inital POST request so it says the bot is thinking
     args.isInteraction ? initalInteract(client, message) : null;
 
-    const bundledPrefix = args.isInteraction ? args['0'].value : args?.content.join(' ') || "";
+    if (!client.guilds.cache.get(message.guild?.id || message.guild_id).member(message.member?.id || message.member.user.id).hasPermission("ADMINISTRATOR")) return sendMessage(args, client, message, "❌ : Sorry bro, you can't change that...", "❌");
+
+    const bundledPrefix = args.isInteraction ? args['0'].value : args?.content.join('') || "";
     //Error handling
     if (!bundledPrefix) return sendMessage(args, client, message, "❌ : Empty argument. Please rerun command with an argument.", "❌");
-    else if (bundledPrefix.length > 3) return sendMessage(args, client, message, "❌ : You need to add a prefix that is no more than 3 characters long.", "❌");
+    else if (bundledPrefix.length > 3) return sendMessage(args, client, message, "❌ : You can only add a prefix that is no more than 3 characters long.", "❌");
 
     //logic
     await Guild.findOneAndUpdate({ guildID: message.guild?.id || message.guild_id }, { prefix: bundledPrefix }, { upsert: true }, (err, _) => {
