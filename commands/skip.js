@@ -4,12 +4,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("skip")
     .setDescription("Skips the current playing song."),
-  // .addStringOption((option) =>
-  //   option
-  //     .setName("song")
-  //     .setDescription("A song name or url")
-  //     .setRequired(true)
-  // ),
   async execute(client, interaction, player) {
     if (!interaction.member.voice.channelId)
       return await interaction.reply({

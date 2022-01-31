@@ -1,7 +1,6 @@
 const { embedAccent } = require("../config.json");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
-const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,15 +11,14 @@ module.exports = {
     //get queue
     const queue = player.getQueue(interaction.guild);
 
+    //is thinking command (not for chained interactions)
+    !prevInteraction && (await interaction.deferReply());
+
     // if no queue stop
-    if (!queue) {
-      if (!prevInteraction) {
-        //is thinking command
-        await interaction.deferReply();
-        return await interaction.followUp({
-          content: `Nothing in queue right now.`,
-        });
-      }
+    if (!queue && !prevInteraction) {
+      return await interaction.followUp({
+        content: `Nothing in queue right now.`,
+      });
     }
 
     const queueEmbed = new MessageEmbed()

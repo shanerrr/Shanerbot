@@ -117,31 +117,36 @@ module.exports = {
       filter: (i) => i.user.id === track.requestedBy.id,
       time: 15000,
       max: 1,
+      errors: ["time"],
     });
 
     collector.on("collect", async (i) => {
       //delete song button
       if (i.customId === "removeTrack") {
         trackEmbed.setDescription("**``Removed from Queue``**");
+        if (queue.tracks.length) queue.remove(track.id);
+        else queue.skip();
         await i.update({ embeds: [trackEmbed], components: [] });
         //show queue button
       } else if (i.customId === "showQueue")
         client.commands.get("queue").execute(client, interaction, player, i);
       //auto play button
-      else if (i.customId === "showQueue") {
-        queue._handleAutoplay(track);
-      }
+      // else if (i.customId === "showQueue") {
+      //   queue._handleAutoplay(track);
+      // }
     });
 
     // after time out, disable all buttons
-    collector.on("end", async () => {
-      trackButtons.components[0]?.setDisabled(true);
-      trackButtons.components[1]?.setDisabled(true);
-      trackButtons.components[2]?.setDisabled(true);
-      await interaction.editReply({
-        embeds: [trackEmbed],
-        components: [trackButtons],
-      });
+    collector.on("end", async (e, reason) => {
+      if (reason === "time") {
+        trackButtons.components[0]?.setDisabled(true);
+        trackButtons.components[1]?.setDisabled(true);
+        trackButtons.components[2]?.setDisabled(true);
+        await interaction.editReply({
+          embeds: [trackEmbed],
+          components: [trackButtons],
+        });
+      }
     });
     //end of button collector
 
