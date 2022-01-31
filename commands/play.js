@@ -91,22 +91,21 @@ module.exports = {
       .addField("Duration:", track.duration, true)
       .setTimestamp();
 
+    //adds or plays the track
+    await queue.play(track);
+
     const trackButtons = new MessageActionRow().addComponents(
       new MessageButton()
-        .setCustomId("removeTrack")
+        .setCustomId(`removeTrack_${track.id + queue?.tracks.length}`)
         .setStyle("SECONDARY")
         .setEmoji("❌")
-      // new MessageButton()
-      //   .setCustomId("autoPlay")
-      //   .setStyle("SECONDARY")
-      //   .setEmoji("♾️")
     );
 
     // only show queue button of tracks in queue
-    if (queue?.current) {
+    if (queue?.tracks.length) {
       trackButtons.addComponents(
         new MessageButton()
-          .setCustomId("showQueue")
+          .setCustomId(`showQueue${track.id + queue?.tracks.length}`)
           .setStyle("SECONDARY")
           .setEmoji("🎶")
       );
@@ -117,21 +116,20 @@ module.exports = {
       filter: (i) => i.user.id === track.requestedBy.id,
       time: 15000,
       max: 1,
-      errors: ["time"],
     });
 
     collector.on("collect", async (i) => {
       //delete song button
-      if (i.customId === "removeTrack") {
+      if (i.customId === `removeTrack_${track.id + queue?.tracks.length}`) {
         trackEmbed.setDescription("**``Removed from Queue``**");
-        if (queue.tracks.length) queue.remove(track.id);
+        if (queue?.tracks.length) queue.remove(track.id);
         else queue.skip();
         await i.update({ embeds: [trackEmbed], components: [] });
         //show queue button
-      } else if (i.customId === "showQueue")
+      } else if (i.customId === `showQueue${track.id + queue?.tracks.length}`)
         client.commands.get("queue").execute(client, interaction, player, i);
       //auto play button
-      // else if (i.customId === "showQueue") {
+      // else if (i.customId === `showQueue${track.id+queue?.tracks.length}`) {
       //   queue._handleAutoplay(track);
       // }
     });
@@ -149,9 +147,6 @@ module.exports = {
       }
     });
     //end of button collector
-
-    //adds or plays the track
-    queue.play(track);
 
     return await interaction.followUp({
       embeds: [trackEmbed],
