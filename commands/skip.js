@@ -4,7 +4,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("skip")
     .setDescription("Skips the current playing song."),
-  async execute(client, interaction, player) {
+  async execute(client, interaction) {
     if (!interaction.member.voice.channelId)
       return await interaction.reply({
         content: "You are not in a voice channel!",
@@ -19,11 +19,9 @@ module.exports = {
         content: "You are not in my voice channel!",
         ephemeral: true,
       });
-    const queue = player.createQueue(interaction.guild, {
-      metadata: {
-        channel: interaction.channel,
-      },
-    });
+
+    //get queue
+    const queue = client.player.getQueue(mainInteraction.guild);
 
     // verify vc connection
     try {

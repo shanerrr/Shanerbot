@@ -7,28 +7,25 @@ module.exports = {
     .setName("queue")
     .setDescription("Returns the queue of songs"),
 
-  async execute(client, interaction, player, prevInteraction = null) {
+  async execute(client, interaction, prevInteraction = null) {
     // build and update our embed
-    const embedBuilder = (queue) => {
-      return (
-        new MessageEmbed()
-          // .setAuthor({ name: "Now Playing", iconURL: queue.current.thumbnail })
-          .setTitle("**" + queue.current.title + "**")
-          .setDescription(
-            `**${queue.createProgressBar({
-              timecodes: true,
-              queue: false,
-              length: 25,
-              line: "-",
-              indicator: "🟣",
-            })}**`
-          )
-          .setURL(queue.current.url)
-          .setColor(embedAccent)
-          .setThumbnail(queue.current.thumbnail)
-      );
+    const embedBuilder = () => {
+      const embed = new MessageEmbed()
+        .setTitle("**" + queue.current.title + "**")
+        .setDescription(
+          `**${queue.createProgressBar({
+            timecodes: true,
+            queue: false,
+            length: 25,
+            line: "-",
+            indicator: "🟣",
+          })}** \n Requested by: <@${queue.current.requestedBy.id}>`
+        )
+        .setURL(queue.current.url)
+        .setColor(embedAccent)
+        .setThumbnail(queue.current.thumbnail);
       queue.tracks.length &&
-        queueEmbed.addField(
+        embed.addField(
           "**Currently in Queue**",
           "```" +
             queue.tracks.map(
@@ -36,13 +33,15 @@ module.exports = {
             ) +
             "```"
         );
+
+      return embed;
     };
 
     //manage what interaction to deal with
     const mainInteraction = prevInteraction ? prevInteraction : interaction;
 
     //get queue
-    const queue = player.getQueue(mainInteraction.guild);
+    const queue = client.player.getQueue(mainInteraction.guild);
 
     //is thinking command (not for chained interactions)
     !prevInteraction && (await mainInteraction.deferReply());

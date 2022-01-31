@@ -1,6 +1,5 @@
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
-const { Player } = require("discord-player");
 const { token } = require("./config.json");
 
 const client = new Client({
@@ -10,8 +9,6 @@ const client = new Client({
     Intents.FLAGS.GUILD_VOICE_STATES,
   ],
 });
-
-const player = new Player(client);
 
 client.commands = new Collection();
 const commandFiles = fs
@@ -27,6 +24,9 @@ client.once("ready", () => {
   console.log("Ready!");
 });
 
+//init player module
+const player = require("./player")(client);
+
 //create slash commands
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isCommand()) {
@@ -35,15 +35,13 @@ client.on("interactionCreate", async (interaction) => {
     if (!command) return;
 
     try {
-      await command.execute(client, interaction, player);
+      await command.execute(client, interaction);
     } catch (error) {
       return interaction.reply({
         content: "There was an error while executing this command!",
         ephemeral: true,
       });
     }
-  } else if (interaction.isButton()) {
-
   }
 });
 

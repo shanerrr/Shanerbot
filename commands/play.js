@@ -1,6 +1,7 @@
 const { embedAccent } = require("../config.json");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { QueryType } = require("discord-player");
 const ordinal = require("ordinal");
 const prettyMilliseconds = require("pretty-ms");
 
@@ -14,7 +15,7 @@ module.exports = {
         .setDescription("A song name or url")
         .setRequired(true)
     ),
-  async execute(client, interaction, player) {
+  async execute(client, interaction) {
     if (!interaction.member.voice.channelId)
       return await interaction.reply({
         content: "You are not in a voice channel!",
@@ -31,11 +32,19 @@ module.exports = {
       });
 
     const query = interaction.options.get("song").value;
-    const queue = player.createQueue(interaction.guild, {
+    const queue = client.player.createQueue(interaction.guild, {
+      ytdlOptions: {
+        filter: "audioonly",
+        highWaterMark: 1 << 30,
+        dlChunkSize: 0,
+      },
       metadata: {
-        channel: interaction.channel,
+        interaction: interaction.channel,
       },
       leaveOnEmptyCooldown: 600000,
+      leaveOnEnd: false,
+      leaveOnStop: false,
+      leaveOnEmpty: false,
     });
 
     // verify vc connection
@@ -51,9 +60,11 @@ module.exports = {
     }
 
     await interaction.deferReply();
-    const track = await player
+
+    const track = await client.player
       .search(query, {
         requestedBy: interaction.user,
+        searchEngine: QueryType.AUTO,
       })
       .then((x) => x.tracks[0]);
     if (!track)
@@ -92,7 +103,8 @@ module.exports = {
       .setTimestamp();
 
     //adds or plays the track
-    await queue.play(track);
+    queue.addTrack(track);
+    if (!queue.playing) await queue.play();
 
     const trackButtons = new MessageActionRow().addComponents(
       new MessageButton()
@@ -127,7 +139,7 @@ module.exports = {
         await i.update({ embeds: [trackEmbed], components: [] });
         //show queue button
       } else if (i.customId === `showQueue${track.id + queue?.tracks.length}`)
-        client.commands.get("queue").execute(client, interaction, player, i);
+        client.commands.get("queue").execute(client, interaction, i);
       //auto play button
       // else if (i.customId === `showQueue${track.id+queue?.tracks.length}`) {
       //   queue._handleAutoplay(track);
