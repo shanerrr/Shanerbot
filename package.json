@@ -1,18 +1,24 @@
 {
+  "name": "shanerbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "deploy": "node deploy-commands.js"
+  },
+  "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
-    "discord.js": "^12.5.3",
-    "erela.js": "^2.3.3",
-    "erela.js-spotify": "^1.2.0",
-    "genius-lyrics-api": "^3.0.6",
-    "mongoose": "^5.12.12",
+    "@discordjs/builders": "^0.11.0",
+    "@discordjs/opus": "^0.7.0",
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "discord-api-types": "^0.26.1",
+    "discord-player": "^5.2.1",
+    "discord.js": "^13.6.0",
+    "ffmpeg-static": "^4.4.1",
     "ordinal": "^1.0.3",
     "pretty-ms": "^7.0.1"
   },
-  "scripts": {
-    "dev": "nodemon index.js"
-  },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.15"
   }
 }
