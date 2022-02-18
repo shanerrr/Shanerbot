@@ -103,8 +103,26 @@ module.exports = {
         ])
     );
 
-    // button collector
+    const trackButtons = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setCustomId("removeTrack")
+        .setStyle("DANGER")
+        .setLabel("Remove")
+    );
+
+    // only show queue button of tracks in queue
+    if (queue?.current) {
+      trackButtons.addComponents(
+        new MessageButton()
+          .setCustomId("showQueue")
+          .setStyle("SECONDARY")
+          .setLabel("Queue")
+      );
+    }
+
+    // query select menu collector
     const queryCollector = interaction.channel.createMessageComponentCollector({
+      componentType: "SELECT_MENU",
       filter: (i) => i.user.id === interaction.user.id,
       time: 30000,
       max: 1,
@@ -117,7 +135,7 @@ module.exports = {
         //adds or plays the track then updates interaction
         await interaction.editReply({
           embeds: [trackEmbedBuilder(tracks.tracks[index], queue)],
-          components: [],
+          components: [trackButtons],
         });
         queue.addTrack(tracks.tracks[index]);
         if (!queue.playing) await queue.play();
@@ -136,9 +154,7 @@ module.exports = {
     queryCollector.on("end", async (e, reason) => {
       if (reason === "time") await interaction.deleteReply();
     });
-    //end of button collector
-
-    //END OF QUERY EMBED AND BUYTTON
+    //end of query select menu collector
 
     return await interaction.reply({
       embeds: [
@@ -152,65 +168,6 @@ module.exports = {
           .setColor(embedAccent),
       ],
       components: [querySelect],
-    });
-
-    const trackButtons = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId(`removeTrack_${track.id + queue?.tracks.length}`)
-        .setStyle("DANGER")
-        .setLabel("Remove")
-    );
-
-    // only show queue button of tracks in queue
-    if (queue?.tracks.length) {
-      trackButtons.addComponents(
-        new MessageButton()
-          .setCustomId(`showQueue${track.id + queue?.tracks.length}`)
-          .setStyle("SECONDARY")
-          .setLabel("Queue")
-      );
-    }
-
-    // button collector
-    const collector = interaction.channel.createMessageComponentCollector({
-      filter: (i) => i.user.id === track.requestedBy.id,
-      time: 15000,
-      max: 1,
-    });
-
-    collector.on("collect", async (i) => {
-      //delete song button
-      if (i.customId === `removeTrack_${track.id + queue?.tracks.length}`) {
-        trackEmbed.setDescription("**``Removed from Queue``**");
-        if (queue?.tracks.length) queue.remove(track.id);
-        else queue.skip();
-        await i.update({ embeds: [trackEmbed], components: [] });
-        //show queue button
-      } else if (i.customId === `showQueue${track.id + queue?.tracks.length}`)
-        client.commands.get("queue").execute(client, interaction, i);
-      //auto play button
-      // else if (i.customId === `showQueue${track.id+queue?.tracks.length}`) {
-      //   queue._handleAutoplay(track);
-      // }
-    });
-
-    // after time out, disable all buttons
-    collector.on("end", async (e, reason) => {
-      if (reason === "time") {
-        trackButtons.components[0]?.setDisabled(true);
-        trackButtons.components[1]?.setDisabled(true);
-        trackButtons.components[2]?.setDisabled(true);
-        await interaction.editReply({
-          embeds: [trackEmbed],
-          components: [trackButtons],
-        });
-      }
-    });
-    //end of button collector
-
-    return await interaction.followUp({
-      embeds: [trackEmbed],
-      components: [trackButtons],
     });
   },
 };
