@@ -1,9 +1,7 @@
-const { embedAccent } = require("../config.json");
+const { trackEmbedBuilder } = require("../builders/trackEmbed");
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { MessageActionRow, MessageButton } = require("discord.js");
 const { QueryType } = require("discord-player");
-const ordinal = require("ordinal");
-const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -74,36 +72,7 @@ module.exports = {
     // defer reply
     await interaction.deferReply();
 
-    const trackEmbed = new MessageEmbed()
-      .setTitle("**" + track.title + "**")
-      .setDescription(
-        queue?.current
-          ? "**``" +
-              `${
-                queue?.current && !queue.tracks.length
-                  ? `Playing Next - (in ${prettyMilliseconds(
-                      queue.current.durationMS - queue.streamTime,
-                      { colonNotation: true, secondsDecimalDigits: 0 }
-                    )}`
-                  : `${ordinal(
-                      queue.tracks.length + 1
-                    )} In Queue - (in ${prettyMilliseconds(
-                      queue.current.durationMS +
-                        queue.totalTime -
-                        queue.streamTime,
-                      { colonNotation: true, secondsDecimalDigits: 0 }
-                    )}`
-              })` +
-              "``**"
-          : "**``Playing Now``**"
-      )
-      .setURL(track.url)
-      .setThumbnail(track.thumbnail)
-      .setColor(embedAccent)
-      .addField("Uploader:", `${track.author}`, true)
-      .addField("Duration:", track.duration, true)
-      .setTimestamp();
-
+    const trackEmbed = trackEmbedBuilder(track, queue);
     //adds or plays the track
     queue.addTrack(track);
     if (!queue.playing) await queue.play();

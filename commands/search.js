@@ -1,14 +1,13 @@
 const { embedAccent } = require("../config.json");
+const { trackEmbedBuilder } = require("../builders/trackEmbed");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { QueryType } = require("discord-player");
 const {
   MessageEmbed,
   MessageActionRow,
   MessageButton,
   MessageSelectMenu,
 } = require("discord.js");
-const { QueryType } = require("discord-player");
-const ordinal = require("ordinal");
-const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -76,7 +75,7 @@ module.exports = {
       });
 
     // defer reply
-    await interaction.deferReply();
+    // await interaction.deferReply();
 
     const querySelect = new MessageActionRow().addComponents(
       new MessageSelectMenu()
@@ -112,72 +111,48 @@ module.exports = {
     });
 
     queryCollector.on("collect", async (i) => {
-      return console.log(i);
+      if (i.values[0] === "cancel") await interaction.deleteReply();
+      else {
+        let index = JSON.parse(i.values[0]).index;
+        //adds or plays the track then updates interaction
+        await interaction.editReply({
+          embeds: [trackEmbedBuilder(tracks.tracks[index], queue)],
+          components: [],
+        });
+        queue.addTrack(tracks.tracks[index]);
+        if (!queue.playing) await queue.play();
+      }
 
       //delete song button
-      if (i.customId === `cancel_${track.id + queue?.tracks.length}`) {
-        trackEmbed.setDescription("**``Removed from Queue``**");
-        if (queue?.tracks.length) queue.remove(track.id);
-        else queue.skip();
-        await i.update({ embeds: [trackEmbed], components: [] });
-        //show queue button
-      }
+      // if (i.customId === `cancel_${track.id + queue?.tracks.length}`) {
+      // if (queue?.tracks.length) queue.remove(track.id);
+      // else queue.skip();
+      // await i.update({ embeds: [trackEmbed], components: [] });
+      //show queue button
+      // }
     });
 
-    // // after time out, disable all buttons
-    // collector.on("end", async (e, reason) => {
-    //   if (reason === "time") {
-    //     trackButtons.components[0]?.setDisabled(true);
-    //     trackButtons.components[1]?.setDisabled(true);
-    //     trackButtons.components[2]?.setDisabled(true);
-    //     await interaction.editReply({
-    //       embeds: [trackEmbed],
-    //       components: [trackButtons],
-    //     });
-    //   }
-    // });
+    // after time out, delete embed
+    queryCollector.on("end", async (e, reason) => {
+      if (reason === "time") await interaction.deleteReply();
+    });
     //end of button collector
 
     //END OF QUERY EMBED AND BUYTTON
 
-    return await interaction.followUp({
-      content: "Search Results for: " + "__**" + `${query}` + "**__",
+    return await interaction.reply({
+      embeds: [
+        new MessageEmbed()
+          .setTitle(
+            `${tracks.tracks.length} results found for: __**${query}**__`
+          )
+          .setDescription(
+            "**You have 30 seconds to choose a song from the dropdown below.**"
+          )
+          .setColor(embedAccent),
+      ],
       components: [querySelect],
     });
-
-    const trackEmbed = new MessageEmbed()
-      .setTitle("**" + track.title + "**")
-      .setDescription(
-        queue?.current
-          ? "**``" +
-              `${
-                queue?.current && !queue.tracks.length
-                  ? `Playing Next - (in ${prettyMilliseconds(
-                      queue.current.durationMS - queue.streamTime,
-                      { colonNotation: true, secondsDecimalDigits: 0 }
-                    )}`
-                  : `${ordinal(
-                      queue.tracks.length + 1
-                    )} In Queue - (in ${prettyMilliseconds(
-                      queue.current.durationMS +
-                        queue.totalTime -
-                        queue.streamTime,
-                      { colonNotation: true, secondsDecimalDigits: 0 }
-                    )}`
-              })` +
-              "``**"
-          : "**``Playing Now``**"
-      )
-      .setURL(track.url)
-      .setThumbnail(track.thumbnail)
-      .setColor(embedAccent)
-      .addField("Uploader:", `${track.author}`, true)
-      .addField("Duration:", track.duration, true)
-      .setTimestamp();
-
-    //adds or plays the track
-    queue.addTrack(track);
-    if (!queue.playing) await queue.play();
 
     const trackButtons = new MessageActionRow().addComponents(
       new MessageButton()
