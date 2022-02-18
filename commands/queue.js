@@ -9,30 +9,46 @@ module.exports = {
 
   async execute(client, interaction, prevInteraction = null) {
     // build and update our embed
-    const embedBuilder = () => {
+    const embedBuilder = (hasSkipped = false, notEmpty = true) => {
+      if (!notEmpty) {
+        return new MessageEmbed()
+          .setTitle("**" + "Queue is empty" + "**")
+          .setDescription("Add more songs by using the play command!")
+          .setColor(embedAccent);
+      }
+
+      const { title, requestedBy, url, thumbnail } = hasSkipped
+        ? queue.tracks[0]
+        : queue.current;
       const embed = new MessageEmbed()
-        .setTitle("**" + queue.current.title + "**")
+        .setTitle("**" + title + "**")
         .setDescription(
-          `**${queue.createProgressBar({
-            timecodes: true,
-            queue: false,
-            length: 25,
-            line: "-",
-            indicator: "🟣",
-          })}** \n Requested by: <@${queue.current.requestedBy.id}>`
+          hasSkipped
+            ? "**`Just Started Playing`**\n" +
+                `Requested by: <@${requestedBy.id}>`
+            : `**${queue.createProgressBar({
+                timecodes: true,
+                queue: false,
+                length: 25,
+                line: "-",
+                indicator: "🟣",
+              })}** \n Requested by: <@${requestedBy.id}>`
         )
-        .setURL(queue.current.url)
+        .setURL(url)
         .setColor(embedAccent)
-        .setThumbnail(queue.current.thumbnail);
-      queue.tracks.length &&
-        embed.addField(
-          "**Currently in Queue**",
-          "```" +
-            queue.tracks.map(
-              (track, idx) => `${idx ? "\n" : ""}[${idx + 1}] - ${track.title}`
-            ) +
-            "```"
-        );
+        .setThumbnail(thumbnail);
+      hasSkipped
+        ? queue.tracks.length - 1
+        : queue.tracks.length &&
+          embed.addField(
+            "**Currently in Queue**",
+            "```" +
+              queue.tracks.map((track, idx) => {
+                if (hasSkipped && idx === 0) return;
+                return `${idx ? "\n" : ""}[${idx + 1}] - ${track.title}`;
+              }) +
+              "```"
+          );
 
       return embed;
     };
@@ -54,7 +70,7 @@ module.exports = {
     }
 
     // embed
-    let queueEmbed = embedBuilder(queue);
+    let queueEmbed = embedBuilder();
 
     // buttons
     const queueButtons = new MessageActionRow().addComponents(
@@ -83,16 +99,20 @@ module.exports = {
       //delete song button
       if (i.customId === "pausePlay") {
         //update button and progress bar
-        queueEmbed = embedBuilder(queue);
+        queueEmbed = embedBuilder();
         queue.setPaused(!queue.connection.paused);
         queueButtons.components[0].setEmoji(
           queue.connection.paused ? "▶️" : "⏸️"
         );
         await i.update({ embeds: [queueEmbed], components: [queueButtons] });
       } else if (i.customId === "skipSong") {
+        const notEmpty = !!queue.tracks.length;
+        queueEmbed = embedBuilder(true, notEmpty);
         queue.skip();
-        queueEmbed = embedBuilder(queue);
-        await i.update({ embeds: [queueEmbed], components: [queueButtons] });
+        await i.update({
+          embeds: [queueEmbed],
+          components: notEmpty ? [queueButtons] : [],
+        });
       }
     });
 

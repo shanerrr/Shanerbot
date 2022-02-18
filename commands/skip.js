@@ -21,7 +21,7 @@ module.exports = {
       });
 
     //get queue
-    const queue = await client.player.getQueue(mainInteraction.guild);
+    const queue = await client.player.getQueue(interaction.guild);
 
     // verify vc connection
     try {

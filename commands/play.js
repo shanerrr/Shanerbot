@@ -110,8 +110,8 @@ module.exports = {
     const trackButtons = new MessageActionRow().addComponents(
       new MessageButton()
         .setCustomId(`removeTrack_${track.id + queue?.tracks.length}`)
-        .setStyle("SECONDARY")
-        .setEmoji("❌")
+        .setStyle("DANGER")
+        .setLabel("Remove")
     );
 
     // only show queue button of tracks in queue
@@ -120,7 +120,7 @@ module.exports = {
         new MessageButton()
           .setCustomId(`showQueue${track.id + queue?.tracks.length}`)
           .setStyle("SECONDARY")
-          .setEmoji("🎶")
+          .setLabel("Queue")
       );
     }
 
