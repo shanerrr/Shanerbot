@@ -10,6 +10,10 @@ const client = new Client({
   ],
 });
 
+//init player
+require("./player")(client);
+
+//command haldler
 client.commands = new Collection();
 const commandFiles = fs
   .readdirSync("./commands")
@@ -20,12 +24,11 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
+//end of command handler
+
 client.once("ready", () => {
   console.log("Ready!");
 });
-
-//init player module
-const player = require("./player")(client);
 
 //create slash commands
 client.on("interactionCreate", async (interaction) => {
@@ -37,6 +40,7 @@ client.on("interactionCreate", async (interaction) => {
     try {
       await command.execute(client, interaction);
     } catch (error) {
+      console.log(error)
       return interaction.reply({
         content: "There was an error while executing this command!",
         ephemeral: true,

@@ -75,6 +75,7 @@ module.exports = {
 
     // button collector
     const collector = interaction.channel.createMessageComponentCollector({
+      filter: (i) => i.user.id === interaction.user.id,
       time: 60000,
     });
 

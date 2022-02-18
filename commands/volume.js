@@ -11,23 +11,28 @@ module.exports = {
         .setRequired(false)
     ),
   async execute(client, interaction) {
-    await interaction.deferReply();
-
     const queue = client.player.getQueue(interaction.guild);
     if (!queue || !queue.playing)
-      return void interaction.followUp({
-        content: "❌ | No music is being played!",
+      return await interaction.reply({
+        content: "Hey, you ok? There is no song playing right now.",
+        ephemeral: true,
       });
-    const vol = parseInt(interaction.options.get("amount").value);
+
+    const vol = parseInt(interaction.options.get("amount")?.value);
 
     if (!vol)
-      return void interaction.followUp({
+      return void interaction.reply({
         content: `🎧 | Current volume is **${queue.volume}**%!`,
+        ephemeral: true,
       });
     if (vol < 0 || vol > 100)
-      return void interaction.followUp({
+      return void interaction.reply({
         content: "❌ | Volume range must be 0-100",
+        ephemeral: true,
       });
+
+    await interaction.deferReply();
+
     const success = queue.setVolume(vol);
     return void interaction.followUp({
       content: success

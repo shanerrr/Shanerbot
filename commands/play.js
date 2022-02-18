@@ -32,7 +32,7 @@ module.exports = {
       });
 
     const query = interaction.options.get("song").value;
-    const queue = client.player.createQueue(interaction.guild, {
+    const queue = await client.player.createQueue(interaction.guild, {
       ytdlOptions: {
         filter: "audioonly",
         highWaterMark: 1 << 30,
@@ -70,6 +70,7 @@ module.exports = {
     if (!track)
       return await interaction.followUp({
         content: `❌ | Track **${query}** not found!`,
+        ephemeral: true,
       });
 
     const trackEmbed = new MessageEmbed()
