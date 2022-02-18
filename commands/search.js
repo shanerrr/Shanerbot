@@ -1,17 +1,22 @@
 const { embedAccent } = require("../config.json");
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const {
+  MessageEmbed,
+  MessageActionRow,
+  MessageButton,
+  MessageSelectMenu,
+} = require("discord.js");
 const { QueryType } = require("discord-player");
 const ordinal = require("ordinal");
 const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("play")
-    .setDescription("Plays a song or adds to the current queue.")
+    .setName("search")
+    .setDescription("search for a song")
     .addStringOption((option) =>
       option
-        .setName("song")
+        .setName("query")
         .setDescription("A song name or url")
         .setRequired(true)
     ),
@@ -31,7 +36,7 @@ module.exports = {
         ephemeral: true,
       });
 
-    const query = interaction.options.get("song").value;
+    const query = interaction.options.get("query").value;
     const queue = await client.player.createQueue(interaction.guild, {
       ytdlOptions: {
         filter: "audioonly",
@@ -59,20 +64,86 @@ module.exports = {
       });
     }
 
-    const track = await client.player
-      .search(query, {
-        requestedBy: interaction.user,
-        searchEngine: QueryType.AUTO,
-      })
-      .then((x) => x.tracks[0]);
-    if (!track)
+    const tracks = await client.player.search(query, {
+      requestedBy: interaction.user,
+      searchEngine: QueryType.AUTO,
+    });
+
+    if (!tracks.tracks.length)
       return await interaction.reply({
-        content: `❌ | Track **${query}** not found!`,
+        content: `❌ | No results found for __${query}__`,
         ephemeral: true,
       });
 
     // defer reply
     await interaction.deferReply();
+
+    const querySelect = new MessageActionRow().addComponents(
+      new MessageSelectMenu()
+        .setCustomId("querySelector")
+        .setPlaceholder("Choose a song to add to the queue")
+        .addOptions([
+          {
+            label: "Cancel",
+            description: `Cancels song picking`,
+            value: "cancel",
+            emoji: {
+              name: "❌",
+            },
+          },
+          ...tracks.tracks.map((track, idx) => ({
+            label: track.title,
+            description: `${track.author} | ${track.duration}`,
+            value: JSON.stringify({ index: idx }),
+            emoji: {
+              name: ["🎸", "🪕", "🪗", "🎺", "🎻", "🎷"][
+                (6 * Math.random()) | 0
+              ],
+            },
+          })),
+        ])
+    );
+
+    // button collector
+    const queryCollector = interaction.channel.createMessageComponentCollector({
+      filter: (i) => i.user.id === interaction.user.id,
+      time: 30000,
+      max: 1,
+    });
+
+    queryCollector.on("collect", async (i) => {
+      return console.log(i);
+
+      //delete song button
+      if (i.customId === `cancel_${track.id + queue?.tracks.length}`) {
+        trackEmbed.setDescription("**``Removed from Queue``**");
+        if (queue?.tracks.length) queue.remove(track.id);
+        else queue.skip();
+        await i.update({ embeds: [trackEmbed], components: [] });
+        //show queue button
+      }
+    });
+
+    // // after time out, disable all buttons
+    // collector.on("end", async (e, reason) => {
+    //   if (reason === "time") {
+    //     trackButtons.components[0]?.setDisabled(true);
+    //     trackButtons.components[1]?.setDisabled(true);
+    //     trackButtons.components[2]?.setDisabled(true);
+    //     await interaction.editReply({
+    //       embeds: [trackEmbed],
+    //       components: [trackButtons],
+    //     });
+    //   }
+    // });
+    //end of button collector
+
+    //END OF QUERY EMBED AND BUYTTON
+
+    return await interaction.followUp({
+      content: "Search Results for: " + "__**" + `${query}` + "**__",
+      components: [querySelect],
+    });
 
     const trackEmbed = new MessageEmbed()
       .setTitle("**" + track.title + "**")
