@@ -38,7 +38,10 @@ module.exports = {
         requestedBy: interaction.user,
         searchEngine: QueryType.AUTO,
       })
-      .then((x) => x.tracks[0]);
+      .then((x) => {
+        interaction.aTrack = x.tracks[0];
+        return x.tracks[0];
+      });
     if (!track)
       return await interaction.reply({
         content: `❌ | Track **${query}** not found!`,
@@ -48,22 +51,22 @@ module.exports = {
     const trackEmbed = trackEmbedBuilder(track, queue);
 
     //adds or plays the track
-    queue.addTrack(track);
+    await queue.addTrack(track);
     if (!queue.playing) await queue.play();
 
     const trackButtons = new MessageActionRow().addComponents(
       new MessageButton()
-        .setCustomId(`removeTrack${interaction.id}_${track.id}`)
+        .setCustomId(`removeTrack_${interaction.id}`)
         .setStyle("DANGER")
-        .setLabel("Remove")
+        .setLabel(queue?.current ? "Remove" : "Skip")
     );
 
     // only show queue button of tracks in queue
     if (queue?.tracks.length) {
       trackButtons.addComponents(
         new MessageButton()
-          .setCustomId(`showQueue${interaction.id}_${track.id}`)
-          .setStyle("SECONDARY")
+          .setCustomId(`showQueue_${interaction.id}`)
+          .setStyle("PRIMARY")
           .setLabel("Queue")
       );
     }
@@ -71,7 +74,7 @@ module.exports = {
     // button collector
     const collector = interaction.channel.createMessageComponentCollector({
       filter: (i) => {
-        i.deferUpdate();
+        // i.deferUpdate();
         return i.user.id === track.requestedBy.id;
       },
       time: 15000,
@@ -80,19 +83,20 @@ module.exports = {
 
     collector.on("collect", async (i) => {
       //delete song button
-      if (i.customId === `removeTrack${interaction.id}_${track.id}`) {
-        const trackId = i.customId.split(`removeTrack${interaction.id}_`)[1];
-        if (queue.current.id === trackId) {
+      if (i.customId === `removeTrack_${interaction.id}`) {
+        if (queue.current.id === interaction.aTrack.id) {
           queue.skip();
           trackEmbed.setDescription("**``Skipped``**");
         } else {
-          queue.remove(trackId);
+          queue.remove(interaction.aTrack.id);
           trackEmbed.setDescription("**``Removed from Queue``**");
         }
         await interaction.editReply({ embeds: [trackEmbed], components: [] });
         //show queue button
-      } else if (i.customId === `showQueue${interaction.id}_${track.id}`)
+      } else if (i.customId === `showQueue_${interaction.id}`) {
+        i.deferUpdate();
         client.commands.get("queue").execute(client, interaction, true);
+      }
     });
 
     // after time out, disable all buttons
