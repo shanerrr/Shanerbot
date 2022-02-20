@@ -97,7 +97,6 @@ module.exports = {
       if (reason === "time") {
         trackButtons.components[0]?.setDisabled(true);
         trackButtons.components[1]?.setDisabled(true);
-        trackButtons.components[2]?.setDisabled(true);
         await interaction.editReply({
           embeds: [trackEmbed],
           components: [trackButtons],

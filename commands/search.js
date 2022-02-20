@@ -9,7 +9,7 @@ const {
   MessageButton,
   MessageSelectMenu,
 } = require("discord.js");
-const wait = require("util").promisify(setTimeout);
+// const wait = require("util").promisify(setTimeout);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -51,12 +51,6 @@ module.exports = {
         ephemeral: true,
       });
 
-    // //set interaction
-    // client.interactions.set(
-    //   interaction.user.id + interaction.guild.id,
-    //   interaction
-    // );
-
     const querySelect = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("querySelector")
@@ -64,8 +58,8 @@ module.exports = {
         .addOptions([
           {
             label: "Cancel",
-            description: `Cancels song picking`,
-            value: "cancel",
+            description: `Cancels the current song picking for ${query}`,
+            value: `cancel_${interaction.id}`,
             emoji: {
               name: "❌",
             },
@@ -75,30 +69,11 @@ module.exports = {
             description: `${track.author} | ${track.duration}`,
             value: JSON.stringify({ index: idx }),
             emoji: {
-              name: ["🎸", "🪕", "🪗", "🎺", "🎻", "🎷"][
-                (6 * Math.random()) | 0
-              ],
+              name: "🎶",
             },
           })),
         ])
     );
-
-    const trackButtons = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId("removeTrack")
-        .setStyle("DANGER")
-        .setLabel("Remove")
-    );
-
-    // only show queue button of tracks in queue
-    if (queue?.current) {
-      trackButtons.addComponents(
-        new MessageButton()
-          .setCustomId("showQueue")
-          .setStyle("SECONDARY")
-          .setLabel("Queue")
-      );
-    }
 
     // query select menu collector
     const queryCollector = interaction.channel.createMessageComponentCollector({
@@ -111,24 +86,45 @@ module.exports = {
     queryCollector.on("collect", async (i) => {
       // await i.deferUpdate();
 
-      if (i.values[0] === "cancel") await interaction.deleteReply();
-      else {
-        let index = JSON.parse(i.values[0]).index;
-        //adds or plays the track then updates interaction
-        await i.editReply({
-          embeds: [trackEmbedBuilder(tracks.tracks[index], queue)],
+      if (i.values[0] === `cancel_${interaction.id}`) {
+        // fix issue timeout
+        await interaction.deleteReply();
+      } else {
+        interaction.aTrack = tracks.tracks[JSON.parse(i.values[0]).index];
+        await interaction.editReply({
+          embeds: [trackEmbedBuilder(interaction.aTrack, queue)],
           components: [trackButtons],
         });
-        queue.addTrack(tracks.tracks[index]);
+
+        //adds the track
+        queue.addTrack(interaction.aTrack);
         if (!queue.playing) await queue.play();
       }
     });
 
     // after time out, delete embed
     queryCollector.on("end", async (e, reason) => {
+      // fix issue timeout
       if (reason === "time") await interaction.deleteReply();
     });
     //end of query select menu collector
+
+    const trackButtons = new MessageActionRow().addComponents(
+      new MessageButton()
+        .setCustomId(`removeTrack_${interaction.id}`)
+        .setStyle("DANGER")
+        .setLabel(queue.current ? "Remove" : "Skip")
+    );
+
+    // only show queue button of tracks in queue
+    if (queue?.current) {
+      trackButtons.addComponents(
+        new MessageButton()
+          .setCustomId(`showQueue_${interaction.id}`)
+          .setStyle("PRIMARY")
+          .setLabel("Queue")
+      );
+    }
 
     //for the button response after select menu
     const buttonCollector = interaction.channel.createMessageComponentCollector(
@@ -141,24 +137,35 @@ module.exports = {
     );
 
     buttonCollector.on("collect", async (i) => {
-      //delete song button
-      // await i.deferUpdate();
+      // await interaction.deferUpdate();
+      // await wait(4000);
+      if (i.customId === `removeTrack_${interaction.id}`) {
+        const trackEmbed = trackEmbedBuilder(interaction.aTrack, queue);
 
-      if (i.customId === "removeTrack") {
-        await wait(4000);
-        let index = queue.tracks[queue.tracks.length - 1];
-        const trackEmbed = trackEmbedBuilder(
-          index ? queue.tracks[index] : queue.current,
-          queue
-        );
-        trackEmbed.setDescription("**``Removed from Queue``**");
-        if (index) queue.remove(queue.tracks[index].id);
-        else queue.skip();
-        await i.editReply({ embeds: [trackEmbed], components: [] });
+        if (queue.current.id === interaction.aTrack.id) {
+          queue.skip();
+          trackEmbed.setDescription("**``Skipped``**");
+        } else {
+          queue.remove(interaction.aTrack.id);
+          trackEmbed.setDescription("**``Removed from Queue``**");
+        }
+
+        await interaction.editReply({ embeds: [trackEmbed], components: [] });
         // //show queue button
-      } else if (i.customId === "showQueue") {
-        await wait(4000);
-        client.commands.get("queue").execute(client, i);
+      } else if (i.customId === `showQueue_${interaction.id}`) {
+        // await wait(4000);
+        client.commands.get("queue").execute(client, i, true);
+      }
+    });
+
+    // after time out, disable all buttons
+    buttonCollector.on("end", async (e, reason) => {
+      if (reason === "time") {
+        trackButtons.components[0]?.setDisabled(true);
+        trackButtons.components[1]?.setDisabled(true);
+        await interaction.editReply({
+          components: [trackButtons],
+        });
       }
     });
 
