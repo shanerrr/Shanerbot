@@ -23,24 +23,19 @@ module.exports = {
     //get queue
     const queue = await client.player.getQueue(interaction.guild);
 
-    // verify vc connection
-    try {
-      if (!queue.connection)
-        await queue.connect(interaction.member.voice.channel);
-    } catch {
-      queue.destroy();
+    if (!queue) {
       return await interaction.reply({
-        content: "Could not join your voice channel!",
+        content: "Nothing playing right now to skip, Sweetie.",
         ephemeral: true,
       });
     }
 
     await interaction.deferReply();
 
-    queue.skip();
-
-    return await interaction.followUp({
-      content: `⏱️ | Loading track **${track.title}**!`,
+    await interaction.editReply({
+      content: `⏭️ | Skipped track **${queue.current.title}**!`,
     });
+
+    return queue.skip();
   },
 };

@@ -51,6 +51,9 @@ module.exports = {
         ephemeral: true,
       });
 
+    // defering to get more time (is thinking effect)
+    await interaction.deferReply();
+
     const querySelect = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("querySelector")
@@ -134,10 +137,7 @@ module.exports = {
     const buttonCollector = interaction.channel.createMessageComponentCollector(
       {
         componentType: "BUTTON",
-        filter: (i) => {
-          i.deferUpdate();
-          return i.user.id === interaction.user.id;
-        },
+        filter: (i) => i.user.id === interaction.user.id,
         time: 15000,
         max: 1,
       }
@@ -158,6 +158,7 @@ module.exports = {
         await interaction.editReply({ embeds: [trackEmbed], components: [] });
         // //show queue button
       } else if (i.customId === `showQueue_${interaction.id}`) {
+        i.deferUpdate();
         client.commands.get("queue").execute(client, interaction, true);
       }
     });
@@ -173,7 +174,7 @@ module.exports = {
       }
     });
 
-    return await interaction.reply({
+    return await interaction.editReply({
       embeds: [
         new MessageEmbed()
           .setTitle(

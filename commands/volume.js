@@ -34,7 +34,7 @@ module.exports = {
     await interaction.deferReply();
 
     const success = queue.setVolume(vol);
-    return void interaction.followUp({
+    return void interaction.editReply({
       content: success
         ? `✅ | Volume set to **${vol}%**!`
         : "❌ | Something went wrong!",

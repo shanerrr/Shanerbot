@@ -48,6 +48,9 @@ module.exports = {
         ephemeral: true,
       });
 
+    // defering to get more time (is thinking effect)
+    await interaction.deferReply();
+
     const trackEmbed = trackEmbedBuilder(track, queue);
 
     //adds or plays the track
@@ -73,10 +76,7 @@ module.exports = {
 
     // button collector
     const collector = interaction.channel.createMessageComponentCollector({
-      filter: (i) => {
-        // i.deferUpdate();
-        return i.user.id === track.requestedBy.id;
-      },
+      filter: (i) => i.user.id === track.requestedBy.id,
       time: 15000,
       max: 1,
     });
@@ -112,7 +112,7 @@ module.exports = {
     });
     //end of button collector
 
-    return await interaction.reply({
+    return await interaction.editReply({
       embeds: [trackEmbed],
       components: [trackButtons],
     });

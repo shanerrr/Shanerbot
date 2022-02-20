@@ -59,10 +59,13 @@ module.exports = {
     // if no queue stop
     if (!queue?.current) {
       return await interaction.reply({
-        content: `Nothing in queue right now.`,
+        content: `Bucko, nothing in queue right now. Maybe add a song?`,
         ephemeral: true,
       });
     }
+
+    // defering to get more time (is thinking effect) only when not chained command
+    !isChainedResponse && (await interaction.deferReply());
 
     // embed
     let queueEmbed = embedBuilder();
@@ -126,7 +129,7 @@ module.exports = {
     //end of button collector
 
     //checks if editing another interaction
-    return await interaction[isChainedResponse ? "editReply" : "reply"]({
+    return await interaction.editReply({
       embeds: [queueEmbed],
       components: [queueButtons],
     });
