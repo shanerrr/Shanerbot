@@ -51,6 +51,12 @@ module.exports = {
         ephemeral: true,
       });
 
+    // //set interaction
+    // client.interactions.set(
+    //   interaction.user.id + interaction.guild.id,
+    //   interaction
+    // );
+
     const querySelect = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("querySelector")
@@ -103,7 +109,7 @@ module.exports = {
     });
 
     queryCollector.on("collect", async (i) => {
-      await i.deferUpdate();
+      // await i.deferUpdate();
 
       if (i.values[0] === "cancel") await interaction.deleteReply();
       else {

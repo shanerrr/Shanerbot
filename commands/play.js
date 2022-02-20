@@ -45,17 +45,15 @@ module.exports = {
         ephemeral: true,
       });
 
-    // defer reply
-    await interaction.deferReply();
-
     const trackEmbed = trackEmbedBuilder(track, queue);
+
     //adds or plays the track
     queue.addTrack(track);
     if (!queue.playing) await queue.play();
 
     const trackButtons = new MessageActionRow().addComponents(
       new MessageButton()
-        .setCustomId(`removeTrack_${track.id + queue?.tracks.length}`)
+        .setCustomId(`removeTrack${interaction.id}_${track.id}`)
         .setStyle("DANGER")
         .setLabel("Remove")
     );
@@ -64,7 +62,7 @@ module.exports = {
     if (queue?.tracks.length) {
       trackButtons.addComponents(
         new MessageButton()
-          .setCustomId(`showQueue${track.id + queue?.tracks.length}`)
+          .setCustomId(`showQueue${interaction.id}_${track.id}`)
           .setStyle("SECONDARY")
           .setLabel("Queue")
       );
@@ -78,21 +76,20 @@ module.exports = {
     });
 
     collector.on("collect", async (i) => {
-      await i.deferUpdate();
-
       //delete song button
-      if (i.customId === `removeTrack_${track.id + queue?.tracks.length}`) {
-        trackEmbed.setDescription("**``Removed from Queue``**");
-        if (queue?.tracks.length) queue.remove(track.id);
-        else queue.skip();
-        await i.update({ embeds: [trackEmbed], components: [] });
+      if (i.customId === `removeTrack${interaction.id}_${track.id}`) {
+        const trackId = i.customId.split(`removeTrack${interaction.id}_`)[1];
+        if (queue.current.id === trackId) {
+          queue.skip();
+          trackEmbed.setDescription("**``Skipped``**");
+        } else {
+          queue.remove(trackId);
+          trackEmbed.setDescription("**``Removed from Queue``**");
+        }
+        await interaction.editReply({ embeds: [trackEmbed], components: [] });
         //show queue button
-      } else if (i.customId === `showQueue${track.id + queue?.tracks.length}`)
+      } else if (i.customId === `showQueue${interaction.id}_${track.id}`)
         client.commands.get("queue").execute(client, interaction, true);
-      //auto play button
-      // else if (i.customId === `showQueue${track.id+queue?.tracks.length}`) {
-      //   queue._handleAutoplay(track);
-      // }
     });
 
     // after time out, disable all buttons
@@ -109,7 +106,7 @@ module.exports = {
     });
     //end of button collector
 
-    return await interaction.followUp({
+    return await interaction.reply({
       embeds: [trackEmbed],
       components: [trackButtons],
     });

@@ -12,4 +12,7 @@ module.exports = function (client) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.data.name, command);
   }
+
+  //captures old intneractions to cancel if more than one interaction active.
+  client.interactions = new Collection();
 };
