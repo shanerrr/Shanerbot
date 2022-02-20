@@ -1,4 +1,5 @@
 const { trackEmbedBuilder } = require("../builders/trackEmbed");
+const { createQueue } = require("../helpers/createQueue");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageActionRow, MessageButton } = require("discord.js");
 const { QueryType } = require("discord-player");
@@ -30,32 +31,7 @@ module.exports = {
       });
 
     const query = interaction.options.get("song").value;
-    const queue = await client.player.createQueue(interaction.guild, {
-      ytdlOptions: {
-        filter: "audioonly",
-        highWaterMark: 1 << 30,
-        dlChunkSize: 0,
-      },
-      metadata: {
-        interaction: interaction.channel,
-      },
-      leaveOnEmptyCooldown: 600000,
-      leaveOnEnd: false,
-      leaveOnStop: false,
-      leaveOnEmpty: false,
-    });
-
-    // verify vc connection
-    try {
-      if (!queue.connection)
-        await queue.connect(interaction.member.voice.channel);
-    } catch {
-      queue.destroy();
-      return await interaction.reply({
-        content: "Could not join your voice channel!",
-        ephemeral: true,
-      });
-    }
+    const queue = await createQueue(client, interaction);
 
     const track = await client.player
       .search(query, {
