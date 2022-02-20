@@ -8,6 +8,7 @@ const {
   MessageButton,
   MessageSelectMenu,
 } = require("discord.js");
+const wait = require("util").promisify(setTimeout);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -74,9 +75,6 @@ module.exports = {
         ephemeral: true,
       });
 
-    // defer reply
-    // await interaction.deferReply();
-
     const querySelect = new MessageActionRow().addComponents(
       new MessageSelectMenu()
         .setCustomId("querySelector")
@@ -129,25 +127,19 @@ module.exports = {
     });
 
     queryCollector.on("collect", async (i) => {
+      await i.deferUpdate();
+
       if (i.values[0] === "cancel") await interaction.deleteReply();
       else {
         let index = JSON.parse(i.values[0]).index;
         //adds or plays the track then updates interaction
-        await interaction.editReply({
+        await i.editReply({
           embeds: [trackEmbedBuilder(tracks.tracks[index], queue)],
           components: [trackButtons],
         });
         queue.addTrack(tracks.tracks[index]);
         if (!queue.playing) await queue.play();
       }
-
-      //delete song button
-      // if (i.customId === `cancel_${track.id + queue?.tracks.length}`) {
-      // if (queue?.tracks.length) queue.remove(track.id);
-      // else queue.skip();
-      // await i.update({ embeds: [trackEmbed], components: [] });
-      //show queue button
-      // }
     });
 
     // after time out, delete embed
@@ -155,6 +147,38 @@ module.exports = {
       if (reason === "time") await interaction.deleteReply();
     });
     //end of query select menu collector
+
+    //for the button response after select menu
+    const buttonCollector = interaction.channel.createMessageComponentCollector(
+      {
+        componentType: "BUTTON",
+        filter: (i) => i.user.id === interaction.user.id,
+        time: 15000,
+        max: 1,
+      }
+    );
+
+    buttonCollector.on("collect", async (i) => {
+      //delete song button
+      // await i.deferUpdate();
+
+      if (i.customId === "removeTrack") {
+        await wait(4000);
+        let index = queue.tracks[queue.tracks.length - 1];
+        const trackEmbed = trackEmbedBuilder(
+          index ? queue.tracks[index] : queue.current,
+          queue
+        );
+        trackEmbed.setDescription("**``Removed from Queue``**");
+        if (index) queue.remove(queue.tracks[index].id);
+        else queue.skip();
+        await i.editReply({ embeds: [trackEmbed], components: [] });
+        // //show queue button
+      } else if (i.customId === "showQueue") {
+        await wait(4000);
+        client.commands.get("queue").execute(client, i);
+      }
+    });
 
     return await interaction.reply({
       embeds: [

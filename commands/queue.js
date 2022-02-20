@@ -7,7 +7,7 @@ module.exports = {
     .setName("queue")
     .setDescription("Returns the queue of songs"),
 
-  async execute(client, interaction, prevInteraction = null) {
+  async execute(client, interaction, isChainedResposone = false) {
     // build and update our embed
     const embedBuilder = (hasSkipped = false, notEmpty = true) => {
       if (!notEmpty) {
@@ -53,19 +53,14 @@ module.exports = {
       return embed;
     };
 
-    //manage what interaction to deal with
-    const mainInteraction = prevInteraction ? prevInteraction : interaction;
-
     //get queue
-    const queue = client.player.getQueue(mainInteraction.guild);
-
-    //is thinking command (not for chained interactions)
-    !prevInteraction && (await mainInteraction.deferReply());
+    const queue = client.player.getQueue(interaction.guild);
 
     // if no queue stop
     if (!queue && !prevInteraction) {
-      return await mainInteraction.followUp({
+      return await interaction.reply({
         content: `Nothing in queue right now.`,
+        ephemeral: true,
       });
     }
 
@@ -96,6 +91,7 @@ module.exports = {
     });
 
     collector.on("collect", async (i) => {
+      await i.deferUpdate();
       //delete song button
       if (i.customId === "pausePlay") {
         //update button and progress bar
@@ -104,12 +100,12 @@ module.exports = {
         queueButtons.components[0].setEmoji(
           queue.connection.paused ? "▶️" : "⏸️"
         );
-        await i.update({ embeds: [queueEmbed], components: [queueButtons] });
+        await i.editReply({ embeds: [queueEmbed], components: [queueButtons] });
       } else if (i.customId === "skipSong") {
         const notEmpty = !!queue.tracks.length;
         queueEmbed = embedBuilder(true, notEmpty);
         queue.skip();
-        await i.update({
+        await i.editReply({
           embeds: [queueEmbed],
           components: notEmpty ? [queueButtons] : [],
         });
@@ -121,7 +117,7 @@ module.exports = {
       if (reason === "time") {
         queueButtons.components[0]?.setDisabled(true);
         queueButtons.components[1]?.setDisabled(true);
-        await mainInteraction.editReply({
+        await interaction.editReply({
           embeds: [queueEmbed],
           components: [queueButtons],
         });
@@ -129,16 +125,8 @@ module.exports = {
     });
     //end of button collector
 
-    // edits a previous interation
-    if (prevInteraction) {
-      return await mainInteraction.update({
-        embeds: [queueEmbed],
-        components: [queueButtons],
-      });
-    }
-
     //checks if editing another interaction
-    return await mainInteraction.followUp({
+    return await interaction[isChainedResposone ? "editReply" : "reply"]({
       embeds: [queueEmbed],
       components: [queueButtons],
     });

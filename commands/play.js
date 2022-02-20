@@ -102,6 +102,8 @@ module.exports = {
     });
 
     collector.on("collect", async (i) => {
+      await i.deferUpdate();
+
       //delete song button
       if (i.customId === `removeTrack_${track.id + queue?.tracks.length}`) {
         trackEmbed.setDescription("**``Removed from Queue``**");
@@ -110,7 +112,7 @@ module.exports = {
         await i.update({ embeds: [trackEmbed], components: [] });
         //show queue button
       } else if (i.customId === `showQueue${track.id + queue?.tracks.length}`)
-        client.commands.get("queue").execute(client, interaction, i);
+        client.commands.get("queue").execute(client, interaction, true);
       //auto play button
       // else if (i.customId === `showQueue${track.id+queue?.tracks.length}`) {
       //   queue._handleAutoplay(track);
