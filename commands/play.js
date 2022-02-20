@@ -70,7 +70,10 @@ module.exports = {
 
     // button collector
     const collector = interaction.channel.createMessageComponentCollector({
-      filter: (i) => i.user.id === track.requestedBy.id,
+      filter: (i) => {
+        i.deferUpdate();
+        return i.user.id === track.requestedBy.id;
+      },
       time: 15000,
       max: 1,
     });

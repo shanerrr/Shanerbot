@@ -78,14 +78,15 @@ module.exports = {
     // query select menu collector
     const queryCollector = interaction.channel.createMessageComponentCollector({
       componentType: "SELECT_MENU",
-      filter: (i) => i.user.id === interaction.user.id,
+      filter: (i) => {
+        i.deferUpdate();
+        return i.user.id === interaction.user.id;
+      },
       time: 30000,
       max: 1,
     });
 
     queryCollector.on("collect", async (i) => {
-      await i.deferUpdate();
-
       if (i.values[0] === `cancel_${interaction.id}`) {
         // fix issue timeout
         await interaction.deleteReply();
@@ -120,7 +121,7 @@ module.exports = {
     );
 
     // only show queue button of tracks in queue
-    if (queue?.tracks.length) {
+    if (queue?.current) {
       trackButtons.addComponents(
         new MessageButton()
           .setCustomId(`showQueue_${interaction.id}`)
@@ -133,7 +134,10 @@ module.exports = {
     const buttonCollector = interaction.channel.createMessageComponentCollector(
       {
         componentType: "BUTTON",
-        filter: (i) => i.user.id === interaction.user.id,
+        filter: (i) => {
+          i.deferUpdate();
+          return i.user.id === interaction.user.id;
+        },
         time: 15000,
         max: 1,
       }
@@ -154,7 +158,7 @@ module.exports = {
         await interaction.editReply({ embeds: [trackEmbed], components: [] });
         // //show queue button
       } else if (i.customId === `showQueue_${interaction.id}`) {
-        client.commands.get("queue").execute(client, i, true);
+        client.commands.get("queue").execute(client, interaction, true);
       }
     });
 

@@ -7,7 +7,7 @@ module.exports = {
     .setName("queue")
     .setDescription("Returns the queue of songs"),
 
-  async execute(client, interaction, isChainedResposone = false) {
+  async execute(client, interaction, isChainedResponse = false) {
     // build and update our embed
     const embedBuilder = (hasSkipped = false, notEmpty = true) => {
       if (!notEmpty) {
@@ -19,7 +19,7 @@ module.exports = {
 
       const { title, requestedBy, url, thumbnail } = hasSkipped
         ? queue.tracks[0]
-        : queue.current;
+        : queue?.current;
       const embed = new MessageEmbed()
         .setTitle("**" + title + "**")
         .setDescription(
@@ -57,7 +57,7 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
 
     // if no queue stop
-    if (!queue && !prevInteraction) {
+    if (!queue?.current) {
       return await interaction.reply({
         content: `Nothing in queue right now.`,
         ephemeral: true,
@@ -70,42 +70,42 @@ module.exports = {
     // buttons
     const queueButtons = new MessageActionRow().addComponents(
       new MessageButton()
-        .setCustomId("pausePlay")
+        .setCustomId(`pausePlay_${interaction.id}`)
         .setStyle("SECONDARY")
-        .setEmoji(queue.connection.paused ? "▶️" : "⏸️")
+        .setEmoji(queue.connection.paused ? "▶️" : "⏸️"),
+      new MessageButton()
+        .setCustomId(`skipSong_${interaction.id}`)
+        .setStyle("SECONDARY")
+        .setEmoji("⏭️")
     );
-
-    if (queue.tracks?.length) {
-      queueButtons.addComponents(
-        new MessageButton()
-          .setCustomId("skipSong")
-          .setStyle("SECONDARY")
-          .setEmoji("⏭️")
-      );
-    }
 
     // button collector
     const collector = interaction.channel.createMessageComponentCollector({
-      filter: (i) => i.user.id === interaction.user.id,
+      filter: (i) => {
+        i.deferUpdate();
+        return i.user.id === interaction.user.id;
+      },
       time: 60000,
     });
 
     collector.on("collect", async (i) => {
-      await i.deferUpdate();
       //delete song button
-      if (i.customId === "pausePlay") {
+      if (i.customId === `pausePlay_${interaction.id}`) {
         //update button and progress bar
         queueEmbed = embedBuilder();
         queue.setPaused(!queue.connection.paused);
         queueButtons.components[0].setEmoji(
           queue.connection.paused ? "▶️" : "⏸️"
         );
-        await i.editReply({ embeds: [queueEmbed], components: [queueButtons] });
-      } else if (i.customId === "skipSong") {
+        await interaction.editReply({
+          embeds: [queueEmbed],
+          components: [queueButtons],
+        });
+      } else if (i.customId === `skipSong_${interaction.id}`) {
         const notEmpty = !!queue.tracks.length;
         queueEmbed = embedBuilder(true, notEmpty);
         queue.skip();
-        await i.editReply({
+        await interaction.editReply({
           embeds: [queueEmbed],
           components: notEmpty ? [queueButtons] : [],
         });
@@ -126,7 +126,7 @@ module.exports = {
     //end of button collector
 
     //checks if editing another interaction
-    return await interaction[isChainedResposone ? "editReply" : "reply"]({
+    return await interaction[isChainedResponse ? "editReply" : "reply"]({
       embeds: [queueEmbed],
       components: [queueButtons],
     });
