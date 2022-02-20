@@ -84,21 +84,24 @@ module.exports = {
     });
 
     queryCollector.on("collect", async (i) => {
-      // await i.deferUpdate();
+      await i.deferUpdate();
 
       if (i.values[0] === `cancel_${interaction.id}`) {
         // fix issue timeout
         await interaction.deleteReply();
       } else {
+        // append track object to interaction for use later on
         interaction.aTrack = tracks.tracks[JSON.parse(i.values[0]).index];
+
+        //adds the track
+        await queue.addTrack(interaction.aTrack);
+        if (!queue.playing) await queue.play();
+
+        //reply new embed
         await interaction.editReply({
           embeds: [trackEmbedBuilder(interaction.aTrack, queue)],
           components: [trackButtons],
         });
-
-        //adds the track
-        queue.addTrack(interaction.aTrack);
-        if (!queue.playing) await queue.play();
       }
     });
 
@@ -117,7 +120,7 @@ module.exports = {
     );
 
     // only show queue button of tracks in queue
-    if (queue?.current) {
+    if (queue?.tracks.length) {
       trackButtons.addComponents(
         new MessageButton()
           .setCustomId(`showQueue_${interaction.id}`)
@@ -137,8 +140,6 @@ module.exports = {
     );
 
     buttonCollector.on("collect", async (i) => {
-      // await interaction.deferUpdate();
-      // await wait(4000);
       if (i.customId === `removeTrack_${interaction.id}`) {
         const trackEmbed = trackEmbedBuilder(interaction.aTrack, queue);
 
@@ -153,7 +154,6 @@ module.exports = {
         await interaction.editReply({ embeds: [trackEmbed], components: [] });
         // //show queue button
       } else if (i.customId === `showQueue_${interaction.id}`) {
-        // await wait(4000);
         client.commands.get("queue").execute(client, i, true);
       }
     });
