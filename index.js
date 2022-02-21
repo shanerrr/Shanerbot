@@ -20,7 +20,7 @@ let activities = [
     "your gf",
     "your dad",
     "your bf",
-    "your sister",
+    "depression",
     "your brother",
     "your friend",
   ],
