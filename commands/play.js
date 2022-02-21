@@ -84,7 +84,7 @@ module.exports = {
     collector.on("collect", async (i) => {
       //delete song button
       if (i.customId === `removeTrack_${interaction.id}`) {
-        if (queue.current.id === interaction.aTrack.id) {
+        if (queue?.current?.id === interaction.aTrack.id) {
           queue.skip();
           trackEmbed.setDescription("**``Skipped``**");
         } else {

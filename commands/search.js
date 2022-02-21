@@ -138,7 +138,7 @@ module.exports = {
       {
         componentType: "BUTTON",
         filter: (i) => i.user.id === interaction.user.id,
-        time: 15000,
+        time: 30000,
         max: 1,
       }
     );
