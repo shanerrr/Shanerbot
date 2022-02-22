@@ -9,7 +9,6 @@ const {
   MessageButton,
   MessageSelectMenu,
 } = require("discord.js");
-// const wait = require("util").promisify(setTimeout);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -97,15 +96,15 @@ module.exports = {
         // append track object to interaction for use later on
         interaction.aTrack = tracks.tracks[JSON.parse(i.values[0]).index];
 
-        //adds the track
-        await queue.addTrack(interaction.aTrack);
-        if (!queue.playing) await queue.play();
-
         //reply new embed
         await interaction.editReply({
           embeds: [trackEmbedBuilder(interaction.aTrack, queue)],
           components: [trackButtons],
         });
+
+        //adds the track
+        await queue.addTrack(interaction.aTrack);
+        if (!queue.playing) await queue.play();
       }
     });
 
@@ -120,7 +119,7 @@ module.exports = {
       new MessageButton()
         .setCustomId(`removeTrack_${interaction.id}`)
         .setStyle("DANGER")
-        .setLabel(queue.current ? "Remove" : "Skip")
+        .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
     );
 
     // only show queue button of tracks in queue
@@ -129,7 +128,7 @@ module.exports = {
         new MessageButton()
           .setCustomId(`showQueue_${interaction.id}`)
           .setStyle("PRIMARY")
-          .setLabel("Queue")
+          .setLabel("Show Queue")
       );
     }
 

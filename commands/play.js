@@ -61,7 +61,7 @@ module.exports = {
       new MessageButton()
         .setCustomId(`removeTrack_${interaction.id}`)
         .setStyle("DANGER")
-        .setLabel(queue?.current ? "Remove" : "Skip")
+        .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
     );
 
     // only show queue button of tracks in queue
@@ -70,7 +70,7 @@ module.exports = {
         new MessageButton()
           .setCustomId(`showQueue_${interaction.id}`)
           .setStyle("PRIMARY")
-          .setLabel("Queue")
+          .setLabel("Show Queue")
       );
     }
 

@@ -7,9 +7,9 @@ module.exports = function (client) {
   client.on("interactionCreate", async (interaction) => {
     if (interaction.isCommand()) {
       //check if interaction exists for current user
-      const prevInteraction = client.interactions.get(
-        interaction.user.id + interaction.guild.id
-      );
+      // const prevInteraction = client.interactions.get(
+      //   interaction.user.id + interaction.guild.id
+      // );
       // if (prevInteraction) {
       //   await prevInteraction.deferReply();
       //   await prevInteraction.deleteReply();
@@ -27,6 +27,18 @@ module.exports = function (client) {
           ephemeral: true,
         });
       }
+    }
+  });
+
+  client.on("voiceStateUpdate", async (oldState, newState) => {
+    if (
+      newState.id == client.user.id &&
+      oldState.id == client.user.id &&
+      newState.channel == null
+    ) {
+      //get queue and destroys it
+      const queue = await client.player.getQueue(oldState.guild.id);
+      if (queue) return queue.destroy(true);
     }
   });
 };
