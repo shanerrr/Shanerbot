@@ -8,10 +8,10 @@ module.exports.createQueue = async function (client, interaction) {
     metadata: {
       interaction: interaction.channel,
     },
-    leaveOnEmptyCooldown: 600000,
-    leaveOnEnd: false,
-    leaveOnStop: false,
-    leaveOnEmpty: false,
+    // leaveOnEmptyCooldown: 600000,
+    // leaveOnEnd: false,
+    // leaveOnStop: false,
+    // leaveOnEmpty: false,
   });
 
   // verify vc connection
