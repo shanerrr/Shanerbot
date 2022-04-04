@@ -15,15 +15,7 @@ require("./player")(client);
 //events
 require("./events")(client);
 
-let activities = [
-    "your mom",
-    "your gf",
-    "your dad",
-    "your bf",
-    "depression",
-    "your brother",
-    "your friend",
-  ],
+let activities = ["your mom", "depression", "myself :("],
   i = 0;
 setInterval(
   () =>
