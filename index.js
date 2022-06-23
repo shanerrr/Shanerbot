@@ -1,17 +1,29 @@
-const Discord = require('discord.js');
-const { token } = require('./config.json');
-const fs = require("fs");
+const { Client, Intents } = require("discord.js");
+const { token } = require("./config.json");
 
-const client = new Discord.Client({ intents: Discord.Intents.ALL });
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_VOICE_STATES,
+  ],
+});
+//init commands
+require("./handler")(client);
+//init player
+require("./player")(client);
+//events
+require("./events")(client);
 
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
-for (const file of eventFiles) {
-  const event = require(`./events/${file}`);
-  if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args, client));
-  } else {
-    client.on(event.name, (...args) => event.execute(...args, client));
-  }
-}
+let activities = ["your mom", "depression", "myself :("],
+  i = 0;
+setInterval(
+  () =>
+    client.user.setActivity(activities[i++ % activities.length], {
+      type: "PLAYING",
+    }),
+  30000
+);
 
+//login bot
 client.login(token);
