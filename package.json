@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
+    "start": "node index.js",
     "deploy": "node deploy-commands.js"
   },
   "license": "MIT",
@@ -14,10 +15,11 @@
     "discord-api-types": "^0.34.0",
     "discord-player": "^5.2.2",
     "discord.js": "^13.8.0",
+    "dotenv": "^16.0.1",
     "ffmpeg-static": "^5.0.0",
     "ordinal": "^1.0.3",
     "play-dl": "^1.9.5",
-    "pretty-ms": "^8.0.0"
+    "pretty-ms": "^7.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

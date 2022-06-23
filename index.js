@@ -1,5 +1,5 @@
 const { Client, Intents } = require("discord.js");
-const { token } = require("./config.json");
+require("dotenv").config();
 
 const client = new Client({
   intents: [
@@ -24,6 +24,5 @@ setInterval(
     }),
   30000
 );
-
 //login bot
-client.login(token);
+client.login(process.env.token);
