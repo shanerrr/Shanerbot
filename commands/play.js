@@ -15,20 +15,19 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(client, interaction) {
-    if (!interaction.member.voice.channelId)
+    if (!interaction.channelId)
       return await interaction.reply({
         content: "You are not in a voice channel!",
         ephemeral: true,
       });
-    else if (
-      interaction.guild.me.voice.channelId &&
-      interaction.member.voice.channelId !==
-        interaction.guild.me.voice.channelId
-    )
-      return await interaction.reply({
-        content: "You are not in my voice channel!",
-        ephemeral: true,
-      });
+    // else if (
+    //   interaction.guild.me.voice.channelId &&
+    //   interaction.channelId !== interaction.guild.me.voice.channelId
+    // )
+    //   return await interaction.reply({
+    //     content: "You are not in my voice channel!",
+    //     ephemeral: true,
+    //   });
 
     const query = interaction.options.get("song").value;
     const queue = await createQueue(client, interaction);
@@ -57,64 +56,64 @@ module.exports = {
     await queue.addTrack(track);
     if (!queue.playing) await queue.play();
 
-    const trackButtons = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId(`removeTrack_${interaction.id}`)
-        .setStyle("DANGER")
-        .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
-    );
+    // const trackButtons = new MessageActionRow().addComponents(
+    //   new MessageButton()
+    //     .setCustomId(`removeTrack_${interaction.id}`)
+    //     .setStyle("DANGER")
+    //     .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
+    // );
 
-    // only show queue button of tracks in queue
-    if (queue?.tracks.length) {
-      trackButtons.addComponents(
-        new MessageButton()
-          .setCustomId(`showQueue_${interaction.id}`)
-          .setStyle("PRIMARY")
-          .setLabel("Show Queue")
-      );
-    }
+    // // only show queue button of tracks in queue
+    // if (queue?.tracks.length) {
+    //   trackButtons.addComponents(
+    //     new MessageButton()
+    //       .setCustomId(`showQueue_${interaction.id}`)
+    //       .setStyle("PRIMARY")
+    //       .setLabel("Show Queue")
+    //   );
+    // }
 
     // button collector
-    const collector = interaction.channel.createMessageComponentCollector({
-      filter: (i) => i.user.id === track.requestedBy.id,
-      time: 15000,
-      max: 1,
-    });
+    // const collector = interaction.channel.createMessageComponentCollector({
+    //   filter: (i) => i.user.id === track.requestedBy.id,
+    //   time: 15000,
+    //   max: 1,
+    // });
 
-    collector.on("collect", async (i) => {
-      //delete song button
-      if (i.customId === `removeTrack_${interaction.id}`) {
-        if (queue?.current?.id === interaction.aTrack.id) {
-          queue.skip();
-          trackEmbed.setDescription("**``Skipped``**");
-        } else {
-          queue.remove(interaction.aTrack.id);
-          trackEmbed.setDescription("**``Removed from Queue``**");
-        }
-        await interaction.editReply({ embeds: [trackEmbed], components: [] });
-        //show queue button
-      } else if (i.customId === `showQueue_${interaction.id}`) {
-        i.deferUpdate();
-        client.commands.get("queue").execute(client, interaction, true);
-      }
-    });
+    // collector.on("collect", async (i) => {
+    //   //delete song button
+    //   if (i.customId === `removeTrack_${interaction.id}`) {
+    //     if (queue?.current?.id === interaction.aTrack.id) {
+    //       queue.skip();
+    //       trackEmbed.setDescription("**``Skipped``**");
+    //     } else {
+    //       queue.remove(interaction.aTrack.id);
+    //       trackEmbed.setDescription("**``Removed from Queue``**");
+    //     }
+    //     await interaction.editReply({ embeds: [trackEmbed], components: [] });
+    //     //show queue button
+    //   } else if (i.customId === `showQueue_${interaction.id}`) {
+    //     i.deferUpdate();
+    //     client.commands.get("queue").execute(client, interaction, true);
+    //   }
+    // });
 
-    // after time out, disable all buttons
-    collector.on("end", async (e, reason) => {
-      if (reason === "time") {
-        trackButtons.components[0]?.setDisabled(true);
-        trackButtons.components[1]?.setDisabled(true);
-        await interaction.editReply({
-          embeds: [trackEmbed],
-          components: [trackButtons],
-        });
-      }
-    });
-    //end of button collector
+    // // after time out, disable all buttons
+    // collector.on("end", async (e, reason) => {
+    //   if (reason === "time") {
+    //     trackButtons.components[0]?.setDisabled(true);
+    //     trackButtons.components[1]?.setDisabled(true);
+    //     await interaction.editReply({
+    //       embeds: [trackEmbed],
+    //       components: [trackButtons],
+    //     });
+    //   }
+    // });
+    // //end of button collector
 
     return await interaction.editReply({
       embeds: [trackEmbed],
-      components: [trackButtons],
+      // components: [trackButtons],
     });
   },
 };

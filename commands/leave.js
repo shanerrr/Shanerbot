@@ -10,15 +10,15 @@ module.exports = {
         content: "You are not in a voice channel!",
         ephemeral: true,
       });
-    if (
-      interaction.guild.me.voice.channelId &&
-      interaction.member.voice.channelId !==
-        interaction.guild.me.voice.channelId
-    )
-      return await interaction.reply({
-        content: "You are not in my voice channel!",
-        ephemeral: true,
-      });
+    // if (
+    //   interaction.guild.me.voice.channelId &&
+    //   interaction.member.voice.channelId !==
+    //     interaction.guild.me.voice.channelId
+    // )
+    //   return await interaction.reply({
+    //     content: "You are not in my voice channel!",
+    //     ephemeral: true,
+    //   });
 
     //get queue
     const queue = await client.player.getQueue(interaction.guild);

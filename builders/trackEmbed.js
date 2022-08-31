@@ -1,27 +1,23 @@
 const { embedAccent } = require("../config.json");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const ordinal = require("ordinal");
-const prettyMilliseconds = require("pretty-ms");
+const ms = require("ms");
 
 module.exports.trackEmbedBuilder = function (track, queue) {
-  return new MessageEmbed()
+  return new EmbedBuilder()
     .setTitle("**" + track.title + "**")
     .setDescription(
       queue?.current
         ? "**``" +
             `${
               queue?.current && !queue.tracks.length
-                ? `Playing Next - (in ${prettyMilliseconds(
-                    queue.current.durationMS - queue.streamTime,
-                    { colonNotation: true, secondsDecimalDigits: 0 }
+                ? `Playing Next - (in ${ms(
+                    queue.current.durationMS - queue.streamTime
                   )}`
-                : `${ordinal(
-                    queue.tracks.length + 1
-                  )} In Queue - (in ${prettyMilliseconds(
+                : `${ordinal(queue.tracks.length + 1)} In Queue - (in ${ms(
                     queue.current.durationMS +
                       queue.totalTime -
-                      queue.streamTime,
-                    { colonNotation: true, secondsDecimalDigits: 0 }
+                      queue.streamTime
                   )}`
             })` +
             "``**"
@@ -29,8 +25,10 @@ module.exports.trackEmbedBuilder = function (track, queue) {
     )
     .setURL(track.url)
     .setThumbnail(track.thumbnail)
-    .setColor(embedAccent)
-    .addField("Uploader:", `${track.author}`, true)
-    .addField("Duration:", track.duration, true)
+    .setColor(Number(embedAccent))
+    .addFields(
+      { name: "Uploader:", value: track.author, inline: true },
+      { name: "Duration:", value: track.duration, inline: true }
+    )
     .setTimestamp();
 };

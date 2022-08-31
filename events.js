@@ -5,7 +5,7 @@ module.exports = function (client) {
 
   //create slash commands
   client.on("interactionCreate", async (interaction) => {
-    if (interaction.isCommand()) {
+    if (interaction.isChatInputCommand()) {
       //check if interaction exists for current user
       // const prevInteraction = client.interactions.get(
       //   interaction.user.id + interaction.guild.id
@@ -22,10 +22,10 @@ module.exports = function (client) {
         await command.execute(client, interaction);
       } catch (error) {
         console.log(error);
-        return interaction.reply({
-          content: "You broke me, try again later. :(",
-          ephemeral: true,
-        });
+        // return interaction.reply({
+        //   content: "You broke me, try again later. :(",
+        //   ephemeral: true,
+        // });
       }
     }
   });
