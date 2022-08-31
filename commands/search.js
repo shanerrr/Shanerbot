@@ -4,10 +4,10 @@ const { createQueue } = require("../helpers/createQueue");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { QueryType } = require("discord-player");
 const {
-  MessageEmbed,
-  MessageActionRow,
-  MessageButton,
-  MessageSelectMenu,
+  ActionRowBuilder,
+  SelectMenuBuilder,
+  EmbedBuilder,
+  ComponentType,
 } = require("discord.js");
 
 module.exports = {
@@ -26,15 +26,15 @@ module.exports = {
         content: "You are not in a voice channel!",
         ephemeral: true,
       });
-    else if (
-      interaction.guild.me.voice.channelId &&
-      interaction.member.voice.channelId !==
-        interaction.guild.me.voice.channelId
-    )
-      return await interaction.reply({
-        content: "You are not in my voice channel!",
-        ephemeral: true,
-      });
+    // else if (
+    //   interaction.guild.me.voice.channelId &&
+    //   interaction.member.voice.channelId !==
+    //     interaction.guild.me.voice.channelId
+    // )
+    //   return await interaction.reply({
+    //     content: "You are not in my voice channel!",
+    //     ephemeral: true,
+    //   });
 
     const query = interaction.options.get("query").value;
     const queue = await createQueue(client, interaction);
@@ -53,8 +53,8 @@ module.exports = {
     // defering to get more time (is thinking effect)
     await interaction.deferReply();
 
-    const querySelect = new MessageActionRow().addComponents(
-      new MessageSelectMenu()
+    const querySelect = new ActionRowBuilder().addComponents(
+      new SelectMenuBuilder()
         .setCustomId("querySelector")
         .setPlaceholder("Choose a song to add to the queue")
         .addOptions([
@@ -79,7 +79,7 @@ module.exports = {
 
     // query select menu collector
     const queryCollector = interaction.channel.createMessageComponentCollector({
-      componentType: "SELECT_MENU",
+      componentType: ComponentType.SelectMenu,
       filter: (i) => {
         i.deferUpdate();
         return i.user.id === interaction.user.id;
@@ -99,7 +99,7 @@ module.exports = {
         //reply new embed
         await interaction.editReply({
           embeds: [trackEmbedBuilder(interaction.aTrack, queue)],
-          components: [trackButtons],
+          components: [],
         });
 
         //adds the track
@@ -115,67 +115,67 @@ module.exports = {
     });
     //end of query select menu collector
 
-    const trackButtons = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId(`removeTrack_${interaction.id}`)
-        .setStyle("DANGER")
-        .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
-    );
+    // const trackButtons = new ActionRowBuilder().addComponents(
+    //   new MessageButton()
+    //     .setCustomId(`removeTrack_${interaction.id}`)
+    //     .setStyle("DANGER")
+    //     .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
+    // );
 
-    // only show queue button of tracks in queue
-    if (queue?.current) {
-      trackButtons.addComponents(
-        new MessageButton()
-          .setCustomId(`showQueue_${interaction.id}`)
-          .setStyle("PRIMARY")
-          .setLabel("Show Queue")
-      );
-    }
+    // // only show queue button of tracks in queue
+    // if (queue?.current) {
+    //   trackButtons.addComponents(
+    //     new MessageButton()
+    //       .setCustomId(`showQueue_${interaction.id}`)
+    //       .setStyle("PRIMARY")
+    //       .setLabel("Show Queue")
+    //   );
+    // }
 
     //for the button response after select menu
-    const buttonCollector = interaction.channel.createMessageComponentCollector(
-      {
-        componentType: "BUTTON",
-        filter: (i) => i.user.id === interaction.user.id,
-        time: 30000,
-        max: 1,
-      }
-    );
+    // const buttonCollector = interaction.channel.createMessageComponentCollector(
+    //   {
+    //     componentType: "BUTTON",
+    //     filter: (i) => i.user.id === interaction.user.id,
+    //     time: 30000,
+    //     max: 1,
+    //   }
+    // );
 
-    buttonCollector.on("collect", async (i) => {
-      if (i.customId === `removeTrack_${interaction.id}`) {
-        const trackEmbed = trackEmbedBuilder(interaction.aTrack, queue);
+    // buttonCollector.on("collect", async (i) => {
+    //   if (i.customId === `removeTrack_${interaction.id}`) {
+    //     const trackEmbed = trackEmbedBuilder(interaction.aTrack, queue);
 
-        if (queue.current.id === interaction.aTrack.id) {
-          queue.skip();
-          trackEmbed.setDescription("**``Skipped``**");
-        } else {
-          queue.remove(interaction.aTrack.id);
-          trackEmbed.setDescription("**``Removed from Queue``**");
-        }
+    //     if (queue.current.id === interaction.aTrack.id) {
+    //       queue.skip();
+    //       trackEmbed.setDescription("**``Skipped``**");
+    //     } else {
+    //       queue.remove(interaction.aTrack.id);
+    //       trackEmbed.setDescription("**``Removed from Queue``**");
+    //     }
 
-        await interaction.editReply({ embeds: [trackEmbed], components: [] });
-        // //show queue button
-      } else if (i.customId === `showQueue_${interaction.id}`) {
-        i.deferUpdate();
-        client.commands.get("queue").execute(client, interaction, true);
-      }
-    });
+    //     await interaction.editReply({ embeds: [trackEmbed], components: [] });
+    //     // //show queue button
+    //   } else if (i.customId === `showQueue_${interaction.id}`) {
+    //     i.deferUpdate();
+    //     client.commands.get("queue").execute(client, interaction, true);
+    //   }
+    // });
 
-    // after time out, disable all buttons
-    buttonCollector.on("end", async (e, reason) => {
-      if (reason === "time") {
-        trackButtons.components[0]?.setDisabled(true);
-        trackButtons.components[1]?.setDisabled(true);
-        await interaction.editReply({
-          components: [trackButtons],
-        });
-      }
-    });
+    // // after time out, disable all buttons
+    // buttonCollector.on("end", async (e, reason) => {
+    //   if (reason === "time") {
+    //     trackButtons.components[0]?.setDisabled(true);
+    //     trackButtons.components[1]?.setDisabled(true);
+    //     await interaction.editReply({
+    //       components: [trackButtons],
+    //     });
+    //   }
+    // });
 
     return await interaction.editReply({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle(
             `${tracks.tracks.length} results found for: __**${query}**__`
           )
