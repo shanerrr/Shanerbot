@@ -1,7 +1,7 @@
-import { clientId, guildId, token } from "./config.json";
-import { REST, Routes } from "discord.js";
-import fs from "node:fs";
-import path from "node:path";
+const { REST, Routes } = require("discord.js");
+const { clientId, guildId, token } = require("./config.json");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const commands = [];
 // Grab all the command files from the commands directory you created earlier
@@ -33,7 +33,7 @@ const rest = new REST({ version: "10" }).setToken(token);
     );
 
     console.log(
-      `Successfully reloaded ${(data as any).length} application (/) commands.`
+      `Successfully reloaded ${data.length} application (/) commands.`
     );
   } catch (error) {
     // And of course, make sure you catch and log any errors!

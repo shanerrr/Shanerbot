@@ -1,8 +1,4 @@
-import {
-  ChatInputCommandInteraction,
-  Client,
-  SlashCommandBuilder,
-} from "discord.js";
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,7 +11,7 @@ module.exports = {
         .setRequired(true)
         .setAutocomplete(true)
     ),
-  async execute(client: Client, interaction: ChatInputCommandInteraction) {
+  async execute(client, interaction) {
     if (!interaction.channelId)
       return await interaction.reply({
         content: "You are not in a voice channel!",
@@ -28,8 +24,8 @@ module.exports = {
     await interaction.deferReply();
 
     try {
-      const { track } = await (client as any).player.play(
-        (interaction.member as any).voice.channel,
+      const { track } = await client.player.play(
+        interaction.member.voice.channel,
         query,
         {
           nodeOptions: {
@@ -50,13 +46,13 @@ module.exports = {
       return interaction.followUp(`Something went wrong: ${e}`);
     }
   },
-  async autocompleteExecute(client: Client, interaction: any) {
+  async autocompleteExecute(client, interaction) {
     const query = interaction.options.getString("song", true);
-    const results = await (client as any).player.search(query);
+    const results = await client.player.search(query);
 
     //Returns a list of songs with their title
     return interaction.respond(
-      results.tracks.slice(0, 10).map((t: any) => ({
+      results.tracks.slice(0, 10).map((t) => ({
         name: t.title,
         value: t.url,
       }))

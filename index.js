@@ -1,8 +1,8 @@
-import { Client, Events, GatewayIntentBits, Collection } from "discord.js";
-import { Player } from "discord-player";
-import { token } from "./config.json";
-import fs from "node:fs";
-import path from "node:path";
+const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
+const { Player } = require("discord-player");
+const { token } = require("./config.json");
+const fs = require("node:fs");
+const path = require("node:path");
 
 // Create a new client instance
 const client = new Client({
@@ -10,7 +10,7 @@ const client = new Client({
 });
 
 // this is the entrypoint for discord-player based application
-(client as any).player = new Player(client, {
+client.player = new Player(client, {
   ytdlOptions: {
     filter: "audioonly",
     quality: "highestaudio",
@@ -19,7 +19,7 @@ const client = new Client({
 });
 
 // command handler
-(client as any).commands = new Collection();
+client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
@@ -31,7 +31,7 @@ for (const file of commandFiles) {
   const command = require(filePath);
   // Set a new item in the Collection with the key as the command name and the value as the exported module
   if ("data" in command && "execute" in command) {
-    (client as any).commands.set(command.data.name, command);
+    client.commands.set(command.data.name, command);
   } else {
     console.log(
       `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
@@ -40,10 +40,8 @@ for (const file of commandFiles) {
 }
 
 //listeners
-client.on(Events.InteractionCreate, async (interaction: any) => {
-  const command = (interaction.client as any).commands.get(
-    interaction.commandName
-  );
+client.on(Events.InteractionCreate, async (interaction) => {
+  const command = interaction.client.commands.get(interaction.commandName);
 
   try {
     if (interaction.isAutocomplete()) {
