@@ -7,9 +7,9 @@
   "repository": "https://github.com/shanerrr/Shanerbot.git",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon node index.ts",
-    "deploy-guild": "node deploy.ts",
-    "deploy-global": "node deploy.ts"
+    "dev": "nodemon node index.js",
+    "deploy-guild": "node deploy.js",
+    "deploy-global": "node deploy.js"
   },
   "dependencies": {
     "@discord-player/extractor": "^4.1.1",
