@@ -1,8 +1,8 @@
 import { Client, Events, GatewayIntentBits, Collection } from "discord.js";
 import { Player } from "discord-player";
+import { token } from "./config.json";
 import fs from "node:fs";
 import path from "node:path";
-import { token } from "./config.json";
 
 // Create a new client instance
 const client = new Client({
@@ -40,20 +40,19 @@ for (const file of commandFiles) {
 }
 
 //listeners
-client.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
+client.on(Events.InteractionCreate, async (interaction: any) => {
   const command = (interaction.client as any).commands.get(
     interaction.commandName
   );
 
-  if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
-    return;
-  }
-
   try {
-    await command.execute(client, interaction);
+    if (interaction.isAutocomplete()) {
+      //Handling autocomplete requests
+      await command.autocompleteExecute(client, interaction);
+    } else if (interaction.isChatInputCommand()) {
+      //Handling chat slashCommand requests
+      await command.execute(client, interaction);
+    }
   } catch (error) {
     console.error(error);
     if (interaction.replied || interaction.deferred) {
