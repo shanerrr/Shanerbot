@@ -1,7 +1,3 @@
-start.bat
-start_bot.bat
-application.yml
-logs
-indstart.bat
 node_modules
-.env
+config.json
+

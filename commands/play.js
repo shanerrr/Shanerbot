@@ -1,8 +1,4 @@
-const { trackEmbedBuilder } = require("../builders/trackEmbed");
-const { createQueue } = require("../helpers/createQueue");
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageActionRow, MessageButton } = require("discord.js");
-const { QueryType } = require("discord-player");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,6 +9,7 @@ module.exports = {
         .setName("song")
         .setDescription("A song name or url")
         .setRequired(true)
+        .setAutocomplete(true)
     ),
   async execute(client, interaction) {
     if (!interaction.channelId)
@@ -20,100 +17,46 @@ module.exports = {
         content: "You are not in a voice channel!",
         ephemeral: true,
       });
-    // else if (
-    //   interaction.guild.me.voice.channelId &&
-    //   interaction.channelId !== interaction.guild.me.voice.channelId
-    // )
-    //   return await interaction.reply({
-    //     content: "You are not in my voice channel!",
-    //     ephemeral: true,
-    //   });
 
-    const query = interaction.options.get("song").value;
-    const queue = await createQueue(client, interaction);
+    const query = interaction.options.getString("song", true); // we need input/query to play
 
-    const track = await client.player
-      .search(query, {
-        requestedBy: interaction.user,
-        searchEngine: QueryType.AUTO,
-      })
-      .then((x) => {
-        interaction.aTrack = x.tracks[0];
-        return x.tracks[0];
-      });
-    if (!track)
-      return await interaction.reply({
-        content: `❌ | Track **${query}** not found!`,
-        ephemeral: true,
-      });
-
-    // defering to get more time (is thinking effect)
+    // let's defer the interaction as things can take time to process
     await interaction.deferReply();
 
-    const trackEmbed = trackEmbedBuilder(track, queue);
+    try {
+      const { track } = await client.player.play(
+        interaction.member.voice.channel,
+        query,
+        {
+          nodeOptions: {
+            // nodeOptions are the options for guild node (aka your queue in simple word)
+            metadata: interaction, // we can access this metadata object using queue.metadata later on
+            volume: 100,
+            leaveOnStop: false,
+            leaveOnEmpty: false,
+            leaveOnEndCooldown: 300000, // 5 minutes
+            leaveOnEmptyCooldown: 30000, // 30 seconds
+          },
+        }
+      );
 
-    //adds or plays the track
-    await queue.addTrack(track);
-    if (!queue.playing) await queue.play();
-
-    // const trackButtons = new MessageActionRow().addComponents(
-    //   new MessageButton()
-    //     .setCustomId(`removeTrack_${interaction.id}`)
-    //     .setStyle("DANGER")
-    //     .setLabel(queue.tracks.length ? "Dequeue" : "Skip")
-    // );
-
-    // // only show queue button of tracks in queue
-    // if (queue?.tracks.length) {
-    //   trackButtons.addComponents(
-    //     new MessageButton()
-    //       .setCustomId(`showQueue_${interaction.id}`)
-    //       .setStyle("PRIMARY")
-    //       .setLabel("Show Queue")
-    //   );
-    // }
-
-    // button collector
-    // const collector = interaction.channel.createMessageComponentCollector({
-    //   filter: (i) => i.user.id === track.requestedBy.id,
-    //   time: 15000,
-    //   max: 1,
-    // });
-
-    // collector.on("collect", async (i) => {
-    //   //delete song button
-    //   if (i.customId === `removeTrack_${interaction.id}`) {
-    //     if (queue?.current?.id === interaction.aTrack.id) {
-    //       queue.skip();
-    //       trackEmbed.setDescription("**``Skipped``**");
-    //     } else {
-    //       queue.remove(interaction.aTrack.id);
-    //       trackEmbed.setDescription("**``Removed from Queue``**");
-    //     }
-    //     await interaction.editReply({ embeds: [trackEmbed], components: [] });
-    //     //show queue button
-    //   } else if (i.customId === `showQueue_${interaction.id}`) {
-    //     i.deferUpdate();
-    //     client.commands.get("queue").execute(client, interaction, true);
-    //   }
-    // });
-
-    // // after time out, disable all buttons
-    // collector.on("end", async (e, reason) => {
-    //   if (reason === "time") {
-    //     trackButtons.components[0]?.setDisabled(true);
-    //     trackButtons.components[1]?.setDisabled(true);
-    //     await interaction.editReply({
-    //       embeds: [trackEmbed],
-    //       components: [trackButtons],
-    //     });
-    //   }
-    // });
-    // //end of button collector
-
-    return await interaction.editReply({
-      embeds: [trackEmbed],
-      // components: [trackButtons],
-    });
+      return interaction.followUp(
+        `**${track.title} - ${track.author}** enqueued!`
+      );
+    } catch (e) {
+      // let's return error if something failed
+      return interaction.followUp(`Something went wrong: ${e}`);
+    }
+  },
+  async autocompleteExecute(client, interaction) {
+    const query = interaction.options.getString("song", true);
+    const results = await client.player.search(query);
+    //Returns a list of songs with their title
+    return interaction.respond(
+      results.tracks.slice(0, 10).map((t) => ({
+        name: `${t.title} - ${t.author} [${t.duration}]`.substring(0, 100),
+        value: t.url,
+      }))
+    );
   },
 };

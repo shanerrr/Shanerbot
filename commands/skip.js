@@ -1,41 +1,31 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("skip")
     .setDescription("Skips the current playing song."),
   async execute(client, interaction) {
-    if (!interaction.member.voice.channelId)
+    if (!interaction.channelId)
       return await interaction.reply({
         content: "You are not in a voice channel!",
         ephemeral: true,
       });
-    // if (
-    //   interaction.guild.me.voice.channelId &&
-    //   interaction.member.voice.channelId !==
-    //     interaction.guild.me.voice.channelId
-    // )
-    //   return await interaction.reply({
-    //     content: "You are not in my voice channel!",
-    //     ephemeral: true,
-    //   });
 
-    //get queue
-    const queue = await client.player.getQueue(interaction.guild);
-
-    if (!queue) {
-      return await interaction.reply({
-        content: "Nothing playing right now to skip, Sweetie.",
-        ephemeral: true,
-      });
-    }
-
+    // let's defer the interaction as things can take time to process
     await interaction.deferReply();
 
-    await interaction.editReply({
-      content: `⏭️ | Skipped track **${queue.current.title}**!`,
-    });
+    try {
+      const queue = client.player.nodes.get(interaction.guildId);
 
-    return queue.skip();
+      //if nothing playing or no queue
+      if (!queue || !queue.node.isPlaying())
+        return interaction.followUp(`Nothing to skip, sweetie.`);
+
+      await queue.node.skip();
+      return interaction.followUp(`**${queue.currentTrack.title}** skipped!`);
+    } catch (e) {
+      // let's return error if something failed
+      return interaction.followUp(`Something went wrong: ${e}`);
+    }
   },
 };
