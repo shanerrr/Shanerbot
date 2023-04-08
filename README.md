@@ -1,0 +1,1 @@
+ffmpeg-static causes problems where audio doesnt play, run sudo apt update & sudo apt install ffmpeg

@@ -40,7 +40,9 @@ module.exports = {
         }
       );
 
-      return interaction.followUp(`**${track.title}** enqueued!`);
+      return interaction.followUp(
+        `**${track.title} - ${track.author}** enqueued!`
+      );
     } catch (e) {
       // let's return error if something failed
       return interaction.followUp(`Something went wrong: ${e}`);
