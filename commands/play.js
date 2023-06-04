@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const { useMasterPlayer } = require("discord-player");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -49,14 +50,27 @@ module.exports = {
     }
   },
   async autocompleteExecute(client, interaction) {
-    const query = interaction.options.getString("song", true);
-    const results = await client.player.search(query);
-    //Returns a list of songs with their title
-    return interaction.respond(
-      results.tracks.slice(0, 10).map((t) => ({
-        name: `${t.title} - ${t.author} [${t.duration}]`.substring(0, 100),
-        value: t.url,
-      }))
-    );
+    try {
+      const query = interaction.options.getString("song", true);
+      if (!query) {
+        return interaction.respond([
+          {
+            name: "Need more info on the song.",
+            value: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          },
+        ]);
+      }
+      const results = await client.player.search(query);
+
+      //Returns a list of songs with their title
+      return interaction.respond(
+        results.tracks.slice(0, 10).map((t) => ({
+          name: `${t.title} - ${t.author} [${t.duration}]`.substring(0, 100),
+          value: t.url,
+        }))
+      );
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
