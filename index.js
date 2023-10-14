@@ -1,6 +1,6 @@
 const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
 const { Player } = require("discord-player");
-// const { token } = require("./config.json");
+
 const fs = require("node:fs");
 const path = require("node:path");
 require("dotenv").config();
@@ -56,17 +56,17 @@ const main = async () => {
       }
     } catch (error) {
       console.error(error);
-      if (interaction.replied || interaction.deferred) {
-        await interaction.followUp({
-          content: "There was an error while executing this command!",
-          ephemeral: true,
-        });
-      } else {
-        await interaction.reply({
-          content: "There was an error while executing this command!",
-          ephemeral: true,
-        });
-      }
+      // if (interaction.replied || interaction.deferred) {
+      //   await interaction.followUp({
+      //     content: "There was an error while executing this command!",
+      //     ephemeral: true,
+      //   });
+      // } else {
+      //   await interaction.reply({
+      //     content: "There was an error while executing this command!",
+      //     ephemeral: true,
+      //   });
+      // }
     }
   });
 

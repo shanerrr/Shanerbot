@@ -4,8 +4,10 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("skip")
     .setDescription("Skips the current playing song."),
-  async execute(client, interaction) {
-    if (!interaction.channelId)
+  async execute(_, interaction) {
+    const channel = interaction.member.voice.channel;
+
+    if (!channel)
       return await interaction.reply({
         content: "You are not in a voice channel!",
         ephemeral: true,
@@ -14,8 +16,10 @@ module.exports = {
     // let's defer the interaction as things can take time to process
     await interaction.deferReply();
 
+    const player = useMainPlayer();
+
     try {
-      const queue = client.player.nodes.get(interaction.guildId);
+      const queue = player.nodes.get(interaction.guildId);
 
       //if nothing playing or no queue
       if (!queue || !queue.node.isPlaying())
