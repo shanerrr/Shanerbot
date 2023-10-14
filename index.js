@@ -12,13 +12,7 @@ const main = async () => {
   });
 
   // this is the entrypoint for discord-player based application
-  client.player = new Player(client, {
-    ytdlOptions: {
-      filter: "audioonly",
-      quality: "highestaudio",
-      highWaterMark: 1 << 25,
-    },
-  });
+  client.player = new Player(client);
   await client.player.extractors.loadDefault();
 
   // command handler
