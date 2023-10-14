@@ -7,6 +7,7 @@
   "repository": "https://github.com/shanerrr/Shanerbot.git",
   "license": "MIT",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon node index.js",
     "deploy-guild": "node deploy.js",
     "deploy-global": "node deploy.js"
