@@ -1,8 +1,9 @@
 const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
 const { Player } = require("discord-player");
-const { token } = require("./config.json");
+// const { token } = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
+require("dotenv").config();
 
 const main = async () => {
   // Create a new client instance
@@ -74,7 +75,7 @@ const main = async () => {
   });
 
   // Log in to Discord with token
-  client.login(token);
+  client.login(process.env.token);
 };
 
 main();
