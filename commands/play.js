@@ -13,54 +13,39 @@ module.exports = {
         .setAutocomplete(true)
     ),
   async execute(_, interaction) {
-    const channel = interaction.member.voice.channel;
-
-    if (!channel)
-      return await interaction.reply({
-        content: "You are not in a voice channel!",
-        ephemeral: true,
-      });
-
-    // let's defer the interaction as things can take time to process
-    await interaction.deferReply();
-
     const player = useMainPlayer();
-    const query = interaction.options.getString("song", true); // we need input/query to play
+    const query = interaction.options.getString("song");
+    const searchResult = await player.search(query, {
+      requestedBy: interaction.user,
+    });
 
-    try {
-      const { track } = await player.play(channel, query, {
+    if (!searchResult.hasTracks()) {
+      //Check if we found results for this query
+      await interaction.reply(`We found no tracks for ${query}!`);
+      return;
+    } else {
+      await player.play(interaction.member.voice.channel, searchResult, {
         nodeOptions: {
-          // nodeOptions are the options for guild node (aka your queue in simple word)
-          metadata: interaction, // we can access this metadata object using queue.metadata later on
-          volume: 100,
-          leaveOnStop: false,
-          leaveOnEmpty: false,
-          leaveOnEndCooldown: 300000, // 5 minutes
-          leaveOnEmptyCooldown: 30000, // 30 seconds
+          metadata: interaction.channel,
+          //You can add more options over here
         },
       });
-
-      return interaction.followUp(
-        `**${track.title} - ${track.author}** enqueued!`
-      );
-    } catch (e) {
-      // let's return error if something failed
-      return interaction.followUp(`Something went wrong: ${e}`);
     }
+    await interaction.reply({
+      content: `Playing **${searchResult.tracks[0].title}** by **${searchResult.tracks[0].author}**`,
+    });
   },
   async autocompleteExecute(client, interaction) {
     const player = useMainPlayer();
-    const query = interaction.options.getString("song", true);
+    const query = interaction.options.getString("song", true) || " ";
+    const results = await player.search(query);
 
     //Returns a list of songs with their title
-    if (query) {
-      const results = await player.search(query);
-      return interaction.respond(
-        results.tracks.slice(0, 10).map((t) => ({
-          name: `${t.title} - ${t.author} [${t.duration}]`.substring(0, 100),
-          value: t.url,
-        }))
-      );
-    }
+    return interaction.respond(
+      results.tracks.slice(0, 10).map((t) => ({
+        name: t.title,
+        value: t.url,
+      }))
+    );
   },
 };
