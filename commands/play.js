@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { useMainPlayer } = require("discord-player");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { useMainPlayer, useQueue } = require("discord-player");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,8 +12,31 @@ module.exports = {
         .setRequired(true)
         .setAutocomplete(true)
     ),
-  async execute(_, interaction) {
+  async autocomplete(interaction) {
     const player = useMainPlayer();
+    const query = interaction.options.getFocused() || " ";
+
+    const results = await player.search(query);
+
+    //Returns a list of songs with their title
+    return interaction.respond(
+      results.tracks.slice(0, 10).map((t) => ({
+        name: `${t.title} - ${t.author} [${t.duration}]`,
+        value: t.url,
+      }))
+    );
+  },
+  async execute(interaction) {
+    if (!interaction.member.voice.channel)
+      return await interaction.reply({
+        content: "Please join a voice channel first!",
+        ephemeral: true,
+      });
+
+    await interaction.deferReply();
+
+    const player = useMainPlayer();
+
     const query = interaction.options.getString("song");
     const searchResult = await player.search(query, {
       requestedBy: interaction.user,
@@ -21,8 +44,7 @@ module.exports = {
 
     if (!searchResult.hasTracks()) {
       //Check if we found results for this query
-      await interaction.reply(`We found no tracks for ${query}!`);
-      return;
+      await interaction.editReply(`We found no tracks for ${query}!`);
     } else {
       await player.play(interaction.member.voice.channel, searchResult, {
         nodeOptions: {
@@ -30,22 +52,30 @@ module.exports = {
           //You can add more options over here
         },
       });
-    }
-    await interaction.reply({
-      content: `Playing **${searchResult.tracks[0].title}** by **${searchResult.tracks[0].author}**`,
-    });
-  },
-  async autocompleteExecute(client, interaction) {
-    const player = useMainPlayer();
-    const query = interaction.options.getString("song", true) || " ";
-    const results = await player.search(query);
 
-    //Returns a list of songs with their title
-    return interaction.respond(
-      results.tracks.slice(0, 10).map((t) => ({
-        name: t.title,
-        value: t.url,
-      }))
-    );
+      const track = searchResult.tracks[0];
+      const queue = useQueue(interaction.guild.id);
+
+      const trackEmbed = new EmbedBuilder()
+        .setColor(0x0099ff)
+        .setTitle(`**${track.title}** - ${track.author}`)
+        .setURL(track.url)
+        .setDescription(`Requested by: ${track.requestedBy}`)
+        .setThumbnail(track.thumbnail)
+        .addFields(
+          { name: "Duration", value: track.duration },
+          {
+            name: "Position (Queue)",
+            value: queue.tracks.size
+              ? String(queue.tracks.size)
+              : "Playing now!",
+          }
+        )
+        .setTimestamp();
+
+      await interaction.editReply({
+        embeds: [trackEmbed],
+      });
+    }
   },
 };

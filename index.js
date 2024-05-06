@@ -13,7 +13,9 @@ const main = async () => {
 
   // this is the entrypoint for discord-player based application
   client.player = new Player(client);
-  await client.player.extractors.loadDefault();
+  await client.player.extractors.loadDefault(
+    (ext) => ext !== "YouTubeExtractor"
+  );
 
   // command handler
   client.commands = new Collection();
@@ -41,12 +43,12 @@ const main = async () => {
     const command = interaction.client.commands.get(interaction.commandName);
 
     try {
-      if (interaction.isAutocomplete()) {
-        //Handling autocomplete requests
-        await command.autocompleteExecute(client, interaction);
-      } else if (interaction.isChatInputCommand()) {
+      if (interaction.isChatInputCommand()) {
         //Handling chat slashCommand requests
-        await command.execute(client, interaction);
+        await command.execute(interaction);
+      } else if (interaction.isAutocomplete()) {
+        //Handling autocomplete requests
+        await command.autocomplete(interaction);
       }
     } catch (error) {
       console.error(error);
