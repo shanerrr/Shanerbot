@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const { useMainPlayer, useQueue } = require("discord-player");
+const embeds = require("../utils/embed");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -56,22 +57,7 @@ module.exports = {
       const track = searchResult.tracks[0];
       const queue = useQueue(interaction.guild.id);
 
-      const trackEmbed = new EmbedBuilder()
-        .setColor(0x0099ff)
-        .setTitle(`**${track.title}** - ${track.author}`)
-        .setURL(track.url)
-        .setDescription(`Requested by: ${track.requestedBy}`)
-        .setThumbnail(track.thumbnail)
-        .addFields(
-          { name: "Duration", value: track.duration },
-          {
-            name: "Position (Queue)",
-            value: queue.tracks.size
-              ? String(queue.tracks.size)
-              : "Playing now!",
-          }
-        )
-        .setTimestamp();
+      const trackEmbed = embeds.addSongEmbed(track, queue.tracks.size);
 
       await interaction.editReply({
         embeds: [trackEmbed],
